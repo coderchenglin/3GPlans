@@ -138,12 +138,13 @@
 
 - (void)pressLoginButton:(UIButton*)button {
     //自己设的账号密码，方便调试
-    if([_accountText.text isEqualToString:@"W"] && [_passwordText.text isEqualToString:@"w"]) {
+    if([_accountText.text isEqualToString:@"1"] && [_passwordText.text isEqualToString:@"1"]) {
         [self LoadingInterface];
     } else if ([_transAccount.text isEqualToString:@""] || [_transPassword.text isEqualToString:@""]) {
         UIAlertController *warning = [UIAlertController alertControllerWithTitle:@"警告" message:@"您输入的账号未注册" preferredStyle:UIAlertControllerStyleAlert];
         [warning addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:warning animated:YES completion:nil];
+        return;
     }
     
     if([_accountText.text isEqualToString:_transAccount.text] && [_passwordText.text isEqualToString:_transPassword.text]) {
