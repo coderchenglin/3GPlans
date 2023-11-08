@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface FirstViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, TransmissionDelegate>
 
 @property (nonatomic, strong) UIView *falseView;
 @property (nonatomic, strong) UITableView *tableView;

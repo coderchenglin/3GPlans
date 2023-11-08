@@ -11,6 +11,7 @@
 
 @interface FirstViewController ()
 
+//扩展属性
 @property (nonatomic, strong) ShowTableViewCell* cell;
 
 @end
@@ -29,13 +30,13 @@
 
     //设置顶上的视图
     self.view.backgroundColor = [UIColor whiteColor];
-//    _falseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 100)];
-//    [self.view addSubview:_falseView];
+    _falseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 100)];
+    [self.view addSubview:_falseView];
     UIImage *falseImage = [UIImage imageNamed:@"background_main.png"];
     UIImageView *falseImageView = [[UIImageView alloc] initWithImage:falseImage];
     falseImageView.frame = CGRectMake(0, 0, width, 100);
-//    [_falseView addSubview:falseImageView];
-    [self.view addSubview:falseImageView];
+    [_falseView addSubview:falseImageView];
+//    [self.view addSubview:falseImageView];
     
     //设置顶上视图的标题文字
     UILabel *title = [[UILabel alloc] init];
@@ -43,9 +44,9 @@
     title.frame = CGRectMake(170, 30, 150, 70);
     title.font = [UIFont systemFontOfSize:28];
     title.textColor = [UIColor whiteColor];
-//    [_falseView addSubview:title];
+    [_falseView addSubview:title];
 //    [self.view addSubview:title];
-    [falseImageView addSubview:title];
+//    [falseImageView addSubview:title];
     
     _titleArray = [[NSArray alloc] initWithObjects:@"假日", @"国外画册欣赏", @"collection扁平设计", @"版式整理术：高校解决多风格要求", nil];
     _describeArray = [[NSArray alloc] initWithObjects:@"原创-插画-练习习作", @"平面设计——画册设计", @"平面设计——海报设计", @"平面设计——样式设计", nil];
@@ -99,7 +100,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 53;
+    return 0;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -109,7 +110,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 20;
+    return 30;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -118,8 +119,48 @@
     return footerView;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat min = -59;
+    CGFloat max = 0;
+    CGFloat now = _tableView.contentOffset.y;
+    
+    CGFloat alpha = (now - min) / (max - min);
+    //这里发现了一个问题，就是我确实是需要一个falseView的，并且我需要把它设置为属性，这样才可以在整个全局使用，虽然我添加视图可以直接添加在  self.view上，也可以添加在falseView上，但这个可以单单设置falseView的透明度，也就是把放在falseView上的imageview和title视为了一个整体，可以整体操作，这样会更好
+    _falseView.alpha = 1 - alpha;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 1) {
+        //获取当前选中的cell
+        _cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        
+        ContentViewController *content = [[ContentViewController alloc] init];
+        content.delegate = self;
+        content.modalPresentationStyle = UIModalPresentationFullScreen;
+        _lookNumber++;
+        _look = [[NSString alloc] initWithFormat:@"%ld", _lookNumber];
+        content.look = _look;
+        [_cell.lookButton setTitle:_look forState:UIControlStateNormal];
+        _good = _cell.goodButton.titleLabel.text;
+        content.good = _good;
+        _share = _cell.shareButton.titleLabel.text;
+        content.share =_share;
+        [self presentViewController:content animated:YES completion:nil];
+    }
+}
 
+//协议传值，将在ContenViewController中的属性值（可能改变了），传回来
+- (void)transmissionNumber:(NSMutableArray *)numberArray {
+    [_cell.goodButton setTitle:numberArray[0] forState:UIControlStateNormal];
+    [_cell.shareButton setTitle:numberArray[1] forState:UIControlStateNormal];
+}
+
+//厘清这个逻辑
+//1.首先我是从FirstViewController present到 ContentViewController的
+// 所以我在First中可以很轻易的拿到并对Content操作，也就是把属性传给Content
+// 所以从First传值给Content很容易，直接属性传值就行
+//2.但是从Content中传值给First，就属于反向传值，因为Content拿不到First对象
+// 所以需要通过协议传值，把Content中的值传给First
 
 /*
 #pragma mark - Navigation

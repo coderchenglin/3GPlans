@@ -61,7 +61,7 @@
         _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.pageIndicatorTintColor = [UIColor grayColor];
         [self.contentView addSubview:_pageControl];
-        [_pageControl addTarget:self action:@selector(pressPage) forControlEvents:UIControlEventValueChanged];
+        [_pageControl addTarget:self action:@selector(pessPage) forControlEvents:UIControlEventValueChanged];
         
         _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll:) userInfo:self repeats:YES];
     }
@@ -72,11 +72,99 @@
     _scrollView.frame = CGRectMake(0, 0, width, 250);
     _scrollView.contentSize = CGSizeMake(width * 6, 250);
     _pageControl.frame = CGRectMake(70, 200, 300, 50);
+    //初始化到第二个图的位置（也就是第一张图），随后改变tag值，保证只会初始化一次
     if (_scrollView.tag == 301) {
-        [_scrollView setContentOffset:<#(CGPoint)#> animated:<#(BOOL)#>]
+        [_scrollView setContentOffset:CGPointMake(width, 0) animated:NO];
+        _scrollView.tag = 302;
+    }
+}
+
+- (void)pessPage {
+//    if (_pageControl.currentPage == 0) {
+//        [_scrollView setContentOffset:CGPointMake(width, 0) animated:NO];
+//    } else if (_pageControl.currentPage == 1) {
+//        [_scrollView setContentOffset:CGPointMake(width * 2, 0) animated:NO];
+//    } else if (_pageControl.currentPage == 2) {
+//        [_scrollView setContentOffset:CGPointMake(width * 3, 0) animated:NO];
+//    } else if (_pageControl.currentPage == 3) {
+//        [_scrollView setContentOffset:CGPointMake(width * 4, 0) animated:NO];
+//    }
+
+
+}
+
+//- (void)autoScroll:(NSTimer*)autoTimer {
+//    if (_scrollView.contentOffset.x == width * 4) {
+//        [_scrollView setContentOffset:CGPointMake(width, 0) animated:YES];
+//    } else {
+//        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + width, 0) animated:YES];
+//    }
+//}
+
+- (void)autoScroll:(NSTimer*)autoTimer {
+//    if (_scrollView.contentOffset.x > width * 4) {
+//        _scrollView.contentOffset = CGPointMake(width, 0);
+//        _pageControl.currentPage = 0;
+//        [_scrollView setContentOffset:CGPointMake(width * 2, 0) animated:YES];
+////        _scrollView.contentOffset = CGPointMake(width * 1, 0);
+//    } else {
+//        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + width, 0) animated:YES];
+//    }
+    if (_scrollView.contentOffset.x > width * 4) {
+        [_scrollView setContentOffset:CGPointMake(width, 0) animated:NO];
+        [_scrollView setContentOffset:CGPointMake(width * 2, 0) animated:YES];
+    } else if (_scrollView.contentOffset.x < width) {
+        [_scrollView setContentOffset:CGPointMake(width * 4, 0)];
     }
     
+    else {
+        [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x + width, 0) animated:YES];
+    }
+    
+    _pageControl.currentPage = (_scrollView.contentOffset.x) / width - 1;
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (scrollView.tag == 201) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+//    if (scrollView.tag == 201) {
+//        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll:) userInfo:self repeats:YES];
+//    }
+//}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView.tag == 201) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll:) userInfo:self repeats:YES];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_scrollView.contentOffset.x > width * 5) {
+        [_scrollView setContentOffset:CGPointMake(width, 0) animated:NO];
+    } else if (_scrollView.contentOffset.x < width) {
+        [_scrollView setContentOffset:CGPointMake(width * 5, 0)];
+    }
+    
+    if(_scrollView.contentOffset.x == 0) {
+        _pageControl.currentPage = 3;
+    } else if(_scrollView.contentOffset.x == 5 * width) {
+        //NSLog(@"%d", _scrollView.contentOffset.x == 5 * width);
+        //NSLog(@"%ld", (long)_pageControl.currentPage);
+        _pageControl.currentPage = 0;
+        //NSLog(@"%ld", (long)_pageControl.currentPage);
+    } else {
+        _pageControl.currentPage = _scrollView.contentOffset.x / width;
+    }
+    
+    _pageControl.currentPage = (_scrollView.contentOffset.x) / width - 1;
+}
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
