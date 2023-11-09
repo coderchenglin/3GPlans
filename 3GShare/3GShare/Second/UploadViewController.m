@@ -264,8 +264,25 @@
 
 //PhotoWallViewController的<PhotoWallDelegate>协议函数
 - (void)changePhoto:(NSMutableArray *)imageArray {
+    //全局的UILabel，进来就判断其tag值，为1就清除
+    if (_quantity.tag == 1) {
+        [_quantity removeFromSuperview];
+    }
+
+    //改头像
+    UIButton* button = imageArray[0];
+    NSString* imageName = [[NSString alloc] initWithFormat:@"upload%ld.png", button.tag - 1];
+    NSInteger sum = imageArray.count;
+    [_photoButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
-    
+    //加个数
+    NSString* number = [[NSString alloc] initWithFormat:@"%ld", sum];
+    _quantity = [[UILabel alloc] init];
+    _quantity.text = number;
+    _quantity.textColor = [UIColor redColor];
+    _quantity.tag = 1;
+    _quantity.frame = CGRectMake(190, 3, 18, 18);
+    [_photoButton addSubview:_quantity];
 }
 
 

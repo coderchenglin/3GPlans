@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define width [UIScreen mainScreen].bounds.size.width
+#define height [UIScreen mainScreen].bounds.size.height
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PhotoWallDelegate <NSObject>

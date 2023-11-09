@@ -6,10 +6,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActionTableViewCell.h"
+
+#define width [UIScreen mainScreen].bounds.size.width
+#define height [UIScreen mainScreen].bounds.size.height
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ForthViewController : UIViewController
+@interface ForthViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UIView *falseView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSArray *actionArray;
 
 @end
 

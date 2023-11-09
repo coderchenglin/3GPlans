@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6820AF672AFCD88C006A13E8 /* do2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF632AFCD88C006A13E8 /* do2.png */; };
+		6820AF682AFCD88C006A13E8 /* do1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF642AFCD88C006A13E8 /* do1.png */; };
+		6820AF692AFCD88C006A13E8 /* do4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF652AFCD88C006A13E8 /* do4.png */; };
+		6820AF6A2AFCD88C006A13E8 /* do3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF662AFCD88C006A13E8 /* do3.png */; };
+		6820AF6F2AFCE31A006A13E8 /* upload1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF6B2AFCE31A006A13E8 /* upload1.png */; };
+		6820AF702AFCE31A006A13E8 /* upload2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF6C2AFCE31A006A13E8 /* upload2.png */; };
+		6820AF712AFCE31A006A13E8 /* upload3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF6D2AFCE31A006A13E8 /* upload3.png */; };
+		6820AF722AFCE31A006A13E8 /* upload4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF6E2AFCE31A006A13E8 /* upload4.png */; };
+		6820AF752AFD22E3006A13E8 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AF742AFD22E3006A13E8 /* ActionTableViewCell.m */; };
+		6820AF792AFD29DB006A13E8 /* act1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF762AFD29DB006A13E8 /* act1.png */; };
+		6820AF7A2AFD29DB006A13E8 /* act2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF772AFD29DB006A13E8 /* act2.png */; };
+		6820AF7B2AFD29DB006A13E8 /* act3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AF782AFD29DB006A13E8 /* act3.png */; };
 		68421D0B2AF669E50096FDF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D0A2AF669E50096FDF4 /* AppDelegate.m */; };
 		68421D0E2AF669E50096FDF4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D0D2AF669E50096FDF4 /* SceneDelegate.m */; };
 		68421D112AF669E50096FDF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D102AF669E50096FDF4 /* ViewController.m */; };
@@ -90,6 +102,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6820AF632AFCD88C006A13E8 /* do2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do2.png; sourceTree = "<group>"; };
+		6820AF642AFCD88C006A13E8 /* do1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do1.png; sourceTree = "<group>"; };
+		6820AF652AFCD88C006A13E8 /* do4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do4.png; sourceTree = "<group>"; };
+		6820AF662AFCD88C006A13E8 /* do3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do3.png; sourceTree = "<group>"; };
+		6820AF6B2AFCE31A006A13E8 /* upload1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload1.png; sourceTree = "<group>"; };
+		6820AF6C2AFCE31A006A13E8 /* upload2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload2.png; sourceTree = "<group>"; };
+		6820AF6D2AFCE31A006A13E8 /* upload3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload3.png; sourceTree = "<group>"; };
+		6820AF6E2AFCE31A006A13E8 /* upload4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload4.png; sourceTree = "<group>"; };
+		6820AF732AFD22E3006A13E8 /* ActionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionTableViewCell.h; sourceTree = "<group>"; };
+		6820AF742AFD22E3006A13E8 /* ActionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionTableViewCell.m; sourceTree = "<group>"; };
+		6820AF762AFD29DB006A13E8 /* act1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = act1.png; sourceTree = "<group>"; };
+		6820AF772AFD29DB006A13E8 /* act2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = act2.png; sourceTree = "<group>"; };
+		6820AF782AFD29DB006A13E8 /* act3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = act3.png; sourceTree = "<group>"; };
 		68421D062AF669E50096FDF4 /* 3GShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3GShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68421D092AF669E50096FDF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68421D0A2AF669E50096FDF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -232,6 +257,17 @@
 				68F71CFC2AFBC09700950E54 /* download.png */,
 				68F71CFE2AFBCA0200950E54 /* fold.png */,
 				68F71D002AFBCA1500950E54 /* unFold.png */,
+				6820AF642AFCD88C006A13E8 /* do1.png */,
+				6820AF632AFCD88C006A13E8 /* do2.png */,
+				6820AF662AFCD88C006A13E8 /* do3.png */,
+				6820AF652AFCD88C006A13E8 /* do4.png */,
+				6820AF6B2AFCE31A006A13E8 /* upload1.png */,
+				6820AF6C2AFCE31A006A13E8 /* upload2.png */,
+				6820AF6D2AFCE31A006A13E8 /* upload3.png */,
+				6820AF6E2AFCE31A006A13E8 /* upload4.png */,
+				6820AF762AFD29DB006A13E8 /* act1.png */,
+				6820AF772AFD29DB006A13E8 /* act2.png */,
+				6820AF782AFD29DB006A13E8 /* act3.png */,
 				68421D082AF669E50096FDF4 /* 3GShare */,
 				68421D242AF669E70096FDF4 /* 3GShareTests */,
 				68421D2E2AF669E70096FDF4 /* 3GShareUITests */,
@@ -339,6 +375,8 @@
 			children = (
 				68421D712AF7635B0096FDF4 /* ForthViewController.h */,
 				68421D722AF7635B0096FDF4 /* ForthViewController.m */,
+				6820AF732AFD22E3006A13E8 /* ActionTableViewCell.h */,
+				6820AF742AFD22E3006A13E8 /* ActionTableViewCell.m */,
 			);
 			path = Forth;
 			sourceTree = "<group>";
@@ -474,32 +512,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6820AF672AFCD88C006A13E8 /* do2.png in Resources */,
 				68421DAB2AF89AA30096FDF4 /* main_img4.png in Resources */,
 				6862E5E82AF90F9E00727123 /* radio_button_user.png in Resources */,
 				6862E5F42AF91E0000727123 /* list_img4.png in Resources */,
 				6862E5F12AF91E0000727123 /* list_img2.png in Resources */,
 				6862E5F32AF91E0000727123 /* list_img3.png in Resources */,
 				68F71CED2AFB944A00950E54 /* dabai1.jpg in Resources */,
+				6820AF6F2AFCE31A006A13E8 /* upload1.png in Resources */,
 				68F71CDE2AFA87B400950E54 /* search_button.png in Resources */,
+				6820AF712AFCE31A006A13E8 /* upload3.png in Resources */,
 				6862E5D22AF90F5600727123 /* kaiji1.png in Resources */,
 				68F71CDC2AFA833B00950E54 /* img2.png in Resources */,
 				6862E5E12AF90F9E00727123 /* radio_button_note.png in Resources */,
+				6820AF7B2AFD29DB006A13E8 /* act3.png in Resources */,
 				68421DB62AF90C1F0096FDF4 /* works_img3.png in Resources */,
+				6820AF692AFCD88C006A13E8 /* do4.png in Resources */,
 				68421DB52AF90C1F0096FDF4 /* works_img5.png in Resources */,
 				6862E5E22AF90F9E00727123 /* user_img.png in Resources */,
 				6862E5E02AF90F9E00727123 /* radio_button_search.png in Resources */,
+				6820AF6A2AFCD88C006A13E8 /* do3.png in Resources */,
 				6862E5E72AF90F9E00727123 /* pass_img.png in Resources */,
 				68F71CFF2AFBCA0200950E54 /* fold.png in Resources */,
 				6862E5F22AF91E0000727123 /* list_img5.png in Resources */,
+				6820AF702AFCE31A006A13E8 /* upload2.png in Resources */,
 				68F71CFB2AFBBAE400950E54 /* dingwei.png in Resources */,
 				68421DB22AF90C1F0096FDF4 /* works_img2.png in Resources */,
 				68421DA32AF7CDBE0096FDF4 /* button_good.png in Resources */,
 				68F71D012AFBCA1500950E54 /* unFold.png in Resources */,
+				6820AF682AFCD88C006A13E8 /* do1.png in Resources */,
 				68421DB42AF90C1F0096FDF4 /* works_img4.png in Resources */,
+				6820AF7A2AFD29DB006A13E8 /* act2.png in Resources */,
 				68421D192AF669E60096FDF4 /* LaunchScreen.storyboard in Resources */,
 				6862E5E62AF90F9E00727123 /* radio_button_cup.png in Resources */,
 				6862E5E52AF90F9E00727123 /* radio_button_home.png in Resources */,
 				6862E5E32AF90F9E00727123 /* background_main.png in Resources */,
+				6820AF722AFCE31A006A13E8 /* upload4.png in Resources */,
 				68421DA12AF7CDBE0096FDF4 /* button_look.png in Resources */,
 				68F71CEE2AFB944A00950E54 /* dabai2.jpg in Resources */,
 				68421DA82AF89AA30096FDF4 /* main_img3.png in Resources */,
@@ -513,6 +561,7 @@
 				68421D162AF669E60096FDF4 /* Assets.xcassets in Resources */,
 				6862E5DF2AF90F9E00727123 /* back_img.png in Resources */,
 				68421DA92AF89AA30096FDF4 /* main_img2.png in Resources */,
+				6820AF792AFD29DB006A13E8 /* act1.png in Resources */,
 				68421D3F2AF675070096FDF4 /* 1 开机界面.jpg in Resources */,
 				68421D142AF669E50096FDF4 /* Main.storyboard in Resources */,
 				6862E5E92AF90F9E00727123 /* my_button_pressed.png in Resources */,
@@ -545,6 +594,7 @@
 				68421D5D2AF73F610096FDF4 /* RegisterViewController.m in Sources */,
 				68F71CE12AFB84D700950E54 /* UploadViewController.m in Sources */,
 				68F71CE72AFB851200950E54 /* PhotoWallViewController.m in Sources */,
+				6820AF752AFD22E3006A13E8 /* ActionTableViewCell.m in Sources */,
 				68421D872AF7AF4A0096FDF4 /* RollTableViewCell.m in Sources */,
 				68F71CE42AFB850300950E54 /* BigWhiteViewController.m in Sources */,
 				68F71CF92AFB9CCA00950E54 /* SelectTableViewCell.m in Sources */,
