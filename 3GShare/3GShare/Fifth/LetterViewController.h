@@ -1,19 +1,12 @@
 //
-//  FifthViewController.h
+//  LetterViewController.h
 //  3GShare
 //
-//  Created by chenglin on 2023/11/5.
+//  Created by chenglin on 2023/11/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "SetTableViewCell.h"
-#import "PersonTableViewCell.h"
-
-#import "MyUpViewController.h"
-#import "MyInformationViewController.h"
-#import "MyRecommendViewController.h"
-#import "SetUpViewController.h"
-
+#import "FollowTableViewCell.h"
 
 
 #define width [UIScreen mainScreen].bounds.size.width
@@ -21,14 +14,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FifthViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface LetterViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *falseView;
+@property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *nameArray;
-
-
-
+@property (nonatomic, strong) NSArray *timeArray;
+@property (nonatomic, strong) NSArray *desArray;
 
 @end
 

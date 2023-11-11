@@ -15,8 +15,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UILabel *title = [[UILabel alloc] init];
+    title.text = @"文章";
+    title.frame = CGRectMake(185, 30, 150, 70);
+    title.font = [UIFont systemFontOfSize:28];
+    title.textColor = [UIColor whiteColor];
+    [self.falseView addSubview:title];
+    
+    NSArray *segmentItems = @[@"精选文章", @"热门推荐", @"全部文章"];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentItems];
+    self.segmentedControl.frame = CGRectMake(0, 100, width, 40);
+    [self.segmentedControl addTarget:self action:@selector(pressSegmented:) forControlEvents:UIControlEventValueChanged];
+    self.segmentedControl.selectedSegmentIndex = 0;
+    [self.view addSubview:self.segmentedControl];
+    
+
+    
 }
+
+//- (void)pressBack:(UIButton*)button {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+
+//- (void)pressSegmented:(UISegmentedControl*)segmentedControl {
+//
+//    [super pressSegmented:segmentedControl];  //调用父类的类方法 ，这个方法需要在父类的.h文件中声明
+//}
+
+
+
 
 /*
 #pragma mark - Navigation
