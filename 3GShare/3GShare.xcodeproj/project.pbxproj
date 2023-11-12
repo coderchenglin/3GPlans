@@ -67,6 +67,10 @@
 		6820AFEE2AFF836F006A13E8 /* 19-6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFE82AFF836F006A13E8 /* 19-6.jpeg */; };
 		6820AFEF2AFF836F006A13E8 /* 19-3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFE92AFF836F006A13E8 /* 19-3.jpeg */; };
 		6820AFF12AFFBEFF006A13E8 /* guanzhu_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFF02AFFBEFF006A13E8 /* guanzhu_pressed.png */; };
+		6820AFF42B007F65006A13E8 /* wsx.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFF22B007F64006A13E8 /* wsx.png */; };
+		6820AFF52B007F65006A13E8 /* qaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFF32B007F65006A13E8 /* qaz.png */; };
+		6820AFF82B0081BB006A13E8 /* checkbox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFF62B0081BB006A13E8 /* checkbox_checked.png */; };
+		6820AFF92B0081BB006A13E8 /* checkbox_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFF72B0081BB006A13E8 /* checkbox_unchecked.png */; };
 		68421D0B2AF669E50096FDF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D0A2AF669E50096FDF4 /* AppDelegate.m */; };
 		68421D0E2AF669E50096FDF4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D0D2AF669E50096FDF4 /* SceneDelegate.m */; };
 		68421D112AF669E50096FDF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68421D102AF669E50096FDF4 /* ViewController.m */; };
@@ -225,6 +229,10 @@
 		6820AFE82AFF836F006A13E8 /* 19-6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "19-6.jpeg"; sourceTree = "<group>"; };
 		6820AFE92AFF836F006A13E8 /* 19-3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "19-3.jpeg"; sourceTree = "<group>"; };
 		6820AFF02AFFBEFF006A13E8 /* guanzhu_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guanzhu_pressed.png; sourceTree = "<group>"; };
+		6820AFF22B007F64006A13E8 /* wsx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wsx.png; sourceTree = "<group>"; };
+		6820AFF32B007F65006A13E8 /* qaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qaz.png; sourceTree = "<group>"; };
+		6820AFF62B0081BB006A13E8 /* checkbox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_checked.png; sourceTree = "<group>"; };
+		6820AFF72B0081BB006A13E8 /* checkbox_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_unchecked.png; sourceTree = "<group>"; };
 		68421D062AF669E50096FDF4 /* 3GShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3GShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68421D092AF669E50096FDF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68421D0A2AF669E50096FDF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -420,6 +428,10 @@
 				6820AFE42AFF836F006A13E8 /* 19-4.jpeg */,
 				6820AFE72AFF836F006A13E8 /* 19-5.jpeg */,
 				6820AFE82AFF836F006A13E8 /* 19-6.jpeg */,
+				6820AFF32B007F65006A13E8 /* qaz.png */,
+				6820AFF22B007F64006A13E8 /* wsx.png */,
+				6820AFF62B0081BB006A13E8 /* checkbox_checked.png */,
+				6820AFF72B0081BB006A13E8 /* checkbox_unchecked.png */,
 				68421D082AF669E50096FDF4 /* 3GShare */,
 				68421D242AF669E70096FDF4 /* 3GShareTests */,
 				68421D2E2AF669E70096FDF4 /* 3GShareUITests */,
@@ -691,6 +703,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6820AFF42B007F65006A13E8 /* wsx.png in Resources */,
 				6820AFC82AFF31AF006A13E8 /* person2.png in Resources */,
 				6820AF672AFCD88C006A13E8 /* do2.png in Resources */,
 				68421DAB2AF89AA30096FDF4 /* main_img4.png in Resources */,
@@ -742,6 +755,7 @@
 				68421DB42AF90C1F0096FDF4 /* works_img4.png in Resources */,
 				6820AF7A2AFD29DB006A13E8 /* act2.png in Resources */,
 				68421D192AF669E60096FDF4 /* LaunchScreen.storyboard in Resources */,
+				6820AFF82B0081BB006A13E8 /* checkbox_checked.png in Resources */,
 				6862E5E62AF90F9E00727123 /* radio_button_cup.png in Resources */,
 				6820AFEF2AFF836F006A13E8 /* 19-3.jpeg in Resources */,
 				6820AF912AFDC3E5006A13E8 /* text25.jpeg in Resources */,
@@ -768,6 +782,8 @@
 				6820AFBC2AFF313F006A13E8 /* img3.png in Resources */,
 				6862E5F02AF91E0000727123 /* list_img1.png in Resources */,
 				6820AFCC2AFF322E006A13E8 /* button_ceng.png in Resources */,
+				6820AFF92B0081BB006A13E8 /* checkbox_unchecked.png in Resources */,
+				6820AFF52B007F65006A13E8 /* qaz.png in Resources */,
 				68421D162AF669E60096FDF4 /* Assets.xcassets in Resources */,
 				6820AFD12AFF523C006A13E8 /* 1 开机界面.jpg in Resources */,
 				6862E5DF2AF90F9E00727123 /* back_img.png in Resources */,

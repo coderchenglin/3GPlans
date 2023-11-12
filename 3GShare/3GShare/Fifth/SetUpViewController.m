@@ -55,16 +55,30 @@
         basic.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:basic animated:YES completion:nil];
     } else if (indexPath.row == 1) {
-        
+        ChangeViewController *change = [[ChangeViewController alloc] init];
+        change.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:change animated:YES completion:nil];
     } else if (indexPath.row == 2) {
-        
+        NewsViewController *news = [[NewsViewController alloc] init];
+        news.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:news animated:YES completion:nil];
     } else if (indexPath.row == 3) {
-        
+        UIAlertController *tips = [UIAlertController alertControllerWithTitle:nil message:@"目前没有新内容" preferredStyle:UIAlertControllerStyleAlert];
+        [tips addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:tips animated:YES completion:nil];
+
     } else if (indexPath.row == 4) {
-        
+        //这里要用到定时器
+        UIAlertController *tips = [UIAlertController alertControllerWithTitle:nil message:@"缓存已清除" preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:tips animated:YES completion:nil];
+        _timerView = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoScroll:) userInfo:@"nil" repeats:YES];
     }
-    
-    
+}
+
+- (void)autoScroll:(NSTimer*)timer {
+    [_timerView invalidate];
+    _timerView = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

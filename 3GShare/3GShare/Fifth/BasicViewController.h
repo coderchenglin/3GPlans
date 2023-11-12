@@ -6,10 +6,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyInformationTableViewCell.h"
+
+#define width [UIScreen mainScreen].bounds.size.width
+#define height [UIScreen mainScreen].bounds.size.height
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BasicViewController : UIViewController
+@interface BasicViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UIView *falseView;
+@property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *nameArray;
+
 
 @end
 
