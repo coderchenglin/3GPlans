@@ -138,7 +138,7 @@
 
 - (void)pressLoginButton:(UIButton*)button {
     //自己设的账号密码，方便调试
-    [self LoadingInterface];
+    //[self LoadingInterface];
     
     if([_accountText.text isEqualToString:@"1"] && [_passwordText.text isEqualToString:@"1"]) {
         [self LoadingInterface];

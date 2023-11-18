@@ -31,7 +31,7 @@
     imageview.frame = CGRectMake(0, 0, width, height);
     [self.view addSubview:imageview];
     
-    _timerView = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(overtimer:) userInfo:@"chenglin" repeats:YES];
+    _timerView = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(overtimer:) userInfo:@"chenglin" repeats:YES];
     
 }
 

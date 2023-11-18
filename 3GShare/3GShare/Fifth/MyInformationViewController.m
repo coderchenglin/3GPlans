@@ -79,9 +79,13 @@
         follow.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:follow animated:YES completion:nil];
     } else if (indexPath.row == 3) {
-        
+        LetterViewController *letter = [[LetterViewController alloc] init];
+        letter.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:letter animated:YES completion:nil];
     } else if (indexPath.row == 4) {
-        
+        UIAlertController *tips = [UIAlertController alertControllerWithTitle:nil message:@"目前没有新内容" preferredStyle:UIAlertControllerStyleAlert];
+        [tips addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:tips animated:YES completion:nil];
     }
 }
 

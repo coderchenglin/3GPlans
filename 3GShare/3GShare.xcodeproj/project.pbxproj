@@ -56,7 +56,6 @@
 		6820AFCF2AFF513F006A13E8 /* MyUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AFCE2AFF513F006A13E8 /* MyUpViewController.m */; };
 		6820AFD12AFF523C006A13E8 /* 1 开机界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFD02AFF523C006A13E8 /* 1 开机界面.jpg */; };
 		6820AFD42AFF5773006A13E8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AFD32AFF5773006A13E8 /* BaseViewController.m */; };
-		6820AFD82AFF6254006A13E8 /* Base1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AFD72AFF6254006A13E8 /* Base1ViewController.m */; };
 		6820AFDE2AFF691A006A13E8 /* MyInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AFDD2AFF691A006A13E8 /* MyInformationTableViewCell.m */; };
 		6820AFE12AFF7870006A13E8 /* FollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6820AFE02AFF7870006A13E8 /* FollowTableViewCell.m */; };
 		6820AFE32AFF8158006A13E8 /* guanzhu_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820AFE22AFF8158006A13E8 /* guanzhu_normal.png */; };
@@ -215,8 +214,6 @@
 		6820AFD02AFF523C006A13E8 /* 1 开机界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1 开机界面.jpg"; sourceTree = "<group>"; };
 		6820AFD22AFF5773006A13E8 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6820AFD32AFF5773006A13E8 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		6820AFD62AFF6254006A13E8 /* Base1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Base1ViewController.h; path = ../../../../../Documents/Base1ViewController.h; sourceTree = "<group>"; };
-		6820AFD72AFF6254006A13E8 /* Base1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base1ViewController.m; path = ../../../../../Documents/Base1ViewController.m; sourceTree = "<group>"; };
 		6820AFDC2AFF691A006A13E8 /* MyInformationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInformationTableViewCell.h; sourceTree = "<group>"; };
 		6820AFDD2AFF691A006A13E8 /* MyInformationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInformationTableViewCell.m; sourceTree = "<group>"; };
 		6820AFDF2AFF7870006A13E8 /* FollowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowTableViewCell.h; sourceTree = "<group>"; };
@@ -348,8 +345,6 @@
 			children = (
 				6820AFD22AFF5773006A13E8 /* BaseViewController.h */,
 				6820AFD32AFF5773006A13E8 /* BaseViewController.m */,
-				6820AFD62AFF6254006A13E8 /* Base1ViewController.h */,
-				6820AFD72AFF6254006A13E8 /* Base1ViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -845,7 +840,6 @@
 				68421D0B2AF669E50096FDF4 /* AppDelegate.m in Sources */,
 				6820AF9C2AFDCD51006A13E8 /* SetUpViewController.m in Sources */,
 				6820AFCF2AFF513F006A13E8 /* MyUpViewController.m in Sources */,
-				6820AFD82AFF6254006A13E8 /* Base1ViewController.m in Sources */,
 				68421D1C2AF669E60096FDF4 /* main.m in Sources */,
 				68421D842AF791990096FDF4 /* ShowTableViewCell.m in Sources */,
 				68421D0E2AF669E50096FDF4 /* SceneDelegate.m in Sources */,
