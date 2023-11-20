@@ -95,6 +95,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //记录点击的元素
+    _str = [NSMutableString stringWithString:_strArr[indexPath.row]];
+    //将该元素提到第一个，insertObject：atIndex：函数自动后移其他元素
+    [_strArr insertObject:_str atIndex:0];
+    //因为加入了一个元素，选中元素本来存在的地方就后移一个，删除该元素
+    [_strArr removeObjectAtIndex:indexPath.row + 1];
+    //收缩tableview
+    _openSelect = NO;
+    //将tableview的大小改为一格的大小
+    _tableView.frame = CGRectMake(220, 210, 100, 25);
+    //button图标变为合上的图标
+    [_button setImage:[UIImage imageNamed:@"close1.png"] forState:UIControlStateNormal];
+    //刷新tableview
+    [_tableView reloadData];
+    
 }
 
 - (void)pressUnFold:(UIButton*)button {
