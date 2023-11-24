@@ -6,7 +6,7 @@
 //
 
 #import "SearchViewController.h"
-
+#import "TestViewController.h"
 
 @interface SearchViewController ()
 
@@ -62,27 +62,80 @@
     NSURLSession *session1 = [NSURLSession sharedSession];
     
     NSURLSessionTask *task1 = [session1 dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
         if (!error) {
-            //解析数据
+            
             NSInteger num = 0;
-            
-            
+            NSDictionary *secondDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSMutableArray *timeArray = [[NSMutableArray alloc] init];
+            timeArray = secondDictionary[@"location"];
+            //遍历拉去下来的城市名
+            //二重循环：拿着每一个拉取下来的城市名，和已经存在的所有城市进行一次比较
+            //相同就把num置1，只有num为0，才会将该城市添加进去
+            for (int i = 0; i < timeArray.count; i++) {
+                //str：拉取下来的城市名
+                NSMutableString *str = [NSMutableString stringWithFormat:@"%@", secondDictionary[@"location"][i][@"name"] ];
+                //拿已经存在的城市名，遍历依此与str进行对照
+                //存在就置为1
+                for (NSString * string in self->_cityArray) {
+                    if ([string isEqualToString:str]) {
+                        num = 1;
+                    }
+                }
+                //不存在再添加，避免重复添加
+                if (num == 0) {
+                    [self->_cityArray addObject:str];
+                }
+            }
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self->_tableView reloadData];
+            }];
         }
-        
-    }]
+    }];
+    [task1 resume];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"city" forIndexPath:indexPath];
+    //清空单元格的内容视图
+    while ([cell.contentView.subviews lastObject] != nil) {
+        [[cell.contentView.subviews lastObject] removeFromSuperview];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = _cityArray[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return _cityArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 30;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+    TestViewController *test = [[TestViewController alloc] init];
+    test.modalPresentationStyle = UIModalPresentationFullScreen;
+    //写完TestViewController回来写这个
+    test.cityName = cell.textLabel.text;
+    [self presentViewController:test animated:YES completion:nil];
     
 }
 
-
-
+//文本框的内容一变化，就调用这个
 - (void)textFielddidChange {
     
     _cityArray = [[NSMutableArray alloc] init];
     [self.view addSubview:_tableView];
-    
-    
+    [self creatUrl];
 }
 
 

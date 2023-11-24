@@ -7,10 +7,19 @@
 
 #import "ShowViewController.h"
 
+//static NSString *one = @"show";
+//static NSString *two = @"seven";
+//static NSString *three = @"weak";
+//static NSString *four = @"tips";
+//static NSString *five = @"air";
+//static NSString *six = @"more";
+
 
 @interface ShowViewController ()
 
 @end
+
+static NSInteger* num = 0;
 
 @implementation ShowViewController
 
@@ -85,10 +94,16 @@
     [self.scrollView setContentOffset:CGPointMake(width * self.index, 0)];
 }
 
+
+
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+    num++;
+    NSLog(@"%ld",(long)num);
+
     if (indexPath.row == 0) {
-        
+        NSLog(@"row = 0");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"show"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.bigLabel.text = self.allInformationArray[tableView.tag][0];
@@ -98,15 +113,15 @@
         cell.minLabel.text = self.allInformationArray[tableView.tag][2];
         return cell;
     } else if (indexPath.row == 1) {
-        
+        NSLog(@"row = 1");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"seven"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSMutableArray *first = self.allInformationArray[tableView.tag][6];
         NSMutableArray *second = self.allInformationArray[tableView.tag][7];
         NSMutableArray *third = self.allInformationArray[tableView.tag][8];
-        
+
         NSInteger num = first.count;
-        
+
         for (int i = 0; i < num; i++) {
             if  (i == 0) {
                 [first replaceObjectAtIndex:0 withObject:@"现在"];
@@ -118,7 +133,7 @@
             self.timeLabel.tag = 100 + i;
             self.timeLabel.textAlignment = NSTextAlignmentCenter;
             [cell.scrollView addSubview:_timeLabel];
-            
+
             self.weaLabel = [[UILabel alloc] init];
             self.weaLabel.text = second[i];
             self.weaLabel.textColor = [UIColor whiteColor];
@@ -126,7 +141,7 @@
             self.weaLabel.tag = 100 + i;
             self.weaLabel.textAlignment = NSTextAlignmentCenter;
             [cell.scrollView addSubview:_weaLabel];
-            
+
             self.imageView = [[UIImageView alloc] init];
             self.imageName = [NSString stringWithFormat:@"%@.png", third[i]];
             self.imageView.image = [UIImage imageNamed:self.imageName];
@@ -136,14 +151,14 @@
         }
         return cell;
     } else if (indexPath.row == 2) {
-        
+        NSLog(@"row = 2");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"weak"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSMutableArray *first = self.allInformationArray[tableView.tag][9];
         NSMutableArray *second = self.allInformationArray[tableView.tag][10];
         NSMutableArray *third = self.allInformationArray[tableView.tag][11];
         NSMutableArray *fourth = self.allInformationArray[tableView.tag][12];
-        
+
         for (int i = 0; i < first.count ; i++) { //循环7次
             cell.bigLabel = [[UILabel alloc] init];
             cell.bigLabel.text = first[i];
@@ -151,21 +166,21 @@
             cell.bigLabel.tag = 100 + i;
             cell.bigLabel.textColor = [UIColor whiteColor];
             [cell.contentView addSubview:cell.bigLabel];
-            
+
             cell.maxLabel = [[UILabel alloc] init];
             cell.maxLabel.text = third[i];
             cell.maxLabel.frame = CGRectMake(width - 100, 40 * i, 50, 40);
             cell.maxLabel.tag = 100 + i;
             cell.maxLabel.textColor = [UIColor whiteColor];
             [cell.contentView addSubview:cell.maxLabel];
-            
+
             cell.minLabel = [[UILabel alloc] init];
             cell.minLabel.text = fourth[i];
             cell.minLabel.frame = CGRectMake(width - 50, 40 * i, 50, 40);
             cell.minLabel.tag = 100 + i;
             cell.minLabel.textColor = [UIColor whiteColor];
             [cell.contentView addSubview:cell.minLabel];
-            
+
             self.imageView = [[UIImageView alloc] init];
             self.imageName = [NSString stringWithFormat:@"%@.png", second[i]];
             self.imageView.image = [UIImage imageNamed:_imageName];
@@ -175,7 +190,7 @@
         }
         return cell;
     } else if (indexPath.row == 3) {
-        
+        NSLog(@"row = 3");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"tips"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSString *a = self.allInformationArray[tableView.tag][4];
@@ -185,33 +200,34 @@
         cell.bigLabel.text = string;
         return cell;
     } else if (indexPath.row == 4) {
-        
+        NSLog(@"row = 4");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"air"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.bigLabel.text = @"空气质量";
         cell.temperatureLabel.text = self.allInformationArray[tableView.tag][5];
         return cell;
     } else {
-        
+        NSLog(@"row = 5");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"more"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSMutableArray *end = self.allInformationArray[tableView.tag][13];
         for (int i = 0; i < self.endArray.count / 2; i++) {
-            
+            NSLog(@"%ld", self.endArray.count / 2);
+            //左边的标题
             cell.bigLabel = [[UILabel alloc] init];
             cell.bigLabel.tag = 100 + i;
             cell.bigLabel.text = self.endArray[i];
             cell.bigLabel.frame = CGRectMake(10, 10 + 100 * i, 100, 30);
             cell.bigLabel.textColor = [UIColor whiteColor];
             [cell.contentView addSubview:cell.bigLabel];
-            
+            //右边的标题
             cell.weatherLabel = [[UILabel alloc] init];
             cell.weatherLabel.tag = 100 + i;
             cell.weatherLabel.text = self.endArray[i + 4];
             cell.weatherLabel.frame = CGRectMake(width / 2 + 10, 10 + 100 * i, 100, 30);
             cell.weatherLabel.textColor = [UIColor whiteColor];
             [cell.contentView addSubview:cell.weatherLabel];
-            
+            //左边的内容
             cell.temperatureLabel = [[UILabel alloc] init];
             cell.temperatureLabel.tag = 100 + i;
             cell.temperatureLabel.text = end[i];
@@ -219,19 +235,45 @@
             cell.temperatureLabel.textColor = [UIColor whiteColor];
             cell.temperatureLabel.font = [UIFont systemFontOfSize:28];
             [cell.contentView addSubview:cell.temperatureLabel];
-            
+            //右边的内容
             cell.minLabel = [[UILabel alloc] init];
             cell.minLabel.tag = 100 + i;
             cell.minLabel.text = end[i + 4];
             cell.minLabel.frame = CGRectMake(width / 2 + 10, 30 + 100 * i, 20, 60);
             cell.minLabel.textColor = [UIColor whiteColor];
             cell.minLabel.font = [UIFont systemFontOfSize:28];
-            
-            [cell.minLabel addSubview:cell.minLabel];
+
+            [cell.contentView addSubview:cell.minLabel];
         }
         return cell;
     }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 6;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == 0) {
+        return 200;
+    } else if (indexPath.row == 1) {
+        return 100;
+    } else if (indexPath.row == 2) {
+        return 240;
+    } else if (indexPath.row == 3) {
+        return 70;
+    } else if (indexPath.row == 4) {
+        return 80;
+    } else {
+        return 400;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tag == 111) {
+        self.pageControl.currentPage = scrollView.contentOffset.x / width;
+    }
 }
 
 - (void)pressButton:(UIButton*)button {

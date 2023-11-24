@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShowViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface ShowViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *backImage;
 @property (nonatomic, strong) UIButton *increaseButton;

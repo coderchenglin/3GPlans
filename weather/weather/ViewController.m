@@ -13,15 +13,6 @@
 
 @implementation ViewController
 
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    // Do any additional setup after loading the view.
-//
-//    self.tableArray = [[NSMutableArray alloc] init];
-//    [self.tableArray addObject:@"1"];
-//    [self loadControl];
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -65,7 +56,7 @@
     
     [self creatUrl];
     
-    //网络请求以后，吧oneData push入allInformationArray
+    //网络请求以后，把oneData push入allInformationArray
     [self.allInformationArray addObject:self.oneData];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -113,7 +104,7 @@
             cell.temperatureLabel.text = _temperatureNowArray[indexPath.row];
             return cell;
         }
-        
+
     }
 }
 
@@ -129,9 +120,62 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _temperatureNowArray.count + 1;
 }
+//
+//- (void)increaseCity:(NSNotification*)message {
+//    NSInteger num = 0; //标记
+//    NSString *stringOne = message.userInfo[@"city"];
+//    NSString *stringTwo = message.userInfo[@"now"];
+//    //获取当前时间的4步骤
+//    NSDate *timeDate = [NSDate date]; //获取当前时间
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];//初始化NSDateFormatter类
+//    [dateFormatter setDateFormat:@"HH:mm"];//设置这个类转化成字符串的格式
+//    NSString *locationString = [dateFormatter stringFromDate:timeDate];//将时间转换为字符串
+//
+//    NSMutableArray *all = [[NSMutableArray alloc] init];
+//    all = message.userInfo[@"all"];
+//
+//    for (int i = 0; i < self.nameNowArray.count; i++) {
+//        if ([stringOne isEqualToString:self.nameNowArray[i]]) {
+//            num = 1; //num置1，表示已存在
+//        }
+//    }
+//    //没有被置1，说明不存在，添加
+//    if (num == 0) {
+//        [self.nameNowArray addObject:stringOne];
+//        [self.temperatureNowArray addObject:stringTwo];
+//        [self.timeNowArray addObject:locationString];
+//        [self.allInformationArray addObject:all];
+//        [self.tableView reloadData];
+//    }
+//
+//}
+
 
 - (void)increaseCity:(NSNotification*)message {
+    NSInteger num = 0;
+    NSString *stringOne = [[NSString alloc] init];
+    NSString *stringTwo = message.userInfo[@"now"];
+    NSDate *timeDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *locationString = [dateFormatter stringFromDate:timeDate];
+    stringOne = message.userInfo[@"city"];
     
+    NSMutableArray *all = [[NSMutableArray alloc] init];
+    all = message.userInfo[@"all"];
+    
+    for (int i = 0; i < self.nameNowArray.count; i++) {
+        if ([stringOne isEqualToString:self.nameNowArray[i]]) {
+            num = 1;
+        }
+    }
+    if (num == 0) {
+        [self.nameNowArray addObject:stringOne];
+        [self.temperatureNowArray addObject:stringTwo];
+        [self.timeNowArray addObject:locationString];
+        [self.allInformationArray addObject:all];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -295,7 +339,7 @@
 //
 //                [self->_weakDayArray addObject:weakArray[i + 1][@"weak"]];
 //                [self->_weakImageArray addObject:weakArray[i + 1][@"wea_img"]];
-//                [self->_weakmaxArray addObject:weakArray[i + 1][@"tem1"]];
+//                [self->_weekmaxArray addObject:weakArray[i + 1][@"tem1"]];
 //                [self->_weakminArray addObject:weakArray[i + 1][@"tem2"]];
 //            }
 //
@@ -323,7 +367,7 @@
 //                //每周的 星期几，天气图标，最高温度，最低温度
 //                [self->_oneData addObject:self.weakDayArray];
 //                [self->_oneData addObject:self.weakImageArray];
-//                [self->_oneData addObject:self.weakmaxArray];
+//                [self->_oneData addObject:self.weekmaxArray];
 //                [self->_oneData addObject:self.weakminArray];
 //                //日出，日落等信息
 //                [self->_oneData addObject:self.informationArray];
