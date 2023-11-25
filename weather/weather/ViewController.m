@@ -23,18 +23,21 @@
 
 - (void)loadControl {
     self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor redColor];
     self.allInformationArray = [[NSMutableArray alloc] init];
     
     self.timeNowArray = [[NSMutableArray alloc] init];
     self.nameNowArray = [[NSMutableArray alloc] init];
-    self.cityName = [[NSString alloc] init];
     self.temperatureNowArray = [[NSMutableArray alloc] init];
+    self.cityName = [[NSString alloc] init];
+    
     self.oneData = [[NSMutableArray alloc] init];
     
     self.maxString = [[NSString alloc] init];
     self.minString = [[NSString alloc] init];
     self.nowString = [[NSString alloc] init];
     self.weaString = [[NSString alloc] init];
+    //小时
     self.timeArray = [[NSMutableArray alloc] init];
     self.weaArray = [[NSMutableArray alloc] init];
     self.imageArray = [[NSMutableArray alloc] init];
@@ -43,25 +46,36 @@
     self.weaLabel = [[UILabel alloc] init];
     self.imageView = [[UIImageView alloc] init];
     
+    //周
     self.weakDayArray = [[NSMutableArray alloc] init];
     self.weakImageArray = [[NSMutableArray alloc] init];
     self.weakmaxArray = [[NSMutableArray alloc] init];
     self.weakminArray = [[NSMutableArray alloc] init];
-    
+    //空气质量
     self.airQuality = [[NSString alloc] init];
+    //后面标题信息
     self.endArray = [[NSMutableArray alloc] initWithObjects:@"日出", @"日落", @"能见度", @"气压hPa", @"空气质量", @"湿度", @"风向", @"风力等级", nil];
+    //后面内容信息
     self.informationArray = [[NSMutableArray alloc] init];
     
     self.cityName = _tableArray[0];
     
+    //进行网络请求，将内容全部存放在oneData中
     [self creatUrl];
     
-    //网络请求以后，把oneData push入allInformationArray
+    //网络请求以后，把oneData push入allInformationArray，相当于一个二维数组
     [self.allInformationArray addObject:self.oneData];
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor blackColor];
+    //self.tableView.backgroundColor = [UIColor blackColor];
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"back.jpeg"];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
+    backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = backgroundView;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     //注册cell
@@ -69,6 +83,7 @@
     [self.tableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"head"];
     [self.tableView registerClass:[MainTableViewCell class] forCellReuseIdentifier:@"button"];
     
+    //通知中心
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(increaseCity:) name:@"city" object:nil];
     
 }
@@ -81,14 +96,16 @@
         MainTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"button" forIndexPath:indexPath];
         [cell.button addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
         [cell.button setImage:[UIImage imageNamed:@"sousuo.png"] forState:UIControlStateNormal];
-        cell.backgroundColor = [UIColor blackColor];
+        //cell.backgroundColor = [UIColor blackColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         //第一排，设置“我的位置”
         if (indexPath.row == 0) {
             MainTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"head" forIndexPath:indexPath];
-            cell.backgroundColor = [UIColor whiteColor];
+            //cell.backgroundColor = [UIColor whiteColor];
+            
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.timeLabel.text = @"我的位置";
             cell.cityLabel.text = _nameNowArray[0];
@@ -97,14 +114,13 @@
         } else {
             
             MainTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"main" forIndexPath:indexPath];
-            cell.backgroundColor = [UIColor whiteColor];
+            //cell.backgroundColor = [UIColor whiteColor];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.timeLabel.text = _timeNowArray[indexPath.row];
             cell.cityLabel.text = _nameNowArray[indexPath.row];
             cell.temperatureLabel.text = _temperatureNowArray[indexPath.row];
             return cell;
         }
-
     }
 }
 
@@ -188,10 +204,12 @@
         show.transArray = self.nameNowArray;
         show.number = self.nameNowArray.count;
         for (int i = 0; i < self.nameNowArray.count; i++) {
+            //当前这个城市，是在数组的第几个，下标就是几
             if ([cell.cityLabel.text isEqualToString:self.nameNowArray[i]]) {
                 show.index = i;
             }
         }
+        NSLog(@"index = %ld", (long)show.index);
         show.allInformationArray = [[NSMutableArray alloc] init];
         show.allInformationArray = self.allInformationArray;
         [self presentViewController:show animated:YES completion:nil];
@@ -231,9 +249,11 @@
             self.minString = secondDictionary[@"data"][0][@"tem2"];
             self.nowString = secondDictionary[@"data"][0][@"tem"];
             self.weaString = secondDictionary[@"data"][0][@"wea"];
+            
             self.airQuality = secondDictionary[@"data"][0][@"air_tips"];
             //self.airQuality = secondDictionary[@"data"][0][@"air_level"];
 
+            //小时
             NSMutableArray *allArray = [[NSMutableArray alloc] init];
             allArray = secondDictionary[@"data"][0][@"hours"];
             for (int i = 0; i < allArray.count; i++) {
@@ -241,6 +261,8 @@
                 [self->_weaArray addObject:allArray[i][@"tem"]];
                 [self->_imageArray addObject:allArray[i][@"wea_img"]];
             }
+            
+            //周
             NSMutableArray *weakArray = [[NSMutableArray alloc] init];
             weakArray = secondDictionary[@"data"];
             for (int i = 0; i < weakArray.count - 1; i++) {
@@ -260,20 +282,20 @@
             [self->_informationArray addObject:secondDictionary[@"data"][0][@"win_speed"]];
             
             if ([self.cityName isEqualToString:@""]) {
-                [self->_oneData addObject:stringTwo];
-                [self->_oneData addObject:self.maxString];
-                [self->_oneData addObject:self.minString];
-                [self->_oneData addObject:self.nowString];
-                [self->_oneData addObject:self.weaString];
-                [self->_oneData addObject:self.airQuality];
-                [self->_oneData addObject:self.timeArray];
-                [self->_oneData addObject:self.weaArray];
-                [self->_oneData addObject:self.imageArray];
-                [self->_oneData addObject:self.weakDayArray];
-                [self->_oneData addObject:self.weakImageArray];
-                [self->_oneData addObject:self.weakmaxArray];
-                [self->_oneData addObject:self.weakminArray];
-                [self->_oneData addObject:self.informationArray];
+                [self->_oneData addObject:stringTwo];//0
+                [self->_oneData addObject:self.maxString];//1
+                [self->_oneData addObject:self.minString];//2
+                [self->_oneData addObject:self.nowString];//3
+                [self->_oneData addObject:self.weaString];//4
+                [self->_oneData addObject:self.airQuality];//5
+                [self->_oneData addObject:self.timeArray];//6
+                [self->_oneData addObject:self.weaArray];//7
+                [self->_oneData addObject:self.imageArray];//8
+                [self->_oneData addObject:self.weakDayArray];//9
+                [self->_oneData addObject:self.weakImageArray];//10
+                [self->_oneData addObject:self.weakmaxArray];//11
+                [self->_oneData addObject:self.weakminArray];//12
+                [self->_oneData addObject:self.informationArray];//13
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self->_tableView reloadData];

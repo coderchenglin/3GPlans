@@ -27,6 +27,7 @@
 		685692BC2B0B97E500CD4EC7 /* background_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 685692B62B0B97E500CD4EC7 /* background_main.png */; };
 		685692BD2B0B97E500CD4EC7 /* caidan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685692B72B0B97E500CD4EC7 /* caidan.png */; };
 		685692BE2B0B97E500CD4EC7 /* sousuo.png in Resources */ = {isa = PBXBuildFile; fileRef = 685692B82B0B97E500CD4EC7 /* sousuo.png */; };
+		685693422B11B45900CD4EC7 /* back2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 685693412B11B45900CD4EC7 /* back2.jpeg */; };
 		68C1B45D2B09B178006111E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C1B45C2B09B178006111E5 /* AppDelegate.m */; };
 		68C1B4602B09B178006111E5 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C1B45F2B09B178006111E5 /* SceneDelegate.m */; };
 		68C1B4632B09B178006111E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C1B4622B09B178006111E5 /* ViewController.m */; };
@@ -82,6 +83,7 @@
 		685692B62B0B97E500CD4EC7 /* background_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_main.png; sourceTree = "<group>"; };
 		685692B72B0B97E500CD4EC7 /* caidan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caidan.png; sourceTree = "<group>"; };
 		685692B82B0B97E500CD4EC7 /* sousuo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sousuo.png; sourceTree = "<group>"; };
+		685693412B11B45900CD4EC7 /* back2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back2.jpeg; sourceTree = "<group>"; };
 		68C1B4582B09B178006111E5 /* weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C1B45B2B09B178006111E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68C1B45C2B09B178006111E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				685692B82B0B97E500CD4EC7 /* sousuo.png */,
 				685692B42B0B97E400CD4EC7 /* tianqi.png */,
 				685692B32B0B97E400CD4EC7 /* zengjia.png */,
+				685693412B11B45900CD4EC7 /* back2.jpeg */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				685692AB2B0B97D600CD4EC7 /* qing.png in Resources */,
 				68C1B4682B09B17A006111E5 /* Assets.xcassets in Resources */,
 				685692B02B0B97D600CD4EC7 /* yin.png in Resources */,
+				685693422B11B45900CD4EC7 /* back2.jpeg in Resources */,
 				685692B92B0B97E500CD4EC7 /* zengjia.png in Resources */,
 				685692B12B0B97D600CD4EC7 /* leizhenyu.png in Resources */,
 				685692A92B0B97D600CD4EC7 /* yun.png in Resources */,

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UIButton *addButton;
 @property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, strong) UILabel *timeLabel;

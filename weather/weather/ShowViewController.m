@@ -74,7 +74,8 @@ static NSInteger* num = 0;
     
     for (int i = 0; i < self.number; i++) {
         
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(width * i, 0, width, height - 132) style:UITableViewStylePlain]; //这是直接加在ScrollView上的，所以height-50-82
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(width * i, 0, width, height - 132) style:UITableViewStylePlain];
+        //这是直接加在ScrollView上的，所以height-50-82
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.tag = i;
@@ -91,6 +92,7 @@ static NSInteger* num = 0;
         
     }
     
+    //设置当前scrollView的内容偏移量
     [self.scrollView setContentOffset:CGPointMake(width * self.index, 0)];
 }
 
@@ -106,7 +108,7 @@ static NSInteger* num = 0;
         NSLog(@"row = 0");
         ShowTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"show"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.bigLabel.text = self.allInformationArray[tableView.tag][0];
+        cell.bigLabel.text = self.allInformationArray[tableView.tag][0]; //每一个tableView之前都标了下表的（tag = index）
         cell.weatherLabel.text = self.allInformationArray[tableView.tag][4];
         cell.temperatureLabel.text = self.allInformationArray[tableView.tag][3];
         cell.maxLabel.text = self.allInformationArray[tableView.tag][1];
@@ -239,7 +241,7 @@ static NSInteger* num = 0;
             cell.minLabel = [[UILabel alloc] init];
             cell.minLabel.tag = 100 + i;
             cell.minLabel.text = end[i + 4];
-            cell.minLabel.frame = CGRectMake(width / 2 + 10, 30 + 100 * i, 20, 60);
+            cell.minLabel.frame = CGRectMake(width / 2 + 10, 30 + 100 * i, 200, 60);
             cell.minLabel.textColor = [UIColor whiteColor];
             cell.minLabel.font = [UIFont systemFontOfSize:28];
 
@@ -270,6 +272,8 @@ static NSInteger* num = 0;
     }
 }
 
+//所有的scrollView被滑动时，都会触发这个方法
+//所以我门需要对scrollView标上tag值，在这个方法中通过tag值来确定对哪个scrollView进行操作
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.tag == 111) {
         self.pageControl.currentPage = scrollView.contentOffset.x / width;
