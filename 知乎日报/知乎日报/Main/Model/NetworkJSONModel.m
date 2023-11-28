@@ -7,6 +7,27 @@
 
 #import "NetworkJSONModel.h"
 
-@implementation NetworkJSONModel
+@implementation StoriesModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 
 @end
+
+@implementation Top_StoriesModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+
+@implementation NetworkJSONModel
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
+@end
+

@@ -24,6 +24,8 @@
 		685693672B11FF8900CD4EC7 /* OldNetworkJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693662B11FF8900CD4EC7 /* OldNetworkJSONModel.m */; };
 		6856936A2B11FFB700CD4EC7 /* KnowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693692B11FFB700CD4EC7 /* KnowView.m */; };
 		6856936D2B11FFD100CD4EC7 /* KnowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6856936C2B11FFD100CD4EC7 /* KnowViewController.m */; };
+		685693722B15A8D200CD4EC7 /* 1-5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 685693712B15A8D100CD4EC7 /* 1-5.jpeg */; };
+		685693752B15C55E00CD4EC7 /* FreeStyleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693742B15C55E00CD4EC7 /* FreeStyleTableViewCell.m */; };
 		E9C1E2ECF3997D4319AB8FC2 /* libPods-知乎日报.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB1A286C8CCF557BB6E60DD /* libPods-知乎日报.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,9 @@
 		685693692B11FFB700CD4EC7 /* KnowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KnowView.m; sourceTree = "<group>"; };
 		6856936B2B11FFD100CD4EC7 /* KnowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnowViewController.h; sourceTree = "<group>"; };
 		6856936C2B11FFD100CD4EC7 /* KnowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KnowViewController.m; sourceTree = "<group>"; };
+		685693712B15A8D100CD4EC7 /* 1-5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1-5.jpeg"; sourceTree = "<group>"; };
+		685693732B15C55E00CD4EC7 /* FreeStyleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreeStyleTableViewCell.h; sourceTree = "<group>"; };
+		685693742B15C55E00CD4EC7 /* FreeStyleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreeStyleTableViewCell.m; sourceTree = "<group>"; };
 		DF5104958BD482296A47AFEF /* Pods-知乎日报.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-知乎日报.debug.xcconfig"; path = "Target Support Files/Pods-知乎日报/Pods-知乎日报.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +123,7 @@
 		685693002B10B68300CD4EC7 = {
 			isa = PBXGroup;
 			children = (
+				685693712B15A8D100CD4EC7 /* 1-5.jpeg */,
 				6856930B2B10B68400CD4EC7 /* 知乎日报 */,
 				685693272B10B68500CD4EC7 /* 知乎日报Tests */,
 				685693312B10B68600CD4EC7 /* 知乎日报UITests */,
@@ -238,6 +244,8 @@
 			children = (
 				685693682B11FFB700CD4EC7 /* KnowView.h */,
 				685693692B11FFB700CD4EC7 /* KnowView.m */,
+				685693732B15C55E00CD4EC7 /* FreeStyleTableViewCell.h */,
+				685693742B15C55E00CD4EC7 /* FreeStyleTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -429,6 +437,7 @@
 			files = (
 				6856931C2B10B68500CD4EC7 /* LaunchScreen.storyboard in Resources */,
 				685693192B10B68500CD4EC7 /* Assets.xcassets in Resources */,
+				685693722B15A8D200CD4EC7 /* 1-5.jpeg in Resources */,
 				685693172B10B68400CD4EC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +493,7 @@
 				6856936D2B11FFD100CD4EC7 /* KnowViewController.m in Sources */,
 				6856935E2B11FEF700CD4EC7 /* NetworkJSONModel.m in Sources */,
 				685693142B10B68400CD4EC7 /* ViewController.m in Sources */,
+				685693752B15C55E00CD4EC7 /* FreeStyleTableViewCell.m in Sources */,
 				6856930E2B10B68400CD4EC7 /* AppDelegate.m in Sources */,
 				6856935B2B11FEBB00CD4EC7 /* NetworkModel.m in Sources */,
 				6856931F2B10B68500CD4EC7 /* main.m in Sources */,

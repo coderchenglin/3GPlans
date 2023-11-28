@@ -7,6 +7,14 @@
 
 #import "OldNetworkJSONModel.h"
 
-@implementation OldNetworkJSONModel
+@implementation OldStoriesModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
 
+@implementation OldNetworkJSONModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end
