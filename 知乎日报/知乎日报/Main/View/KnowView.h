@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "Masonry.h"
 #import "FreeStyleTableViewCell.h"
+#import "SDWebImage.h"
 
 #define myWidth [UIScreen mainScreen].bounds.size.width
 #define myHeight [UIScreen mainScreen].bounds.size.height
@@ -15,13 +16,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KnowView : UIView
+@interface KnowView : UIView<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UITableViewCell *rollCell;
 @property (nonatomic, strong) UITableViewCell *flashCell;
-//@property (nonatomic, strong) FreeStyleTableViewCell *showCell;
+@property (nonatomic, strong) FreeStyleTableViewCell *showCell;
 @property (nonatomic, strong) UIButton *rollButton;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSTimer *timer;
@@ -42,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *top_storiesUrl;
 @property (nonatomic, strong) NSMutableArray *top_storiesHint;
 @property (nonatomic, strong) NSMutableArray *top_storiesId;
-@property (nonatomic, strong) UIImage *top_storiesIamge;
+@property (nonatomic, strong) NSMutableArray *top_storiesIamge;
 
 @property (nonatomic, strong) NSMutableArray *temporaryArray;
 @property (nonatomic, strong) NSMutableArray *allNetworkData;

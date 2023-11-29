@@ -6,10 +6,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Masonry.h"
+
+#define myWidth [UIScreen mainScreen].bounds.size.width
+#define myHeight [UIScreen mainScreen].bounds.size.height
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FreeStyleTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) UIImageView *showImageView;
+@property (nonatomic, strong) UILabel *mainLabel;
+@property (nonatomic, strong) UILabel *subLabel;
 
 @end
 

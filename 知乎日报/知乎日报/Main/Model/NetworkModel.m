@@ -24,13 +24,14 @@ static NetworkModel *network = nil;
 
 - (void)NetworkModelData:(NetworkBlock)networkDataBlock andError:(ErrorBlock)errorBlock {
     
-    NSString *networkJson = @"http://news-at.zhihu.com/api/4/news/latest";
+    NSString *networkJson = @"https://news-at.zhihu.com/api/4/news/latest";
     
     networkJson = [networkJson stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *networkURL = [NSURL URLWithString:networkJson];
     NSURLRequest *networkRequest = [NSURLRequest requestWithURL:networkURL];
     NSURLSession *networkSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *networkDataTask = [networkSession dataTaskWithRequest:networkRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
         if (error == nil) {
             NetworkJSONModel *allData = [[NetworkJSONModel alloc] initWithData:data error:nil];
             networkDataBlock(allData); //这个allData就是传给这个块作为参数，block传值也就是将这个allData传给他的调用者

@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NetworkJSONModel : JSONModel
 
-@property (nonatomic, copy) NSString *data;
+@property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSArray<StoriesModel> *stories;
 @property (nonatomic, copy) NSArray<Top_StoriesModel> *top_stories;
 

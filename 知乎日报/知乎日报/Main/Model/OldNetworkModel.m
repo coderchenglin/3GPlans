@@ -23,7 +23,7 @@ static OldNetworkModel *oldNetwork = nil;
 
 - (void)OldNetworkModelData:(OldNetworkBlock)oldNetworkDataBlock andError:(ErrorOldBlock)errorOldBlock {
     
-    NSString *oldNetworkJSON = [[NSString alloc] initWithFormat:@"http://news.at.zhihu.com/api/4/news/before/%@", self.nowDate];
+    NSString *oldNetworkJSON = [[NSString alloc] initWithFormat:@"https://news-at.zhihu.com/api/4/news/before/%@", self.nowDate];
     
     oldNetworkJSON = [oldNetworkJSON stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *oldNetworkURL = [NSURL URLWithString:oldNetworkJSON];
