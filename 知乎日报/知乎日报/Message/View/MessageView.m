@@ -5,9 +5,9 @@
 //  Created by chenglin on 2023/12/1.
 //
 
-#import "MessageTableView.h"
+#import "MessageView.h"
 
-@implementation MessageTableView
+@implementation MessageView
 
 /*
 // Only override drawRect: if you perform custom drawing.

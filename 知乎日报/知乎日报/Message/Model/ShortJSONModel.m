@@ -7,6 +7,21 @@
 
 #import "ShortJSONModel.h"
 
-@implementation ShortJSONModel
 
+@implementation ShortReplyToModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+@implementation ShortCommentsModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+@end
+
+@implementation ShortJSONModel
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
 @end

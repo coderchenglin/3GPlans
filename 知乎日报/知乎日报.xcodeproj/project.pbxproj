@@ -37,7 +37,7 @@
 		685693D42B199BA900CD4EC7 /* ShortJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693D32B199BA900CD4EC7 /* ShortJSONModel.m */; };
 		685693D72B199BCB00CD4EC7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693D62B199BCB00CD4EC7 /* MessageTableViewCell.m */; };
 		685693DA2B199BF000CD4EC7 /* TopLeftLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693D92B199BF000CD4EC7 /* TopLeftLabel.m */; };
-		685693DD2B199C0900CD4EC7 /* MessageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693DC2B199C0900CD4EC7 /* MessageTableView.m */; };
+		685693DD2B199C0900CD4EC7 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693DC2B199C0900CD4EC7 /* MessageView.m */; };
 		685693E02B199C2700CD4EC7 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693DF2B199C2700CD4EC7 /* MessageViewController.m */; };
 		685693EB2B19D1EC00CD4EC7 /* dianzan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685693E32B19D1EA00CD4EC7 /* dianzan.png */; };
 		685693EC2B19D1EC00CD4EC7 /* shoucang-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 685693E42B19D1EA00CD4EC7 /* shoucang-2.png */; };
@@ -126,8 +126,8 @@
 		685693D62B199BCB00CD4EC7 /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		685693D82B199BF000CD4EC7 /* TopLeftLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopLeftLabel.h; sourceTree = "<group>"; };
 		685693D92B199BF000CD4EC7 /* TopLeftLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopLeftLabel.m; sourceTree = "<group>"; };
-		685693DB2B199C0900CD4EC7 /* MessageTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableView.h; sourceTree = "<group>"; };
-		685693DC2B199C0900CD4EC7 /* MessageTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableView.m; sourceTree = "<group>"; };
+		685693DB2B199C0900CD4EC7 /* MessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
+		685693DC2B199C0900CD4EC7 /* MessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		685693DE2B199C2700CD4EC7 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		685693DF2B199C2700CD4EC7 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		685693E32B19D1EA00CD4EC7 /* dianzan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dianzan.png; sourceTree = "<group>"; };
@@ -396,8 +396,8 @@
 		685693512B11FB3100CD4EC7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				685693DB2B199C0900CD4EC7 /* MessageTableView.h */,
-				685693DC2B199C0900CD4EC7 /* MessageTableView.m */,
+				685693DB2B199C0900CD4EC7 /* MessageView.h */,
+				685693DC2B199C0900CD4EC7 /* MessageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -600,7 +600,7 @@
 				685693C22B199B1D00CD4EC7 /* ColletcViewController.m in Sources */,
 				685693D72B199BCB00CD4EC7 /* MessageTableViewCell.m in Sources */,
 				685693752B15C55E00CD4EC7 /* FreeStyleTableViewCell.m in Sources */,
-				685693DD2B199C0900CD4EC7 /* MessageTableView.m in Sources */,
+				685693DD2B199C0900CD4EC7 /* MessageView.m in Sources */,
 				685693CB2B199B6B00CD4EC7 /* LongModel.m in Sources */,
 				6856930E2B10B68400CD4EC7 /* AppDelegate.m in Sources */,
 				685693CE2B199B8000CD4EC7 /* LongJSONModel.m in Sources */,

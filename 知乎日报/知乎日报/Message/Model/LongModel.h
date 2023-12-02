@@ -6,10 +6,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LongJSONModel.h"
+
+typedef void (^GetLongModelBlock)(LongJSONModel * _Nullable longModel);
+typedef void (^ErrorBlock)(NSError * _Nullable error);
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LongModel : NSObject
+
+@property (nonatomic, strong) NSString *LongID;
+
++ (instancetype)shareLongModel;
+- (void)NetworkGetLongData:(GetLongModelBlock)longModelBlock andError:(ErrorBlock)errorBlock;
 
 @end
 

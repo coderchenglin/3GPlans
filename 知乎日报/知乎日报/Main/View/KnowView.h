@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger currentIndex;//当前的中心位置图片
 @property (nonatomic, assign) NSInteger allIndex; //总图片数
-@property (nonatomic, assign) NSInteger UnkNowflag;
+@property (nonatomic, assign) NSInteger UnKnowflag;
 @property (nonatomic, assign) NSInteger againFlag;
 @property (nonatomic, assign) float allOffset;
 
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *top_storiesUrl;
 @property (nonatomic, strong) NSMutableArray *top_storiesHint;
 @property (nonatomic, strong) NSMutableArray *top_storiesId;
-@property (nonatomic, strong) NSMutableArray *top_storiesIamge;
+@property (nonatomic, strong) NSMutableArray *top_storiesImage;
 
 @property (nonatomic, strong) NSMutableArray *temporaryArray;
 @property (nonatomic, strong) NSMutableArray *allNetworkData;

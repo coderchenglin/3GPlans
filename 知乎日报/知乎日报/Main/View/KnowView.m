@@ -671,38 +671,38 @@
 
 //视图的初始化，包括设置背景颜色、添加子视图、注册表格单元格等。
 - (instancetype)initWithFrame:(CGRect)frame {
-
+    
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor whiteColor];
-
+    
     [self creatFalseView];
-
+    
     self.storiesTitle = [[NSMutableArray alloc] init];
     self.storiesHint = [[NSMutableArray alloc] init];
     self.storiesImages = [[NSMutableArray alloc] init];
     self.storiesUrl = [[NSMutableArray alloc] init];
     self.storiesId = [[NSMutableArray alloc] init];
     self.allOffset = 0;
-
+    
     self.top_storiesTitle = [[NSMutableArray alloc] init];
     self.top_storiesHint = [[NSMutableArray alloc] init];
-    self.top_storiesIamge = [[NSMutableArray alloc] init];
+    self.top_storiesImage = [[NSMutableArray alloc] init];
     self.top_storiesUrl = [[NSMutableArray alloc] init];
     self.top_storiesId = [[NSMutableArray alloc] init];
-
+    
     self.allNetworkData = [[NSMutableArray alloc] init];
     self.allTopNetworkData = [[NSMutableArray alloc] init];
     self.allTransURL = [[NSMutableArray alloc] init];
     self.allTransID = [[NSMutableArray alloc] init];
     self.allRollButton = [[NSMutableArray alloc] init];
     self.rollLocation = 0;
-
+    
     //是否需要再添加视图到滚动视上的标识
-    self.UnkNowflag = 0;
+    self.UnKnowflag = 0;
     self.againFlag = 0;
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNetworkModel:) name:@"Network" object:nil];
-
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, myHeight / 10, myWidth, myHeight * 1.06) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -712,9 +712,9 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tag = 957;
     [self addSubview:self.tableView];
-
+    
     [self.tableView registerClass:[FreeStyleTableViewCell class] forCellReuseIdentifier:@"show"];
-
+    
     return self;
 }
 
@@ -722,9 +722,9 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0 && indexPath.section == 0) {
         self.rollCell = [[UITableViewCell alloc] init];
-
+        
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myWidth, myWidth)];
-        self.scrollView.contentSize = CGSizeMake(myWidth * (self.top_storiesIamge.count + 2), myWidth);
+        self.scrollView.contentSize = CGSizeMake(myWidth * (self.top_storiesImage.count + 2), myWidth);
         self.scrollView.backgroundColor = [UIColor orangeColor];
         self.scrollView.pagingEnabled = YES;
         self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -732,12 +732,12 @@
         self.scrollView.delegate = self;
         self.scrollView.tag = 111;
         [self.rollCell.contentView addSubview:self.scrollView];
-
+        
         //总图片数
         self.allIndex = 5;
         //当前中心位置
         self.currentIndex = self.rollLocation;
-
+        
         self.pageControl = [[UIPageControl alloc] init];
         self.pageControl.numberOfPages = self.allIndex;
         self.pageControl.currentPage = 0;
@@ -750,8 +750,8 @@
             make.width.equalTo(@(myWidth / 3));
             make.height.equalTo(@(myWidth / 10));
         }];
-
-        if (self.UnkNowflag == 0) {
+        
+        if (self.UnKnowflag == 0) {
             self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll:) userInfo:@"帅哥哥" repeats:YES];
             [self reloadRollButton];
             [self.scrollView setContentOffset:CGPointMake(myWidth, 0) animated:NO];
@@ -763,16 +763,16 @@
             }
             [self.scrollView setContentOffset:CGPointMake(myWidth * self.rollLocation, 0) animated:NO];
         }
-        self.UnkNowflag = 1;
-
+        self.UnKnowflag = 1;
+        
         return self.rollCell;
     } else if (indexPath.section == 0 && indexPath.row == 6) {
         self.flashCell = [[UITableViewCell alloc] init];
         self.flashCell.backgroundColor = [UIColor clearColor];
-
+        
         //设置小菊花
         [self setFlashFlower];
-
+        
         return self.flashCell;
     } else if (indexPath.section == 0 && indexPath.row != 0) {
         self.showCell = [self.tableView dequeueReusableCellWithIdentifier:@"show" forIndexPath:indexPath];
@@ -783,10 +783,10 @@
     } else if (indexPath.section == self.allNetworkData.count - 1 && indexPath.row == [self.allNetworkData[0][0] count]) {
         self.flashCell = [[UITableViewCell alloc] init];
         self.flashCell.backgroundColor = [UIColor clearColor];
-
+        
         //设置小菊花
         [self setFlashFlower];
-
+        
         return self.flashCell;
     } else {
         self.showCell = [self.tableView dequeueReusableCellWithIdentifier:@"show" forIndexPath:indexPath];
@@ -863,10 +863,9 @@
     if (indexPath.row == 0 && indexPath.section == 0) {
         NSLog(@"rollButton");
     } else {
-        NSLog(@"either");
         FreeStyleTableViewCell *nowCell = [self.tableView cellForRowAtIndexPath:indexPath];
         //NSLog(@"%@", nowCell.mainLabel.text);
-
+        NSLog(@"either");
         NSInteger atLocation = 0;
         if (indexPath.section == 0) {
             atLocation = indexPath.row - 1;
@@ -874,12 +873,14 @@
             atLocation = indexPath.section * 6 + indexPath.row;
         }
         NSString *stringLocation = [[NSString alloc] initWithFormat:@"%ld", (long)atLocation];
+        NSLog(@"atLocation = %ld", (long)atLocation);
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:self.allTransURL forKey:@"url"];
         [dic setObject:self.allTransID forKey:@"id"];
         [dic setObject:stringLocation forKey:@"location"];
         [dic setObject:self.allNetworkData forKey:@"allData"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"transUrl" object:nil userInfo:dic];
+        //传给视图控制器
     }
 }
 
@@ -889,9 +890,9 @@
         CGFloat contentOffsetY = scrollView.contentOffset.y;
         CGFloat bottomOffset = scrollView.contentSize.height - contentOffsetY; //计算屏幕差
         if (bottomOffset <= height * 0.9) {
-
+            
             [self.flashView startAnimating]; //加载小菊花，让它转
-
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"returnInformation" object:nil userInfo:nil];
         }
     }
@@ -899,7 +900,7 @@
 
 //滚动停止事件
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
+    
     if (scrollView.tag == 111) {
         //获取滑动后的位置
         if (self.allOffset < self.scrollView.contentOffset.x) { //向右滑动
@@ -943,7 +944,7 @@
 //定时器事件
 - (void)autoScroll:(NSTimer*)timer {
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x + myWidth, 0) animated:YES];
-
+    
     self.currentIndex = (self.currentIndex + 1) % self.allIndex;
     CGPoint offset = [self.scrollView contentOffset];
     if (offset.x == myWidth * 6) {
@@ -957,69 +958,69 @@
 
 //通知传值
 - (void)getNetworkModel:(NSNotification *)getModel {
-
+    
     self.storiesTitle = [[NSMutableArray alloc] init];
     self.storiesHint = [[NSMutableArray alloc] init];
     self.storiesImages = [[NSMutableArray alloc] init];
     self.storiesUrl = [[NSMutableArray alloc] init];
     self.storiesId = [[NSMutableArray alloc] init];
-
+    
     self.temporaryArray = [[NSMutableArray alloc] init];
-
+    
     //for (int i = 0; i < 6; i++) {
     for (int i = 0; i < 5; i++) {
         NSString *stringOne = getModel.userInfo[@"stories"][i][@"title"];
         [self.storiesTitle addObject:stringOne];
-
+        
         NSString *stringTwo = getModel.userInfo[@"stories"][i][@"hint"];
         [self.storiesHint addObject:stringTwo];
-
+        
         NSString *stringThree = getModel.userInfo[@"stories"][i][@"images"][0];
         [self.storiesImages addObject:stringThree];
-
+        
         NSString *stringFour = getModel.userInfo[@"stories"][i][@"url"];
         [self.storiesUrl addObject:stringFour];
         [self.allTransURL addObject:stringFour];
-
+        
         NSString *stringFive = getModel.userInfo[@"stories"][i][@"id"];
         [self.storiesId addObject:stringFive];
         [self.allTransID addObject:stringFive];
     }
-
+    
     [self.temporaryArray addObject:self.storiesTitle]; //0
     [self.temporaryArray addObject:self.storiesHint];  //1
     [self.temporaryArray addObject:self.storiesImages];//2
     [self.temporaryArray addObject:self.storiesUrl];   //3
-
+    
     NSString *string = [[NSString alloc] initWithFormat:@"%@月%@日", [getModel.userInfo[@"date"] substringWithRange:NSMakeRange(4, 2)], [getModel.userInfo[@"date"] substringWithRange:NSMakeRange(6, 2)]];
-
+    
     [self.temporaryArray addObject:string];  //4
-
+    
     [self.temporaryArray addObject:self.storiesId]; //5
-
+    
     [self.allNetworkData addObject:self.temporaryArray];
-
+    
     if (self.againFlag == 0) {
         self.temporaryArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < 5; i++) {
             NSString *stringOne = getModel.userInfo[@"top_stories"][i][@"title"];
             [self.top_storiesTitle addObject:stringOne];
-
+            
             NSString *stringTwo = getModel.userInfo[@"top_stories"][i][@"hint"];
             [self.top_storiesHint addObject:stringTwo];
-
+            
             NSString *stringThree = getModel.userInfo[@"top_stories"][i][@"image"];
-            [self.top_storiesIamge addObject:stringThree];
-
+            [self.top_storiesImage addObject:stringThree];
+            
             NSString *stringFour = getModel.userInfo[@"top_stories"][i][@"url"];
             [self.top_storiesUrl addObject:stringFour];
-
+            
             NSString *stringFive = getModel.userInfo[@"top_stories"][i][@"id"];
             [self.top_storiesId addObject:stringFive];
         }
         [self.temporaryArray addObject:self.top_storiesTitle];
         [self.temporaryArray addObject:self.top_storiesHint];
-        [self.temporaryArray addObject:self.top_storiesIamge];
+        [self.temporaryArray addObject:self.top_storiesImage];
         [self.temporaryArray addObject:self.top_storiesUrl];
         NSString *string = [[NSString alloc] initWithFormat:@"%@月%@日", [getModel.userInfo[@"date"] substringWithRange:NSMakeRange(4, 2)], [getModel.userInfo[@"date"] substringWithRange:NSMakeRange(6, 2)]];
         [self.temporaryArray addObject:string];
@@ -1027,9 +1028,9 @@
         [self.allTopNetworkData addObject:self.temporaryArray];
     }
     self.againFlag = 1;
-
+    
     [self.flashView stopAnimating];  //让小菊花停止转
-
+    
     [self.tableView reloadData];
 }
 //移除通知
@@ -1050,13 +1051,13 @@
 
 //创建一个假导航栏
 - (void)creatFalseView {
-
+    
     self.flaseLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 6, myHeight / 50, myWidth / 3, myHeight / 10)];
     self.flaseLabel.text = @"知乎日报";
     self.flaseLabel.textAlignment = NSTextAlignmentLeft;
     [self.flaseLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:30]];
     [self addSubview:self.flaseLabel];
-
+    
     self.flaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.flaseButton setImage:[UIImage imageNamed:@"1-5.jpeg"] forState:UIControlStateNormal];
     self.flaseButton.layer.cornerRadius = 18;
@@ -1067,41 +1068,41 @@
         make.top.equalTo(self).offset(myHeight / 21);
         make.width.and.height.equalTo(@38);
     }];
-
+    
     self.dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, myHeight / 35, myWidth / 5, myHeight / 15)];
     self.dayLabel.textAlignment = NSTextAlignmentCenter;
     [self.dayLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
     [self addSubview:self.dayLabel];
-
+    
     self.monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, myHeight / 20, myWidth / 5, myHeight / 15)];
     self.monthLabel.textAlignment = NSTextAlignmentCenter;
     [self.monthLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
     [self addSubview:self.monthLabel];
-
+    
     // 设置分割线
     self.lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 6.5, myHeight / 18, 1, myHeight / 30)];
     self.lineLabel.backgroundColor = [UIColor systemGrayColor];
     self.lineLabel.numberOfLines = 2;
     [self addSubview:self.lineLabel];
-
+    
 }
 
 //重新加载自动轮播图的按钮
 - (void)reloadRollButton {
-    for (int i = 0; i < self.top_storiesIamge.count + 2; i++) {
-        if (i < self.top_storiesIamge.count) {
+    for (int i = 0; i < self.top_storiesImage.count + 2; i++) {
+        if (i < self.top_storiesImage.count) {
             UIButton *tempButton = [UIButton buttonWithType:UIButtonTypeCustom];
             tempButton.tag = i;
-            [tempButton sd_setImageWithURL:self.top_storiesIamge[i] forState:UIControlStateNormal];
+            [tempButton sd_setImageWithURL:self.top_storiesImage[i] forState:UIControlStateNormal];
             [tempButton addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
             tempButton.frame =  CGRectMake(myWidth * (i + 1), 0, myWidth, myWidth);
             [self.scrollView addSubview:tempButton];
-
+            
             //设置渐变色
             UIView *colorView = [[UIView alloc] init];
             colorView.frame = CGRectMake(0, myWidth / 1.4, myWidth, myWidth - myWidth / 1.4);
-            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[i]]]]] colorWithAlphaComponent:1.0];
-            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[i]]]]] colorWithAlphaComponent:0.0];
+            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[i]]]]] colorWithAlphaComponent:1.0];
+            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[i]]]]] colorWithAlphaComponent:0.0];
             NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
             CAGradientLayer *gradient = [CAGradientLayer layer];
             //设置开始和结束位置(设置渐变的方向)
@@ -1111,7 +1112,7 @@
             gradient.frame = CGRectMake(0, 0, myWidth, myWidth - myWidth / 1.4);
             [colorView.layer insertSublayer:gradient atIndex:0];
             [tempButton addSubview:colorView];
-
+            
             //设置主标题
             UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.4, myWidth * 9 / 10, myWidth / 7)];
             tempLabel.text = self.top_storiesTitle[i];
@@ -1119,28 +1120,28 @@
             tempLabel.textColor = [UIColor whiteColor];
             [tempLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:25]];
             [tempButton addSubview:tempLabel];
-
+            
             //设置副标题
             UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.2, myWidth * 9 / 10, myWidth / 7)];
             subLabel.text = self.top_storiesHint[i];
             subLabel.numberOfLines = 0;
             subLabel.textColor = [UIColor systemGray2Color];
             [tempButton addSubview:subLabel];
-
+            
             [self.allRollButton addObject:tempButton];
-        } else if (i == self.top_storiesIamge.count) {
+        } else if (i == self.top_storiesImage.count) {
             UIButton *tempButton = [UIButton buttonWithType:UIButtonTypeCustom];
             tempButton.tag = 0;
-            [tempButton sd_setImageWithURL:self.top_storiesIamge[0] forState:UIControlStateNormal];
+            [tempButton sd_setImageWithURL:self.top_storiesImage[0] forState:UIControlStateNormal];
             [tempButton addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
             tempButton.frame =  CGRectMake(myWidth * 6, 0, myWidth, myWidth);
             [self.scrollView addSubview:tempButton];
-
+            
             //设置渐变色
             UIView *colorView = [[UIView alloc] init];
             colorView.frame = CGRectMake(0, myWidth / 1.4, myWidth, myWidth - myWidth / 1.4);
-            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[0]]]]] colorWithAlphaComponent:1.0];
-            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[0]]]]] colorWithAlphaComponent:0.0];
+            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[0]]]]] colorWithAlphaComponent:1.0];
+            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[0]]]]] colorWithAlphaComponent:0.0];
             NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
             CAGradientLayer *gradient = [CAGradientLayer layer];
             //设置开始和结束位置(设置渐变的方向)
@@ -1150,33 +1151,33 @@
             gradient.frame = CGRectMake(0, 0, myWidth, myWidth - myWidth / 1.4);
             [colorView.layer insertSublayer:gradient atIndex:0];
             [tempButton addSubview:colorView];
-
+            
             UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.4, myWidth * 9 / 10, myWidth / 7)];
             tempLabel.text = self.top_storiesTitle[0];
             tempLabel.numberOfLines = 0;
             tempLabel.textColor = [UIColor whiteColor];
             [tempLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:25]];
             [tempButton addSubview:tempLabel];
-
+            
             UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.2, myWidth * 9 / 10, myWidth / 7)];
             subLabel.text = self.top_storiesHint[0];
             subLabel.numberOfLines = 0;
             subLabel.textColor = [UIColor systemGray2Color];
             [tempButton addSubview:subLabel];
-
+            
             [self.allRollButton addObject:tempButton];
         } else {
             UIButton *tempButton = [UIButton buttonWithType:UIButtonTypeCustom];
             tempButton.tag = 4;
-            [tempButton sd_setImageWithURL:self.top_storiesIamge[4] forState:UIControlStateNormal];
+            [tempButton sd_setImageWithURL:self.top_storiesImage[4] forState:UIControlStateNormal];
             [tempButton addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
             tempButton.frame =  CGRectMake(0, 0, myWidth, myWidth);
             [self.scrollView addSubview:tempButton];
-
+            
             UIView *colorView = [[UIView alloc] init];
             colorView.frame = CGRectMake(0, myWidth / 1.4, myWidth, myWidth - myWidth / 1.4);
-            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[4]]]]] colorWithAlphaComponent:1.0];
-            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesIamge[4]]]]] colorWithAlphaComponent:0.0];
+            UIColor *colorOne = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[4]]]]] colorWithAlphaComponent:1.0];
+            UIColor *colorTwo = [[[self class] mostColor:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.top_storiesImage[4]]]]] colorWithAlphaComponent:0.0];
             NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
             CAGradientLayer *gradient = [CAGradientLayer layer];
             //设置开始和结束位置(设置渐变的方向)
@@ -1186,20 +1187,20 @@
             gradient.frame = CGRectMake(0, 0, myWidth, myWidth - myWidth / 1.4);
             [colorView.layer insertSublayer:gradient atIndex:0];
             [tempButton addSubview:colorView];
-
+            
             UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.4, myWidth * 9 / 10, myWidth / 7)];
             tempLabel.text = self.top_storiesTitle[4];
             tempLabel.numberOfLines = 0;
             tempLabel.textColor = [UIColor whiteColor];
             [tempLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:25]];
             [tempButton addSubview:tempLabel];
-
+            
             UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(myWidth / 20, myWidth / 1.2, myWidth * 9 / 10, myWidth / 7)];
             subLabel.text = self.top_storiesHint[4];
             subLabel.numberOfLines = 0;
             subLabel.textColor = [UIColor systemGray2Color];
             [tempButton addSubview:subLabel];
-
+            
             [self.allRollButton addObject:tempButton];
         }
     }
@@ -1224,26 +1225,26 @@
 
 //提取主色调 - 2
 + (UIColor *)mostColor:(UIImage*)image {
-
+    
     int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
-
+    
     //缩小图片，加快计算速度
     CGSize thumbSize = CGSizeMake(image.size.width/20, image.size.height/20);
-
+    
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, thumbSize.width, thumbSize.height, 8, thumbSize.width * 4, colorSpace,bitmapInfo);
-
+    
     CGRect drawRect = CGRectMake(0, 0, thumbSize.width, thumbSize.height);
     CGContextDrawImage(context, drawRect, image.CGImage);
     CGColorSpaceRelease(colorSpace);
-
+    
     //统计每个点的像素值
     unsigned char *data = CGBitmapContextGetData(context);
     if (data == NULL) {
         return nil;
     }
     NSCountedSet *cls = [NSCountedSet setWithCapacity:thumbSize.width * thumbSize.height];
-
+    
     for (int x = 0; x < thumbSize.width; x++) {
         for (int y = image.size.height / 30; y < thumbSize.height; y++) {
             int offset = 4 * (x * y);
@@ -1255,7 +1256,7 @@
             if (alpha > 0) {
                 //去除白色
                 if (red >= 180 || green >= 180 || blue >= 180) {
-
+                    
                 } else {
                     NSArray *clr = @[@(red), @(green), @(blue), @(alpha)];
                     [cls addObject:clr];
@@ -1276,7 +1277,7 @@
         }
         MaxCount = tmpCount;
         MaxColor = curColor;
-
+        
     }
     return [UIColor colorWithRed:([MaxColor[0] intValue]/255.0f) green:([MaxColor[1] intValue]/255.0f) blue:([MaxColor[2] intValue]/255.0f) alpha:([MaxColor[3] intValue]/255.0f)];
 }

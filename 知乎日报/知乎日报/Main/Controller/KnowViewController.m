@@ -8,7 +8,7 @@
 #import "KnowViewController.h"
 #import "NetworkModel.h"
 #import "OldNetworkModel.h"
-
+#import "LongModel.h"
 
 
 @interface KnowViewController ()
@@ -65,7 +65,7 @@
     self.allNetworkData = sender.userInfo[@"allData"];
     
     self.viewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myWidth, myHeight)];
-    self.viewScrollView.contentSize = CGSizeMake(myWidth * self.allTransURL.count, myHeight);
+    self.viewScrollView.contentSize = CGSizeMake(myWidth * self.allTransURL.count, myHeight); //传过来多少个URL，宽度就是多少
     self.viewScrollView.backgroundColor = [UIColor whiteColor];
     self.viewScrollView.pagingEnabled = YES;
     self.viewScrollView.showsVerticalScrollIndicator = NO;
@@ -95,7 +95,7 @@
         self.URLWebView = [[WKWebView alloc] initWithFrame:CGRectMake(myWidth * i, myWidth / 13, myWidth, myHeight / 1.11)];
         self.URLWebView.tag = 1000 + i;
         self.URLWebView.UIDelegate = self;
-        [self.URLWebView canGoBack];
+        [self.URLWebView canGoBack];  //这里会返回一个BOOL值，表示是否有可以返回的界面
         [self.viewScrollView addSubview:self.URLWebView];
         
         NSURL *nowURL = [NSURL URLWithString:self.allTransURL[i]];
@@ -269,6 +269,12 @@
 - (void)pressShare:(UIButton *)button {
     NSLog(@"share");
 }
+
+//- (void)pressMessage:(UIButton *)button {
+//    LongModel *getLongData = [LongModel ]
+//    
+//}
+
 
 - (void)backView:(UIButton *)button {
     [self.viewScrollView removeFromSuperview];
