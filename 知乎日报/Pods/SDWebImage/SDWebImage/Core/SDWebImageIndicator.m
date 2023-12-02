@@ -12,7 +12,16 @@
 
 #if SD_MAC
 #import <QuartzCore/QuartzCore.h>
-#import <CoreImage/CIFilter.h>
+#endif
+
+#if SD_UIKIT
+#if __IPHONE_13_0 || __TVOS_13_0 || __MAC_10_15
+// Xcode 11
+#else
+// Supports Xcode 10 users, for those users, define these enum
+static NSInteger UIActivityIndicatorViewStyleMedium = 100;
+static NSInteger UIActivityIndicatorViewStyleLarge = 101;
+#endif
 #endif
 
 #pragma mark - Activity Indicator
@@ -41,17 +50,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)commonInit {
-#if SD_VISION
-    UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleMedium;
-#else
-    UIActivityIndicatorViewStyle style;
-    if (@available(iOS 13.0, tvOS 13.0, *)) {
-        style = UIActivityIndicatorViewStyleMedium;
-    } else {
-        style = UIActivityIndicatorViewStyleWhite;
-    }
-#endif
-    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     self.indicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 }
 #pragma clang diagnostic pop
@@ -89,7 +88,6 @@
 
 @implementation SDWebImageActivityIndicator (Conveniences)
 
-#if !SD_VISION
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 + (SDWebImageActivityIndicator *)grayIndicator {
@@ -145,13 +143,10 @@
 #endif
     return indicator;
 }
-#endif
 
 + (SDWebImageActivityIndicator *)largeIndicator {
     SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
-#if SD_VISION
-    indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
-#elif SD_UIKIT
+#if SD_UIKIT
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
     } else {
@@ -166,9 +161,7 @@
 
 + (SDWebImageActivityIndicator *)mediumIndicator {
     SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
-#if SD_VISION
-    indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
-#elif SD_UIKIT
+#if SD_UIKIT
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
     } else {
@@ -278,8 +271,8 @@
     return indicator;
 }
 
-#if SD_UIKIT
-+ (SDWebImageProgressIndicator *)barIndicator API_UNAVAILABLE(tvos) {
+#if SD_IOS
++ (SDWebImageProgressIndicator *)barIndicator {
     SDWebImageProgressIndicator *indicator = [SDWebImageProgressIndicator new];
     indicator.indicatorView.progressViewStyle = UIProgressViewStyleBar;
     return indicator;

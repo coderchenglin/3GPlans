@@ -1,4 +1,4 @@
-platform:ios, '11.0'
+platform:ios, '8.0'
 target '知乎日报' do
   pod 'Masonry'
   pod 'FMDB'

@@ -8,8 +8,6 @@
 
 #import "UIImage+MultiFormat.h"
 #import "SDImageCodersManager.h"
-#import "SDAnimatedImageRep.h"
-#import "UIImage+Metadata.h"
 
 @implementation UIImage (MultiFormat)
 
@@ -30,19 +28,7 @@
 }
 
 - (nullable NSData *)sd_imageData {
-#if SD_MAC
-    NSRect imageRect = NSMakeRect(0, 0, self.size.width, self.size.height);
-    NSImageRep *imageRep = [self bestRepresentationForRect:imageRect context:nil hints:nil];
-    // Check weak animated data firstly
-    if ([imageRep isKindOfClass:[SDAnimatedImageRep class]]) {
-        SDAnimatedImageRep *animatedImageRep = (SDAnimatedImageRep *)imageRep;
-        NSData *imageData = [animatedImageRep animatedImageData];
-        if (imageData) {
-            return imageData;
-        }
-    }
-#endif
-    return [self sd_imageDataAsFormat:self.sd_imageFormat];
+    return [self sd_imageDataAsFormat:SDImageFormatUndefined];
 }
 
 - (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat {

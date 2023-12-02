@@ -9,24 +9,16 @@
 #import "SDImageAssetManager.h"
 #import "SDInternalMacros.h"
 
-static NSArray *SDBundlePreferredScales(void) {
+static NSArray *SDBundlePreferredScales() {
     static NSArray *scales;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#if SD_VISION
-        CGFloat screenScale = UITraitCollection.currentTraitCollection.displayScale;
-#elif SD_WATCH
+#if SD_WATCH
         CGFloat screenScale = [WKInterfaceDevice currentDevice].screenScale;
 #elif SD_UIKIT
         CGFloat screenScale = [UIScreen mainScreen].scale;
 #elif SD_MAC
-      NSScreen *mainScreen = nil;
-      if (@available(macOS 10.12, *)) {
-          mainScreen = [NSScreen mainScreen];
-      } else {
-          mainScreen = [NSScreen screens].firstObject;
-      }
-      CGFloat screenScale = mainScreen.backingScaleFactor ?: 1.0f;
+        CGFloat screenScale = [NSScreen mainScreen].backingScaleFactor;
 #endif
         if (screenScale <= 1) {
             scales = @[@1,@2,@3];
@@ -40,7 +32,7 @@ static NSArray *SDBundlePreferredScales(void) {
 }
 
 @implementation SDImageAssetManager {
-    SD_LOCK_DECLARE(_lock);
+    dispatch_semaphore_t _lock;
 }
 
 + (instancetype)sharedAssetManager {
@@ -64,7 +56,7 @@ static NSArray *SDBundlePreferredScales(void) {
         valueOptions = NSPointerFunctionsStrongMemory;
 #endif
         _imageTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsCopyIn valueOptions:valueOptions];
-        SD_LOCK_INIT(_lock);
+        _lock = dispatch_semaphore_create(1);
 #if SD_UIKIT
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 #endif

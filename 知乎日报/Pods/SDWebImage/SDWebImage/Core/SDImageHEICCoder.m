@@ -18,6 +18,8 @@ static NSString * kSDCGImagePropertyHEICSUnclampedDelayTime = @"UnclampedDelayTi
 @implementation SDImageHEICCoder
 
 + (void)initialize {
+#if __IPHONE_13_0 || __TVOS_13_0 || __MAC_10_15 || __WATCHOS_6_0
+    // Xcode 11
     if (@available(iOS 13, tvOS 13, macOS 10.15, watchOS 6, *)) {
         // Use SDK instead of raw value
         kSDCGImagePropertyHEICSDictionary = (__bridge NSString *)kCGImagePropertyHEICSDictionary;
@@ -25,6 +27,7 @@ static NSString * kSDCGImagePropertyHEICSUnclampedDelayTime = @"UnclampedDelayTi
         kSDCGImagePropertyHEICSDelayTime = (__bridge NSString *)kCGImagePropertyHEICSDelayTime;
         kSDCGImagePropertyHEICSUnclampedDelayTime = (__bridge NSString *)kCGImagePropertyHEICSUnclampedDelayTime;
     }
+#endif
 }
 
 + (instancetype)sharedCoder {

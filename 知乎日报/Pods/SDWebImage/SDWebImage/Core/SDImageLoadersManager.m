@@ -12,12 +12,13 @@
 
 @interface SDImageLoadersManager ()
 
-@property (nonatomic, strong, nonnull) NSMutableArray<id<SDImageLoader>> *imageLoaders;
+@property (nonatomic, strong, nonnull) dispatch_semaphore_t loadersLock;
 
 @end
 
-@implementation SDImageLoadersManager {
-    SD_LOCK_DECLARE(_loadersLock);
+@implementation SDImageLoadersManager
+{
+    NSMutableArray<id<SDImageLoader>>* _imageLoaders;
 }
 
 + (SDImageLoadersManager *)sharedManager {
@@ -34,25 +35,25 @@
     if (self) {
         // initialize with default image loaders
         _imageLoaders = [NSMutableArray arrayWithObject:[SDWebImageDownloader sharedDownloader]];
-        SD_LOCK_INIT(_loadersLock);
+        _loadersLock = dispatch_semaphore_create(1);
     }
     return self;
 }
 
 - (NSArray<id<SDImageLoader>> *)loaders {
-    SD_LOCK(_loadersLock);
+    SD_LOCK(self.loadersLock);
     NSArray<id<SDImageLoader>>* loaders = [_imageLoaders copy];
-    SD_UNLOCK(_loadersLock);
+    SD_UNLOCK(self.loadersLock);
     return loaders;
 }
 
 - (void)setLoaders:(NSArray<id<SDImageLoader>> *)loaders {
-    SD_LOCK(_loadersLock);
+    SD_LOCK(self.loadersLock);
     [_imageLoaders removeAllObjects];
     if (loaders.count) {
         [_imageLoaders addObjectsFromArray:loaders];
     }
-    SD_UNLOCK(_loadersLock);
+    SD_UNLOCK(self.loadersLock);
 }
 
 #pragma mark - Loader Property
@@ -61,37 +62,27 @@
     if (![loader conformsToProtocol:@protocol(SDImageLoader)]) {
         return;
     }
-    SD_LOCK(_loadersLock);
+    SD_LOCK(self.loadersLock);
     [_imageLoaders addObject:loader];
-    SD_UNLOCK(_loadersLock);
+    SD_UNLOCK(self.loadersLock);
 }
 
 - (void)removeLoader:(id<SDImageLoader>)loader {
     if (![loader conformsToProtocol:@protocol(SDImageLoader)]) {
         return;
     }
-    SD_LOCK(_loadersLock);
+    SD_LOCK(self.loadersLock);
     [_imageLoaders removeObject:loader];
-    SD_UNLOCK(_loadersLock);
+    SD_UNLOCK(self.loadersLock);
 }
 
 #pragma mark - SDImageLoader
 
 - (BOOL)canRequestImageForURL:(nullable NSURL *)url {
-    return [self canRequestImageForURL:url options:0 context:nil];
-}
-
-- (BOOL)canRequestImageForURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context {
     NSArray<id<SDImageLoader>> *loaders = self.loaders;
     for (id<SDImageLoader> loader in loaders.reverseObjectEnumerator) {
-        if ([loader respondsToSelector:@selector(canRequestImageForURL:options:context:)]) {
-            if ([loader canRequestImageForURL:url options:options context:context]) {
-                return YES;
-            }
-        } else {
-            if ([loader canRequestImageForURL:url]) {
-                return YES;
-            }
+        if ([loader canRequestImageForURL:url]) {
+            return YES;
         }
     }
     return NO;

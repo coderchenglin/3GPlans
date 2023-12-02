@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "Masonry.h"
 #import "FreeStyleTableViewCell.h"
+#import "NetworkJSONModel.h"
 #import "SDWebImage.h"
 
 #define myWidth [UIScreen mainScreen].bounds.size.width
