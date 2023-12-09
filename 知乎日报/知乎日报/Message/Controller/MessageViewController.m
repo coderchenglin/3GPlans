@@ -25,7 +25,16 @@
 
 
 //使用动画的方式隐藏导航栏
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 
 - (void)createUI {
     
@@ -108,10 +117,20 @@
     
     labelSize = [self calculatedTextHeightFromTextString:label.text width:label.frame.size.width fontSize:label.font.pointSize];
     
+    
+    CGFloat rate = label.font.lineHeight;//每一行需要的高度
+    
+    CGRect frame = label.frame;
+    
+    if (labelSize.height > rate * n) {
+        frame.size.height = rate * n;
+    } else {
+        frame.size.height = labelSize.height;
+    }
+    
+    label.frame = frame;
+    
     return label.font.lineHeight;
-    
-    
-    
     
 }
 

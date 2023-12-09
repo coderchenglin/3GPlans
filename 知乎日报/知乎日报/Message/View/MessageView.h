@@ -10,9 +10,12 @@
 #import "MessageTableViewCell.h"
 #import "SDWebImage.h"
 
+#define myWidth [UIScreen mainScreen].bounds.size.width
+#define myHeight [UIScreen mainScreen].bounds.size.height
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MessageView : UIView
+@interface MessageView : UIView<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIButton *backButton;

@@ -17,6 +17,7 @@
 		6856939F2B1991BE00CD4EC7 /* zhihuribaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6856939E2B1991BE00CD4EC7 /* zhihuribaoTests.m */; };
 		685693A92B1991BE00CD4EC7 /* zhihuribaoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693A82B1991BE00CD4EC7 /* zhihuribaoUITests.m */; };
 		685693AB2B1991BE00CD4EC7 /* zhihuribaoUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 685693AA2B1991BE00CD4EC7 /* zhihuribaoUITestsLaunchTests.m */; };
+		7232007DFB09AF87E9175555 /* libPods-zhihuribao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1641A25A282055246E39A773 /* libPods-zhihuribao.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1641A25A282055246E39A773 /* libPods-zhihuribao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zhihuribao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6856937F2B1991BC00CD4EC7 /* zhihuribao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zhihuribao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685693822B1991BC00CD4EC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		685693832B1991BC00CD4EC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +56,8 @@
 		685693A42B1991BE00CD4EC7 /* zhihuribaoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zhihuribaoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		685693A82B1991BE00CD4EC7 /* zhihuribaoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zhihuribaoUITests.m; sourceTree = "<group>"; };
 		685693AA2B1991BE00CD4EC7 /* zhihuribaoUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zhihuribaoUITestsLaunchTests.m; sourceTree = "<group>"; };
+		D022C93A078131A827352030 /* Pods-zhihuribao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zhihuribao.debug.xcconfig"; path = "Target Support Files/Pods-zhihuribao/Pods-zhihuribao.debug.xcconfig"; sourceTree = "<group>"; };
+		ED063458759500E1A7B82729 /* Pods-zhihuribao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zhihuribao.release.xcconfig"; path = "Target Support Files/Pods-zhihuribao/Pods-zhihuribao.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7232007DFB09AF87E9175555 /* libPods-zhihuribao.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +93,8 @@
 				6856939D2B1991BE00CD4EC7 /* zhihuribaoTests */,
 				685693A72B1991BE00CD4EC7 /* zhihuribaoUITests */,
 				685693802B1991BC00CD4EC7 /* Products */,
+				EA901DD02BDE9ACD6575BDCA /* Pods */,
+				DB44DD9BE0BFFB24037D5918 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +143,23 @@
 			path = zhihuribaoUITests;
 			sourceTree = "<group>";
 		};
+		DB44DD9BE0BFFB24037D5918 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1641A25A282055246E39A773 /* libPods-zhihuribao.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA901DD02BDE9ACD6575BDCA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D022C93A078131A827352030 /* Pods-zhihuribao.debug.xcconfig */,
+				ED063458759500E1A7B82729 /* Pods-zhihuribao.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +167,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 685693AE2B1991BE00CD4EC7 /* Build configuration list for PBXNativeTarget "zhihuribao" */;
 			buildPhases = (
+				30DDCC23073A3648ABB3E89D /* [CP] Check Pods Manifest.lock */,
 				6856937B2B1991BC00CD4EC7 /* Sources */,
 				6856937C2B1991BC00CD4EC7 /* Frameworks */,
 				6856937D2B1991BC00CD4EC7 /* Resources */,
@@ -260,6 +285,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30DDCC23073A3648ABB3E89D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-zhihuribao-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6856937B2B1991BC00CD4EC7 /* Sources */ = {
@@ -437,6 +487,7 @@
 		};
 		685693AF2B1991BE00CD4EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D022C93A078131A827352030 /* Pods-zhihuribao.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -464,6 +515,7 @@
 		};
 		685693B02B1991BE00CD4EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED063458759500E1A7B82729 /* Pods-zhihuribao.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

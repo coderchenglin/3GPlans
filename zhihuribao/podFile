@@ -1,0 +1,7 @@
+platform:ios, '11.0'
+target 'zhihuribao' do
+  pod 'Masonry'
+  pod 'FMDB'
+  pod 'JSONModel'
+  pod 'SDWebImage'
+end
