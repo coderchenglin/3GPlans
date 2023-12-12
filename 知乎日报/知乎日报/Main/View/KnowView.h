@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KnowView : UIView<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView;  ///scrollView
 @property (nonatomic, strong) UITableViewCell *rollCell;
 @property (nonatomic, strong) UITableViewCell *flashCell;
 @property (nonatomic, strong) FreeStyleTableViewCell *showCell;
