@@ -9,22 +9,19 @@
 #import "FreeStyleTableViewCell.h"
 #import "SDWebImage.h"
 
-#define myWidth [UIScreen mainScreen].bounds.size.width
-#define myHeight [UIScreen mainScreen].bounds.size.height
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CollectView : UIView<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) FreeStyleTableViewCell *showCell;
-@property (nonatomic, strong) UITableView *showTableView;
-@property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, assign) NSInteger judgeThings;
-@property (nonatomic, strong) UILabel *tipsLabel;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong) FreeStyleTableViewCell *showCell; //新闻栏自定义cell
+@property (nonatomic, strong) UITableView *showTableView; //tableView
+@property (nonatomic, strong) UIButton *backButton;//返回按钮
+@property (nonatomic, assign) NSInteger judgeThings; //代表有无收藏内容
+@property (nonatomic, strong) UILabel *tipsLabel; //副标题
+@property (nonatomic, strong) UILabel *titleLabel; //标题
+@property (nonatomic, strong) UIView *topView;//顶部视图
 
-@property (nonatomic, strong) NSMutableArray *allTransDataArray;
+@property (nonatomic, strong) NSMutableArray *allTransDataArray;  //存储传过来的数据
 
 @end
 

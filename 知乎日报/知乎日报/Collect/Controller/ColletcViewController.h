@@ -6,22 +6,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Webkit/WebKit.h"
+#import <WebKit/WebKit.h>
 #import "FMDB.h"
-
-#define myWidth [UIScreen mainScreen].bounds.size.width
-#define myHeight [UIScreen mainScreen].bounds.size.height
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ColletcViewController : UIViewController
+@interface CollectViewController : UIViewController<WKUIDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *temporaryArray;
-@property (nonatomic, strong) NSMutableArray *allTransDataArray;
-@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, strong) NSMutableArray *temporaryArray;   //临时存储数据
+@property (nonatomic, strong) NSMutableArray *allTransDataArray; //接受CollectViewController传过来的网络上请求的数据
+@property (nonatomic, copy) NSString *fileName;  //数据库路径
 
+//点进去以后：
+//横向的一个ScrollView
 @property (nonatomic, strong) UIScrollView *viewScrollView;
+//点进去是一个网页
 @property (nonatomic, strong) WKWebView *URLWebView;
+//底端的导航栏
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UILabel *lineLabel;
@@ -33,10 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTimer *stopTimer;
 @property (nonatomic, strong) UIAlertController *alertView;
 
-@property (nonatomic, strong) NSDictionary *longDictionary;
-@property (nonatomic, strong) NSDictionary *shortDictionary;
+@property (nonatomic, strong) NSDictionary *longDictionary; //长评的字典
+@property (nonatomic, strong) NSDictionary *shortDictionary;//短评的字典
 @property (nonatomic, assign) int a;
-
 
 @end
 

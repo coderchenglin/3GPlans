@@ -5,14 +5,16 @@
 //  Created by chenglin on 2023/12/1.
 //
 
-#import "ColletcViewController.h"
+#import "CollectViewController.h"
 #import "CollectView.h"
-#import "ShortModel.h"
-#import "LongModel.h"
+#import "ShortModel.h" //短评
+#import "LongModel.h"  //长评
 #import "MessageViewController.h"
 
+#define myWidth [UIScreen mainScreen].bounds.size.width
+#define myHeight [UIScreen mainScreen].bounds.size.height
 
-@interface ColletcViewController ()
+@interface CollectViewController ()
 
 @property (nonatomic, strong) CollectView *collectView;
 @property (nonatomic, strong) MessageViewController *messageView;
@@ -20,17 +22,16 @@
 
 @end
 
-@implementation ColletcViewController
+@implementation CollectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self createDataBase];
+    [self createDataBase]; //创建数据库
     self.view.backgroundColor = [UIColor systemGray6Color];
     [self creatUI];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(push) name:@"collectPost" object:nil];
-    
+    //由下面的pressMessage方法传过来的通知
 }
 
 //使用动画的方式隐藏导航栏
@@ -45,30 +46,30 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
-- (void)createDataBase {
-    self.collectionDatabase = [FMDatabase databaseWithPath:self.fileName];
-}
 
+//
 - (void)creatUI {
-    
+    //CollectView传值过来，传了一个当前点击cell的row值，也是index值
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongZhi:) name:@"TongWangZhiWang" object:nil];
+    //下拉刷新传的通知过来
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopAlert:) name:@"ActionStart" object:nil];
     
     self.collectView = [[CollectView alloc] initWithFrame:CGRectMake(0, 0, myWidth, myHeight)];
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:self.allTransDataArray forKey:@"transData"];
+    //发送通知给CollectView，传值allTransDataArray
     [[NSNotificationCenter defaultCenter] postNotificationName:@"TransALLDataNoti" object:nil userInfo:dic];
     
     [self.collectView.backButton addTarget:self action:@selector(pressBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.collectView];
 }
 
+//CollectView里面新闻cell点击事件的方法 *
 - (void)tongZhi:(NSNotification *)sender {
     
-    NSInteger index = [sender.userInfo[@"index"] intValue];
+    NSInteger index = [sender.userInfo[@"index"] intValue]; //当前点击cell的index值
     
-    //横向滑动
     self.viewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, myWidth, myHeight)];
     self.viewScrollView.contentSize = CGSizeMake(myWidth * self.allTransDataArray.count, myHeight);
     self.viewScrollView.backgroundColor = [UIColor whiteColor];
@@ -88,10 +89,11 @@
         [self.URLWebView canGoBack];
         [self.viewScrollView addSubview:self.URLWebView];
         
-        NSURL *nowURL = [NSURL URLWithString:self.allTransDataArray[i][3]];
+        NSURL *nowURL = [NSURL URLWithString:self.allTransDataArray[i][3]];//URL
         NSURLRequest *nowRequest = [NSURLRequest requestWithURL:nowURL];
-        [self.URLWebView loadRequest:nowRequest];
+        [self.URLWebView loadRequest:nowRequest];//加载网页
         
+        //底部视图
         self.bottomView = [[UIView alloc] init];
         self.bottomView.frame = CGRectMake(myWidth * i, myWidth / 13 + myHeight / 1.11, myWidth, myHeight - myWidth / 13 - myHeight / 1.11);
         self.bottomView.backgroundColor = [UIColor systemGray6Color];
@@ -99,7 +101,7 @@
         
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.backButton setImage:[UIImage imageNamed:@"fanhui-2.png"] forState:UIControlStateNormal];
-        [self.backButton addTarget:self action:@selector(backView:) forControlEvents:UIControlEventTouchUpInside];
+        [self.backButton addTarget:self action:@selector(backView:) forControlEvents:UIControlEventTouchUpInside]; //底部视图里的返回按钮
         self.backButton.tag = 10000 + i;
         [self.bottomView addSubview:self.backButton];
         [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,13 +181,14 @@
     [self.viewScrollView setContentOffset:CGPointMake(myWidth * index, 0) animated:NO];
 }
 
-
+//点赞按钮 *
 - (void)pressGood:(UIButton *)button {
     if (button.selected) {
+        //取消点赞
         button.selected = NO;
         self.temporaryArray = [[NSMutableArray alloc] init];
         self.temporaryArray = self.allTransDataArray[button.tag];
-        [self.temporaryArray replaceObjectAtIndex:6 withObject:@"0"];
+        [self.temporaryArray replaceObjectAtIndex:6 withObject:@"0"]; //改变当前的点赞状态为0
         [self.allTransDataArray replaceObjectAtIndex:button.tag withObject:self.temporaryArray];
         
         NSString *locationString = [[NSString alloc] initWithFormat:@"%@", self.allTransDataArray[button.tag][5]];
@@ -193,8 +196,10 @@
         [dic setObject:@"good" forKey:@"Judge"];
         [dic setObject:locationString forKey:@"Location"];
         [dic setObject:@"0" forKey:@"ChangeValue"];
+        //传通知给KnowViewController，传过去的内容包括：点击的是点赞还是收藏，location索引，点击后ChangeValue值
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FavoriteClickEvents" object:nil userInfo:dic];
     } else {
+        //点赞
         button.selected = YES;
         self.temporaryArray = [[NSMutableArray alloc] init];
         self.temporaryArray = self.allTransDataArray[button.tag];
@@ -206,13 +211,15 @@
         [dic setObject:@"good" forKey:@"Judge"];
         [dic setObject:locationString forKey:@"Location"];
         [dic setObject:@"1" forKey:@"ChangeValue"];
+        //传通知给KnowViewController，传值有：1.good状态
+        //2.当前位置 3.ChangValue值
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FavoriteClickEvents" object:nil userInfo:dic];
     }
     [self deleteData];
     [self insertData];
 }
 
-
+//点击评论
 - (void)pressMessage:(UIButton *)button {
     LongModel *getLongData = [LongModel shareLongModel];
     getLongData.LongID = self.allTransDataArray[button.tag - 10][8];
@@ -258,9 +265,10 @@
 
 }
 
-
+//收藏按钮 *
 - (void)pressCollection:(UIButton *)button {
     if (button.selected) {
+        //取消收藏
         button.selected = NO;
         self.temporaryArray = [[NSMutableArray alloc] init];
         self.temporaryArray = self.allTransDataArray[button.tag - 100];
@@ -272,8 +280,10 @@
         [dic setObject:@"collection" forKey:@"Judge"];
         [dic setObject:locationString forKey:@"Location"];
         [dic setObject:@"0" forKey:@"ChangeValue"];
+        //与点赞按钮的通知完全相同
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FavoriteClickEvents" object:nil userInfo:dic];
     } else {
+        //点击收藏
         button.selected = YES;
         self.temporaryArray = [[NSMutableArray alloc] init];
         self.temporaryArray = self.allTransDataArray[button.tag - 100];
@@ -282,19 +292,22 @@
         
         NSString *locationString = [[NSString alloc] initWithFormat:@"%@", self.allTransDataArray[button.tag - 100][5]];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setObject:@"collection" forKey:@"Judge"];
+        [dic setObject:@"collection" forKey:@"Judge"];//传过去告知KnowViewController，我点的是点赞按钮还是收藏按钮
         [dic setObject:locationString forKey:@"Location"];
         [dic setObject:@"1" forKey:@"ChangeValue"];
+        //与点赞按钮的通知完全相同
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FavoriteClickEvents" object:nil userInfo:dic];
     }
     [self deleteData];
     [self insertData];
 }
 
+//分享按钮 *
 - (void)pressShare:(UIButton *)button {
     NSLog(@"Share");
 }
 
+//底部视图里的返回按钮 *
 - (void)backView:(UIButton *)button {
     [self.viewScrollView removeFromSuperview];
     
@@ -308,38 +321,48 @@
     }
     [self deleteData];
     [self insertData];
-    [self.collectView reloadInputViews];
+    [self.collectView reloadInputViews]; //用于重新加载输入视图（input views）的方法
 }
 
+// 收藏界面的返回按钮*
 - (void)pressBackButton:(UIButton *)button {
-    [self deleteData];
-    [self insertData];
+    [self deleteData]; //删除数据库内容
+    [self insertData]; //用新的allTransDataArray构造数据库内容
+    //弹出当前界面
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// *
 - (void)stopAlert:(NSNotification *)sender {
-    self.stopTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(stopTips) userInfo:@"帅哥哥" repeats:NO];
+    self.stopTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(stopTips) userInfo:@"帅哥哥" repeats:NO]; //等1秒后执行stopTips方法
     self.alertView = [UIAlertController alertControllerWithTitle:nil message:@"数据更新完成" preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:self.alertView animated:YES completion:nil];
 }
-
+// *
 - (void)stopTips {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.stopTimer invalidate];
     self.stopTimer = nil;
 }
 
+//通知方法：推出MessageView *
 - (void)push {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController pushViewController:self.messageView animated:YES];
     });
 }
-
-
+//消除通知 *
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+//构建数据库 *
+- (void)createDataBase {
+    self.collectionDatabase = [FMDatabase databaseWithPath:self.fileName];
+    [self queryData];
+}
+
+//打印数据库 *
 - (void)queryData {
     if ([self.collectionDatabase open]) {
         // 1.执行查询语句
@@ -369,7 +392,7 @@
     }
 }
 
-// 删除数据
+// 删除数据 *
 - (void)deleteData {
     if ([self.collectionDatabase open]) {
         NSString *sql = @"delete from collectionData";
@@ -383,7 +406,7 @@
     }
 }
 
-//插入数据
+//插入数据 *
 - (void)insertData {
     if ([self.collectionDatabase open]) {
         for (int i = 0; i < self.allTransDataArray.count; i++) {
@@ -411,7 +434,6 @@
     }
     [self queryData];
 }
-
 /*
 #pragma mark - Navigation
 
