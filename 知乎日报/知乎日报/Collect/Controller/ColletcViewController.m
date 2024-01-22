@@ -5,7 +5,7 @@
 //  Created by chenglin on 2023/12/1.
 //
 
-#import "CollectViewController.h"
+#import "ColletcViewController.h"
 #import "CollectView.h"
 #import "ShortModel.h" //短评
 #import "LongModel.h"  //长评
