@@ -28,6 +28,9 @@
 - (void)viewInit {
     self.backgroundColor = [UIColor colorWithRed:(15.0f / 255.0f) green:(14.0f / 255.0f) blue:(18.0f / 255.0f) alpha:1.0f];
     [self buttonInit];
+    [self labelInit];
+    [self textFieldInit];
+    [self intervalViewInit];
 }
 
 
@@ -104,9 +107,24 @@
     self.accountTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请出入账号/邮箱号" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:(123.0f / 255.0f) green:(120.0f / 255.0f) blue:(133.0f / 255.0f) alpha:1.0f],NSFontAttributeName:[UIFont systemFontOfSize:20]}];
     [self addSubview:self.accountTextField];
     
-    
+    self.passWordTextField = [[UITextField alloc] init];
+    self.passWordTextField.frame = CGRectMake(60, 300, SIZE_WIDTH - 120, 50);
+    self.passWordTextField.backgroundColor = [UIColor clearColor];
+    self.passWordTextField.tintColor = [UIColor whiteColor];
+    self.passWordTextField.textColor = [UIColor whiteColor];
+    self.passWordTextField.font = [UIFont systemFontOfSize:20];
+    self.passWordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:(123.0f / 255.0f) green:(120.0f / 255.0f)blue:(133.0f / 255.0f) alpha:1.0f],NSFontAttributeName:[UIFont systemFontOfSize:20]}];
+    [self addSubview:self.passWordTextField];
 }
 
+- (void)intervalViewInit {
+    for (int i = 0; i < 2; i++) {
+        UIView *intervalView = [[UIView alloc] init];
+        intervalView.frame = CGRectMake(60, 270 + i * 80, SIZE_WIDTH - 120, 1);
+        intervalView.backgroundColor = [UIColor colorWithRed:(123.0f / 255.0f) green:(120.0f / 255.0f)blue:(133.0f / 255.0f) alpha:1.0f];
+        [self addSubview:intervalView];
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

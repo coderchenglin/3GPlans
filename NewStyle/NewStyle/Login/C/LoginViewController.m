@@ -7,11 +7,11 @@
 
 #import "LoginViewController.h"
 #import "LoginView.h"
+#import "RegisterViewController.h"
 
-
-@interface LoginViewController ()
+@interface LoginViewController () <LoginButtonDelegate>
 @property (nonatomic, strong) LoginView *loginView;
-
+@property (nonatomic, strong) RegisterViewController *registerViewController;
 @end
 
 @implementation LoginViewController
@@ -20,10 +20,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.loginView = [[LoginView alloc] initWithFrame:self.view.frame];
-    //self.loginView.loginButtonDelegate = self;
-    
+    self.loginView.loginButtonDelegate = self;
+    [self.loginView viewInit];
     [self.view addSubview:self.loginView];
 }
+
+- (void)getButton:(UIButton *)button {
+    if (button.tag == 0) {
+        [[UIApplication sharedApplication]performSelector:@selector(suspend)];
+    } else if (button.tag == 1) { //登陆
+        
+    } else if (button.tag == 2) { //注册
+        self.registerViewController = [[RegisterViewController alloc] init];
+        self.registerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:self.registerViewController animated:YES completion:nil];
+    }
+}
+
 
 /*
 #pragma mark - Navigation

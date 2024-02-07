@@ -46,6 +46,7 @@
     [self.view addSubview:self.beforeImageView];
     
     [self imageViewRun];
+    [self controllerinit];
     
 }
 
@@ -89,6 +90,7 @@
     UINavigationController *shareNavigationController = [[UINavigationController alloc] initWithRootViewController:shareViewController];
     UINavigationController *personalNavigationController = [[UINavigationController alloc] initWithRootViewController:personalViewController];
     self.array = [NSArray arrayWithObjects:homeNavigationController, gameNavigationController, shareNavigationController, personalNavigationController, nil];
+    //self.array = [NSArray arrayWithObjects:homeNavigationController, nil];
     
 }
 
@@ -96,12 +98,12 @@
 - (void)timeOut {
     
     //测试登陆注册界面
-    LoginViewController *a = [LoginViewController new];
-    a.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:a animated:YES completion:nil];
+//    LoginViewController *a = [LoginViewController new];
+//    a.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:a animated:YES completion:nil];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = self.array;
+    tabBarController.viewControllers = self.array;//让工具栏的每个子视图，都封装成导航栏
     UIColor *titleColor = [UIColor colorWithRed:(85.0f / 255.0f) green:(83.0f / 255.0f) blue:(99.0f / 255.0f) alpha:1.0f];
     tabBarController.tabBar.barTintColor = titleColor;
     self.tabBarController.tabBar.translucent = NO;
@@ -112,7 +114,6 @@
     tabBarController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:tabBarController animated:YES completion:nil];
     
-
 }
 
 /*
