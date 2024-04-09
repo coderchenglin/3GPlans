@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+target 'NewStyle' do
+pod 'Masonry'
+pod 'JSONModel'
+pod 'FMDB'
+pod 'AFNetworking'
+pod 'SDWebImage'
+end

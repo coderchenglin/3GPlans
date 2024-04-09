@@ -33,7 +33,7 @@
     
     self.view.backgroundColor = [UIColor grayColor];
     //启动界面5秒以后，显示导航栏
-    NSTimer* myTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeOut) userInfo:nil repeats:NO];
+    NSTimer* myTimer = [NSTimer scheduledTimerWithTimeInterval:1.2 target:self selector:@selector(timeOut) userInfo:nil repeats:NO];
     NSRunLoop *runloop = [NSRunLoop currentRunLoop];
     [runloop addTimer:myTimer forMode:NSRunLoopCommonModes];
     
@@ -53,7 +53,7 @@
 //第一个视图消失
 - (void)imageViewRun {
     //通过这个方法，你可以指定动画时长、动画效果、完成后的操作等。
-    [UIImageView animateWithDuration:2 animations:^{
+    [UIImageView animateWithDuration:0.1 animations:^{
         //动画缩小
         self.beforeImageView.frame = CGRectMake((MYWIDTH - 250) / 2 + 125, 280, 2.5, 0.6);
     }completion:^(BOOL finished) {
@@ -66,7 +66,7 @@
 
 //第二个视图显示
 - (void)imageViewSecondRun {
-    [UIImageView animateWithDuration:2 animations:^{
+    [UIImageView animateWithDuration:0.1 animations:^{
         self.beforeImageView.frame = CGRectMake((MYWIDTH - 300) / 2, 250, 300, 169);
     }];
     [self.beforeImageView stopAnimating];

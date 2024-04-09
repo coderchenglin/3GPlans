@@ -19,13 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedManage;
 //图片处理
-- (void)firstNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)secondNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)thirdNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)fourNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)fiveNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)sixNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
-- (void)sevenNetWorkWithImage:(PhotoFixBlock) dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)firstNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)secondNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)thirdNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)fourNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)fiveNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)sixNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
+- (void)sevenNetWorkWithImage:(PhotoFixBlock)dataBlock error:(ErrorBlock) errorBlock image:(UIImage *)image;
 
 
 

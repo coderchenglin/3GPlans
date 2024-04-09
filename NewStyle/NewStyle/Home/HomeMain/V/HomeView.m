@@ -10,14 +10,14 @@
 #import "HomeViewController.h"
 //系统相机
 #import "AVFoundation/AVfoundation.h"
-//系统xiangce
+//系统相册
 #import "AssetsLibrary/AssetsLibrary.h"
 #define SIZE_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SIZE_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
 @interface HomeView () <UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (nonatomic, strong) UIImageView *titleImageView; //标题
 
+@property (nonatomic, strong) UIImageView *titleImageView; //标题
 @property (nonatomic, strong) UIScrollView *buttonScrollView; //上面按钮滑动视图
 @property (nonatomic, strong) UIScrollView *imageScrollView; //下面图片滚动视图
 @property (nonatomic, strong) UIButton *smallButton;//上方按钮
@@ -336,13 +336,15 @@
 
 //获取相册的图片
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
     //获取到的图片
     self.image = [info valueForKey:UIImagePickerControllerEditedImage];
     if (!self.image) {
         self.image = [info valueForKey:UIImagePickerControllerOriginalImage];
     }
-    [self.photoFixDelegate getPhotoFixNumber:self.numberOfFix :self.image];
+    //使用协议传值，让delegate，即controller来执行后面的函数
+    [self.photoFixDelegate getPhotoFixNumber:self.numberOfFix image:self.image];
 }
 
 

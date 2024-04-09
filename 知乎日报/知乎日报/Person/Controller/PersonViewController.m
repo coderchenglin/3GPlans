@@ -11,7 +11,7 @@
 @interface PersonViewController ()
 
 @property (nonatomic, strong) PersonView *mainView;
-@property (nonatomic, strong) ColletcViewController *collectView;
+@property (nonatomic, strong) CollectViewController *collectView;
 
 @end
 
@@ -48,7 +48,7 @@
 }
 
 - (void)showCollectView:(NSNotification *)sender {
-    self.collectView = [[ColletcViewController alloc] init];
+    self.collectView = [[CollectViewController alloc] init];
     self.collectView.allTransDataArray = self.allTransDataArray;
     self.collectView.fileName = self.fileName;
     [self.navigationController pushViewController:self.collectView animated:YES];

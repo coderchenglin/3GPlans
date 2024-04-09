@@ -7,7 +7,7 @@
 
 #import "GameViewController.h"
 #import "GameView.h"
-
+#import "PhotoBrowseViewController.h"
 
 @interface GameViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -40,16 +40,75 @@
     [self.view addSubview:self.gameView];
     [self.gameView viewInit];
     
-//    self.navigationItem.titleView = self.gameView.titleLabel;
-//    [self imagePickerInit]; //调相册初始化
+    self.navigationItem.titleView = self.gameView.titleLabel;
+    [self imagePickerInit]; //调相册初始化
 //
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pressPicker) name:@"presentPicker" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pressPhotoBig:) name:@"photoBig" object:nil];
-//
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(pressDelete)];
-//    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pressPicker) name:@"presentPicker" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pressPhotoBig:) name:@"photoBig" object:nil];
+
+    //右上角的删除图标 垃圾桶标识
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(pressDelete)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
     
+}
+
+- (void)pressDelete {
+    if (self.gameView.flagOfPhoto == 1) {
+        if (self.gameView.flagOfDelete == 0) {
+            self.gameView.flagOfDelete = 1;
+        } else {
+            self.gameView.flagOfDelete = 0;
+        }
+        [self.gameView.collectionView reloadData];
+    }
+}
+
+- (void)pressPicker {
+    //选择相册时，设置UIImagePickerController对象相关属性
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //跳转到UIImagePickerController控制器弹出相册
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+//调相册初始化
+- (void)imagePickerInit {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    
+    self.imagePicker.delegate = self;
+    
+    self.imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+}
+
+//图片放大
+- (void)pressPhotoBig:(NSNotification *)sender {
+    int numberOfArray = [sender.userInfo[@"item"] intValue];
+    PhotoBrowseViewController *photoBrowseViewController = [[PhotoBrowseViewController alloc] init];//创建图片浏览视图控制器
+    photoBrowseViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;//这是一种视图控制器切换时的过渡效果，具体效果是渐变消失和渐变出现
+    photoBrowseViewController.shareImage = self.gameView.photoArray[numberOfArray - 1];
+    [self presentViewController:photoBrowseViewController animated:YES completion:nil];
+}
+
+
+// !! 获取相册得到的图片
+// 不仅加入photoArray，还要加入DataBase
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    //获取到的图片
+    UIImage *newImage = [[UIImage alloc] init];
+    newImage = [info valueForKey:UIImagePickerControllerEditedImage];
+    if (!newImage) {
+        newImage = [info valueForKey:UIImagePickerControllerOriginalImage];
+    }
+    [self.gameView.photoArray addObject:newImage];
+    [self.gameView insertPhotoDataBase:newImage];  //这里涉及到持久化技术了
+    [self.gameView.collectionView reloadData];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentPicker" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"photoBig" object:nil];
 }
 
 /*

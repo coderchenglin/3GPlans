@@ -6,7 +6,7 @@
 //
 
 #import "HomeViewController.h"
-
+#import "PhotoFixViewController.h"
 #import "HomeView.h"
 
 @interface HomeViewController () <ImagePickerDelegate, PhotoFixDelegate>
@@ -74,10 +74,12 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
-
-
-
+- (void)getPhotoFixNumber:(int)numberOfFix image:(UIImage *)image {
+    PhotoFixViewController *photoFixViewController = [[PhotoFixViewController alloc] init];
+    photoFixViewController.numberOfFix = numberOfFix;
+    photoFixViewController.oldImage = image;
+    [self presentViewController:photoFixViewController animated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation

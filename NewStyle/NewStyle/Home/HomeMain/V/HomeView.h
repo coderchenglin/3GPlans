@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PhotoFixDelegate <NSObject>
 
-- (void)getPhotoFixNumber:(int)numberOfFix :(UIImage *_Nullable)image;
+- (void)getPhotoFixNumber:(int)numberOfFix image:(UIImage *_Nullable)image;
 
 @end
 
