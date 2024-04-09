@@ -33,13 +33,13 @@
     [_originYAry removeAllObjects];
     
     //初始化y坐标
-    for (int i =0; i <_collectViewRowCount; i++) {
+    for (int i = 0; i <_collectViewRowCount; i++) {
         [_originYAry addObject:@(0)];
     }
     
     //返回
     NSInteger cellCount = [self.collectionView numberOfItemsInSection:0];
-        
+    
     for (int i = 0; i < cellCount; i ++ ) {
             
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
@@ -59,11 +59,14 @@
     
     //设置每个frame
     CGFloat width = ([UIScreen mainScreen].bounds.size.width) /_collectViewRowCount;
+    NSLog(@"width = %f", width);
     self.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpg", indexPath.row%5+1]];
     
     CGSize photosize = self.image.size;
   //  NSLog(@"photo width: %f, height: %f", photosize.width, photosize.height);
-    CGFloat height = (photosize.height/photosize.width)*191 + 120;
+//    CGFloat height = (photosize.height/photosize.width)*191 + 120;
+    CGFloat height = (photosize.height/photosize.width)*width + 75;
+
   //  NSLog(@"height = %lf", height);
     CGFloat x = width * ( indexPath.row % _collectViewRowCount);
     

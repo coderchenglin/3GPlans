@@ -14,7 +14,11 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     
+    
+    
     self = [super initWithFrame:frame];
+    
+    NSLog(@"frame = %f, %f", frame.size.width, frame.size.height);
     
     //主图
     self.imageview = [[UIImageView alloc] init];
@@ -48,46 +52,57 @@
     
     return self;
 }
+
+
 - (void) layoutSubviews {
-    
+
     self.layer.cornerRadius = 20;
     self.layer.masksToBounds = YES;
+
+    CGFloat width = ([UIScreen mainScreen].bounds.size.width) / 2;
+    CGSize imageSize = self.imageview.image.size;
+    CGFloat imageHeight = (imageSize.height / imageSize.width) * width;
     
+    [self.imageview setFrame:CGRectMake(0, 0, width, imageHeight)];
+    [self.label setFrame:CGRectMake(0, imageHeight, width, 50)];
+    [self.avatarimageview setFrame:CGRectMake(0, imageHeight + 50, 25, 25)];
+    [self.authorlable setFrame:CGRectMake(30, imageHeight + 50, width - 60, 25)];
+    [self.likebutton setFrame:CGRectMake(width - 30, imageHeight + 50, 25, 25)];
 
     
-    [self.imageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(3);
-        make.top.equalTo(self).offset(5);
-        make.width.mas_offset(191);
-        make.bottom.mas_equalTo (-75);
-    }];
-    
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(3);
-        make.bottom.equalTo(self).offset(-33);
-        make.width.mas_offset(191);
-        make.height.mas_equalTo (38);
-    }];
-    
-    [self.avatarimageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(3);
-        make.width.mas_offset(25);
-        make.height.mas_offset(25);
-        make.bottom.mas_equalTo (-5);
-    }];
-    
-    [self.authorlable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(40);
-        make.width.mas_offset(90);
-        make.bottom.mas_equalTo (-5);
-    }];
-    
-    [self.likebutton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(150);
-        make.width.mas_offset(20);
-        make.height.mas_offset(20);
-        make.bottom.mas_equalTo (-5);
-    }];
+//    [self.imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(3);
+//        make.top.equalTo(self).offset(5);
+//        make.width.mas_offset(191);
+//        make.bottom.mas_equalTo (-75);
+//    }];
+
+//    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(3);
+//        make.bottom.equalTo(self).offset(-33);
+//        make.width.mas_offset(191);
+//        make.height.mas_equalTo (38);
+//    }];
+//
+//    [self.avatarimageview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(3);
+//        make.width.mas_offset(25);
+//        make.height.mas_offset(25);
+//        make.bottom.mas_equalTo (-5);
+//    }];
+//
+//    [self.authorlable mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(40);
+//        make.width.mas_offset(90);
+//        make.bottom.mas_equalTo (-5);
+//    }];
+//
+//    [self.likebutton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(150);
+//        make.width.mas_offset(20);
+//        make.height.mas_offset(20);
+//        make.bottom.mas_equalTo (-5);
+//    }];
 }
 
 - (void) buttonTap: (UIButton*) button {
