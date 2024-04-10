@@ -42,15 +42,34 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // 假数据
     cell.avatarImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"avatar%ld.jpeg", (long)indexPath.row + 1]];
-    cell.usernameLabel.text = [NSString stringWithFormat:@"用户%ld", indexPath.row + 1];
+    cell.avatarImageView.layer.cornerRadius = 10;
+    cell.avatarImageView.layer.masksToBounds = YES;
+    
     cell.videoPlayerView.backgroundColor = [UIColor grayColor]; //视频播放控件的背景颜色
+    cell.videoPlayerView.layer.cornerRadius = 5;
+    cell.videoPlayerView.layer.masksToBounds = YES;
+    
     [cell.likesButton setTitle:@"点赞" forState:UIControlStateNormal];
     [cell.commentButton setTitle:@"收藏" forState:UIControlStateNormal];
-    cell.descriptionLabel.text = @"这是视频描述，行数随字数变化啊是的哈可视电话卡上课回答看撒谎都快撒都撒u哦顶级阿卡还是快点好斯卡获得了回来看撒大可撒娇的空间啊是";
+    if (indexPath.row == 0) {
+        cell.descriptionLabel.text = @"探索色盲的神秘世界，揭示其影响。深入了解这一视觉异常，发现可能潜藏于我们每个人身上的秘密。";
+        cell.usernameLabel.text = @"莫博Mobo";
+    } else if (indexPath.row == 1) {
+        cell.descriptionLabel.text = @"挑战色盲与色弱测试！检验你的视力，探索你的色彩感知能力，看看你能达到哪个级别！";
+        cell.usernameLabel.text = @"硬核派ThinkAhead";
+    } else if (indexPath.row == 2) {
+        cell.descriptionLabel.text = @"探索色盲的原理，揭示不同于想象的色盲世界。深入了解这一视觉异常，拓展视角与理解。";
+        cell.usernameLabel.text = @"Topbook";
+    } else {
+        cell.descriptionLabel.text = @"学习如何确认自己是否患有色盲。了解简单的色盲测试方法，保护你的视力健康。";
+        cell.usernameLabel.text = @"博物";
+    }
+    cell.descriptionLabel.font = [UIFont boldSystemFontOfSize:18.0];
     
     //Load video
     NSString *videoName = [NSString stringWithFormat:@"视频%ld", (long)indexPath.row + 1];
     NSString *videoPath = [[NSBundle mainBundle] pathForResource:videoName ofType:@"mp4"];
+
     NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
     cell.player = [AVPlayer playerWithURL:videoURL];
     cell.playerLayer = [AVPlayerLayer playerLayerWithPlayer:cell.player];

@@ -53,21 +53,22 @@
     
     self.likesButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.likesButton.frame = CGRectMake(CGRectGetWidth(self.contentView.frame) - buttonWidth - padding, CGRectGetMaxY(self.videoPlayerView.frame) + padding, buttonWidth, buttonHeight);
-    [self.contentView addSubview:self.likesButton];
+//    [self.contentView addSubview:self.likesButton];
     
     self.collectButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.collectButton.frame = CGRectMake(CGRectGetMinX(self.likesButton.frame) - buttonWidth - padding, CGRectGetMinY(self.likesButton.frame), buttonWidth, buttonHeight);
-    [self.contentView addSubview:self.collectButton];
+//    [self.contentView addSubview:self.collectButton];
     
     self.commentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.commentButton.frame = CGRectMake(CGRectGetMinX(self.collectButton.frame) - padding, CGRectGetMinY(self.likesButton.frame), buttonWidth, buttonHeight);
-    [self.contentView addSubview:self.commentButton];
+//    [self.contentView addSubview:self.commentButton];
     
     //添加展开按钮
     self.expandButton = [UIButton buttonWithType:UIButtonTypeSystem];
     self.expandButton.frame = CGRectMake(padding, CGRectGetMinY(self.likesButton.frame) , 80, buttonHeight);
     [self.expandButton setTitle:@"点击展开" forState:UIControlStateNormal];
     [self.expandButton addTarget:self action:@selector(expandButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.expandButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.contentView addSubview:self.expandButton];
     
 //    self.descriptionLabel = [[MYLabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(self.expandButton.frame) + padding, CGRectGetWidth(self.contentView.frame) - 2 * padding, 150)];

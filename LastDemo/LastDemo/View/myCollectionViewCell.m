@@ -120,11 +120,11 @@
     }
 }
 
-- (void) prepareForReuse {
-    [super prepareForReuse];
-    self.imageview.image = nil;
-    self.label.text = @"";
-    self.avatarimageview.image = nil;
-    self.authorlable.text = @"";
-}
+//- (void) prepareForReuse {
+//    [super prepareForReuse];
+//    self.imageview.image = nil;
+//    self.label.text = @"";
+//    self.avatarimageview.image = nil;
+//    self.authorlable.text = @"";
+//}
 @end

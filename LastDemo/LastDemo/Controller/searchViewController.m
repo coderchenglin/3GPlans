@@ -8,11 +8,11 @@
 #import "searchViewController.h"
 #import "ViewController1.h"
 #import "myCollectionView.h"
-#import "myCollectionViewCell.h"
+//#import "myCollectionViewCell.h"
 #import "MyLayout.h"
 #import "cellViewController.h"
 #import <MJRefresh/MJRefresh.h>
-#import "shuju.h"
+//#import "shuju.h"
 #import "Masonry.h"
 #define SIZE_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SIZE_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -39,10 +39,9 @@
 //    self.tabBarController.tabBar.translucent = NO;
     self.tabBarItem.badgeColor = [UIColor blueColor];
     
-    [self navigationadd];
+//    [self navigationadd];
     [self request];
     [self collectionadd];
-    
 }
 
 - (void) collectionadd {
@@ -88,7 +87,6 @@
                 [self.arraycontent addObject:array[i][@"content"]];
             }
             //NSLog(@"%lu", self.arraytheme.count);
-
         }
     }];
     

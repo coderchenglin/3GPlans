@@ -1,0 +1,13 @@
+platform:ios,'9.0'
+
+target 'reWriteLastDemo' do
+ 
+pod 'AFNetworking'
+pod 'JSONModel'
+pod 'Masonry' 
+
+
+pod 'FMDB'
+pod 'MJRefresh'
+
+end

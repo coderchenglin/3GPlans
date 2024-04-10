@@ -10,7 +10,10 @@
 #import "XLPageViewController.h"
 #import "VideoTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "ArticleCollectionViewController.h"
+#import "ArticleCollectionViewController2.h"
+#import "ArticleCollectionViewController3.h"
+#import "ArticleCollectionViewController4.h"
 
 @interface CommonPageViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
@@ -39,13 +42,28 @@
 #pragma mark TableViewDelegate&DataSource
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
     
+//    if (index == 0) {
+////        CommonTableViewController *vc = [[CommonTableViewController alloc] init];
+//        ArticleCollectionViewController *vc = [[ArticleCollectionViewController alloc] init];
+//        return vc;
+//    } else {
+//        VideoTableViewController *videoTableViewController = [[VideoTableViewController alloc] init];
+//        return videoTableViewController;
+//    }
     if (index == 0) {
-        CommonTableViewController *vc = [[CommonTableViewController alloc] init];
+        ArticleCollectionViewController *vc = [[ArticleCollectionViewController alloc] init];
+        return vc;
+    } else if (index == 1) {
+        ArticleCollectionViewController2 *vc = [[ArticleCollectionViewController2 alloc] init];
+        return vc;
+    } else if (index == 2) {
+        ArticleCollectionViewController3 *vc = [[ArticleCollectionViewController3 alloc] init];
         return vc;
     } else {
-        VideoTableViewController *videoTableViewController = [[VideoTableViewController alloc] init];
-        return videoTableViewController;
+        ArticleCollectionViewController4 *vc = [[ArticleCollectionViewController4 alloc] init];
+        return vc;
     }
+    
 }
 
 - (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index {
