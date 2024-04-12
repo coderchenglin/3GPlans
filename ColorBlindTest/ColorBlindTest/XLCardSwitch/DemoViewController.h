@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *OptionD;
 
 @property (nonatomic, strong) XLCardModel *model;
+
+
 //@property (nonatomic, assign) BOOL pagingEnabled;
 
 @end
