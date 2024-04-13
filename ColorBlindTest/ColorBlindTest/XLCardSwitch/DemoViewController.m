@@ -76,7 +76,7 @@ NSMutableArray * _Nullable optionArray;
 
 - (void)getColorTestModel {
     
-    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTE5MTk1OTQsImlhdCI6MTcxMTg3NjM5NCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.ZbNjjelrjE-01WxQ23T2pAefoTtun6Xk1QrONLJNS2k" success:^(ColorTestModel * _Nonnull colorTestModel) {
+    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMwNTk3MDcsImlhdCI6MTcxMzAxNjUwNywiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.28WtF4Ci0o4EmWfplX61KfTLCpntvYBj6k2yJ8CPsq0" success:^(ColorTestModel * _Nonnull colorTestModel) {
         
         //这里有个理解，Model本身，一定是一个字典，只是，你拿到什么数据，取决于你Model中定义了哪些属性，所以先转为字典
         self.dictionaryModel = [colorTestModel toDictionary];
@@ -207,7 +207,7 @@ NSMutableArray * _Nullable optionArray;
 
 //提交按钮的点击方法
 - (void)submitButtonTapped {
-    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTE5MTk1OTQsImlhdCI6MTcxMTg3NjM5NCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.ZbNjjelrjE-01WxQ23T2pAefoTtun6Xk1QrONLJNS2k" success:^(OptionModel * _Nonnull optionModel) {
+    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMwNTk3MDcsImlhdCI6MTcxMzAxNjUwNywiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.28WtF4Ci0o4EmWfplX61KfTLCpntvYBj6k2yJ8CPsq0" success:^(OptionModel * _Nonnull optionModel) {
         
         self.optionDictionaryModel = [optionModel toDictionary];
         //        NSLog(@"网络请求成功");
@@ -383,6 +383,12 @@ NSMutableArray * _Nullable optionArray;
     
     static NSString *cellId = @"XLCardCell";
     XLCardCell *card = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+//    if (indexPath.item == 0) {
+//        card.testButton1.tag = 1;
+//        card.testButton1.tag = 1;
+//    } else if (indexPath.item == 1) {
+//
+//    }
     card.delegate = self;
     card.model = self.models[indexPath.item];
     
