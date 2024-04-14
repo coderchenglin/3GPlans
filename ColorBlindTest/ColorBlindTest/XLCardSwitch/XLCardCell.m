@@ -77,17 +77,6 @@
         indexPath = [self.delegate buttonTappedInCell:self];
     }
     
-    //按钮变色
-//    sender.selected = !sender.selected;
-//    if (sender.selected) {
-//        sender.backgroundColor = [UIColor grayColor];
-//        //设置按钮选中时的背景颜色
-//        sender.backgroundColor = [UIColor grayColor];
-//    } else {
-//        //设置按钮非选中时的背景颜色
-//        sender.backgroundColor = [UIColor whiteColor];
-//    }
-    
     for (UIButton *button in self.contentView.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
             button.backgroundColor = (button.tag == self.selectedIndex) ? [UIColor grayColor] : [UIColor whiteColor];
@@ -177,16 +166,12 @@
     
 }
 
-
-
-
 - (void)layoutSubviews {
     
     [self.testImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.height.width.equalTo(self.mas_width);
         make.width.equalTo(self);
-//        make.height.equalTo(self.mas_height).multipliedBy(1.0/3.0);
         make.left.equalTo(self.mas_left);
     }];
 
@@ -221,17 +206,7 @@
 
 - (void)setModel:(XLCardModel *)model {
     
-//    self.testImageView.image = [UIImage imageNamed:model.imageName];
-//    self.testImageView.image = [UIImage imageNamed:@"色盲.jpeg"];
-//    NSURL *url = [NSURL URLWithString:@"https://img.nanrentu.cc/listImg/c2023/06/16/0biahefocfo.jpg"];
-    
-
-//    NSURL *url = [NSURL URLWithString:@"file:///Users/chenglin/Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/94048adb9cce724b88ec628344d0bb11/Message/MessageTemp/d29f410141ef58adb2c8f8047eb0451a/Image/11001711538196_.pic.jpg"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", model.imageName]];
-//    NSURL *url = [NSURL URLWithString:@"http://zy520.online:8081/./Asset/Upload/Color/Red/171161834259627142.jpeg"];
-//    NSLog(@"model.imageName = %@", url);
-    
-    
     [self.testImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"1.png"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error) {
             NSLog(@"图片加载失败:%@",error);
@@ -245,14 +220,6 @@
     [self.testButton3 setTitle:model.OptionC forState:UIControlStateNormal];
     [self.testButton4 setTitle:model.OptionD forState:UIControlStateNormal];
     
-    
-//    self.testButton1.titleLabel = model.OptionA;
-//    self.testButton2.titleLabel = model.OptionB;
-//    self.testButton3.titleLabel = model.OptionC;
-//    self.testButton4.titleLabel = model.OptionD;
-    
-//    self.imageView.image = [UIImage imageNamed:model.imageName];
-//    self.textLabel.text = model.title;
 }
 
 @end

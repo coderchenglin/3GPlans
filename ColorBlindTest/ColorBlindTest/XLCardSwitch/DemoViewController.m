@@ -52,50 +52,20 @@ NSMutableArray * _Nullable optionArray;
     for (NSInteger i = 0; i < 8; i++) {
         [optionArray addObject:@""];
     }
-
     
-//    [self configNavigationBar];
-    
-//    [self addImageView];
-
-//    [self addCardSwitch];
-//    [self addImageView];
-
-//    self.cardSwitch.collectionView.delegate = self;
-//    self.cardSwitch.collectionView.dataSource = self;
-    
-//    [self test];
-    
-//换成这个就好了
     [self getColorTestModel];
 }
 
-//- (void)test {
-//    [self saveData:[[NSArray alloc] init]];
-//}
-
 - (void)getColorTestModel {
     
-    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMwNTk3MDcsImlhdCI6MTcxMzAxNjUwNywiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.28WtF4Ci0o4EmWfplX61KfTLCpntvYBj6k2yJ8CPsq0" success:^(ColorTestModel * _Nonnull colorTestModel) {
+    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMxMDcyMDAsImlhdCI6MTcxMzA2NDAwMCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.0Kb5ac6io-HN5lLXTVhOoflcM4lDx3uYVM94fOQwm0g" success:^(ColorTestModel * _Nonnull colorTestModel) {
         
         //这里有个理解，Model本身，一定是一个字典，只是，你拿到什么数据，取决于你Model中定义了哪些属性，所以先转为字典
         self.dictionaryModel = [colorTestModel toDictionary];
-//        NSLog(@"网络请求成功");
-//        NSLog(@"self.dictionaryModel = %@, %d",self.dictionaryModel,__LINE__);
-//        NSLog(@"%@",self.dictionaryModel[@"data"][@"OptionA"]);
-        NSArray *dataArray = [[NSArray alloc] initWithArray:self.dictionaryModel[@"data"]];
-//        NSLog(@"%@", dataArray);
-//        然后这个字典里只有数组data
-        [self saveData:dataArray];
 
-//        dispatch_async(dispatch_get_main_queue(), ^{
-////            [self addImageView];
-////
-////            [self addCardSwitch];
-////            self.cardSwitch.collectionView.delegate = self;
-////            self.cardSwitch.collectionView.dataSource = self;
-//            [self.cardSwitch.collectionView reloadData];
-//        });
+        NSArray *dataArray = [[NSArray alloc] initWithArray:self.dictionaryModel[@"data"]];
+
+        [self saveData:dataArray];
         
     } failure:^(NSError * _Nonnull error) {
         if (error)
@@ -104,65 +74,12 @@ NSMutableArray * _Nullable optionArray;
 }
 
 - (void)saveData:(NSArray *)array {
-//    self.transDataArray = [[NSMutableArray alloc] init];
+
     
     self.models = [NSMutableArray new];
     NSMutableDictionary *temDictionary = [[NSMutableDictionary alloc] init];
-    
-//    for (int a = 0; a < 2; a++) {
-////        NSLog(@"%@", dic);
-//
-//        NSString *string1 = [NSString stringWithFormat:@"123"];
-//        NSString *string2 = [NSString stringWithFormat:@"234"];
-//        NSString *string3 = [NSString stringWithFormat:@"345"];
-//        NSString *string4 = [NSString stringWithFormat:@"456"];
-//
-//        NSString *imageNameString;
-//        if (a == 0) {
-//            imageNameString = [NSString stringWithFormat:@"https://media.istockphoto.com/id/1268454483/photo/keelung-islet-and-heping-island-park.jpg?s=2048x2048&w=is&k=20&c=Mp0ohLjpU8hjQ8Jyj7QPfO8fWvUdKD6jiicY1Zb7vck="];
-//        } else {
-//            imageNameString = [NSString stringWithFormat:@"https://media.istockphoto.com/id/969304474/photo/colorful-houses.webp?s=2048x2048&w=is&k=20&c=v4VidjRSRsoB4iVn8JO6HkYWATrYxa-vlPtT42evT7Q="];
-//        }
-//
-//        [temDictionary setObject:string1 forKey:@"OptionA"];
-//        [temDictionary setObject:string2 forKey:@"OptionB"];
-//        [temDictionary setObject:string3 forKey:@"OptionC"];
-//        [temDictionary setObject:string4 forKey:@"OptionD"];
-//        [temDictionary setObject:imageNameString forKey:@"imageName"];
-//
-//        self.model = [[XLCardModel alloc] init];
-//        [self.model setValuesForKeysWithDictionary:temDictionary];
-//        [self.models addObject:self.model];
-////        [self.transDataArray addObject:temDictionary];
-////        NSLog(@"temDictionary = %@",temDictionary);
-////        NSLog(@"self.transDataArray = %@",self.transDataArray);
-////        NSLog(@"model= %@",self.model.OptionA);
-////        NSLog(@"self.models = %@",self.models);
-//    }
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self addImageView];
-//        [self addCardSwitch];
-//        self.cardSwitch.collectionView.delegate = self;
-//        self.cardSwitch.collectionView.dataSource = self;
-////        [self.cardSwitch.collectionView reloadData];
-//        self.cardSwitch.models = self.models;
-//
-//        [self configImageViewOfIndex:self.cardSwitch.selectedIndex];
-//    });
-    
-//    for (XLCardModel *model in self.models) {
-//        NSLog(@"OptionA: %@", model.OptionA);
-//        NSLog(@"OptionB: %@", model.OptionB);
-//        NSLog(@"OptionC: %@", model.OptionC);
-//        NSLog(@"OptionD: %@", model.OptionD);
-//        NSLog(@"imageName: %@", model.imageName);
-//        NSLog(@"---------------------");
-//    }
-    
-//这个for循环暂时屏蔽
+
     for (NSDictionary *dic in array) {
-//        NSLog(@"dic = %@", dic);
 
         NSString *string1 = [NSString stringWithFormat:@"%@", dic[@"OptionA"]];
         NSString *string2 = [NSString stringWithFormat:@"%@", dic[@"OptionB"]];
@@ -171,9 +88,6 @@ NSMutableArray * _Nullable optionArray;
         NSString *imageName = dic[@"Issue"][@"image"];
         imageName = [imageName stringByReplacingOccurrencesOfString:@"./" withString:@""];
         NSString *imageNameString = [NSString stringWithFormat:@"http://zy520.online:8081/%@", imageName];
-
-//        NSString *imageNameString = [NSString stringWithFormat:@"http://zy520.online:8081/%@", dic[@"Issue"][@"image"]];
-//        NSLog(@"imageNameString = %@", imageNameString);
 
         [temDictionary setObject:string1 forKey:@"OptionA"];
         [temDictionary setObject:string2 forKey:@"OptionB"];
@@ -186,10 +100,7 @@ NSMutableArray * _Nullable optionArray;
         XLCardModel *model = [[XLCardModel alloc] init];
         [model setValuesForKeysWithDictionary:temDictionary];
         [self.models addObject:model];
-//        [self.transDataArray addObject:temDictionary];
-//        NSLog(@"temDictionary = %@",temDictionary);
-//        NSLog(@"self.transDataArray = %@",self.transDataArray);
-//        NSLog(@"self.transDataArray = %@",self.models);
+
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -207,7 +118,7 @@ NSMutableArray * _Nullable optionArray;
 
 //提交按钮的点击方法
 - (void)submitButtonTapped {
-    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMwNTk3MDcsImlhdCI6MTcxMzAxNjUwNywiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.28WtF4Ci0o4EmWfplX61KfTLCpntvYBj6k2yJ8CPsq0" success:^(OptionModel * _Nonnull optionModel) {
+    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMxMDcyMDAsImlhdCI6MTcxMzA2NDAwMCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.0Kb5ac6io-HN5lLXTVhOoflcM4lDx3uYVM94fOQwm0g" success:^(OptionModel * _Nonnull optionModel) {
         
         self.optionDictionaryModel = [optionModel toDictionary];
         //        NSLog(@"网络请求成功");
@@ -273,18 +184,6 @@ NSMutableArray * _Nullable optionArray;
         [self.returnModels addObject:model];
     }
     
-//    for (ReturnModel *model in self.returnModels) {
-//        NSLog(@"Key: %@", model.Key);
-//        NSLog(@"Mykey: %@", model.Mykey);
-//        NSLog(@"Point: %@", model.Point);
-//        NSLog(@"Image: %@", model.Image);
-//        NSLog(@"Flag: %@", model.Flag);
-//        NSLog(@"---------------------");
-//    }
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-    
-//    });
 }
 
 - (void)viewDidLayoutSubviews {
@@ -294,19 +193,7 @@ NSMutableArray * _Nullable optionArray;
     self.cardSwitch.frame = self.view.bounds;
 }
 
-//- (void)configNavigationBar {
-//
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Previous" style:UIBarButtonItemStylePlain target:self action:@selector(switchPrevious)];
-//    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-//
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(switchNext)];
-//    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
-//
-//    UISegmentedControl *seg = [[UISegmentedControl alloc] initWithItems:@[@"正常滚动", @"自动剧中"]];
-//    seg.selectedSegmentIndex = 0;
-//    [seg addTarget:self action:@selector(segMethod:) forControlEvents:UIControlEventValueChanged];
-//    self.navigationItem.titleView = seg;
-//}
+
 
 - (void)addImageView {
     
@@ -331,31 +218,6 @@ NSMutableArray * _Nullable optionArray;
     self.cardSwitch.pagingEnabled = true;
     [self.view addSubview:self.cardSwitch];
 }
-
-
-//- (void)buildData {
-//    //初始化数据源
-////    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"@DataPropertyList" ofType:@"plist"];
-////    NSArray *arr = [NSArray arrayWithContentsOfFile:filePath];
-//    self.models = [NSMutableArray new];
-////    for (NSDictionary *dic in arr) {
-////        XLCardModel *model = [[XLCardModel alloc] init];
-////        [model setValuesForKeysWithDictionary:dic];
-////        [self.models addObject:model];
-////    }
-//
-////    NSDictionary *testDic = @{@"imageName":@"1.png",@"title":@"艾德·史塔克"};
-////    XLCardModel *model = [[XLCardModel alloc] init];
-////    [model setValuesForKeysWithDictionary:testDic];
-////    NSLog(@"%@, %d", model, __LINE__);
-////    [self.models addObject:model];
-//
-//    //设置卡片数据源
-//    self.cardSwitch.models = self.models;
-//
-//    //更新背景图
-//    [self configImageViewOfIndex:self.cardSwitch.selectedIndex];
-//}
 
 - (void)segMethod:(UISegmentedControl *)seg {
 //    NSLog(@"%ld", seg.selectedSegmentIndex);
@@ -391,22 +253,6 @@ NSMutableArray * _Nullable optionArray;
 //    }
     card.delegate = self;
     card.model = self.models[indexPath.item];
-    
-//    NSString *imageName = [NSString stringWithFormat:@"http://192.168.0.135:8081/%@", self.transDataArray[indexPath.item][@"image"]];
-//    NSString *labelA = [NSString stringWithFormat:@"%@", self.transDataArray[indexPath.item][@"OptionA"]];
-//    NSString *labelB = [NSString stringWithFormat:@"%@", self.transDataArray[indexPath.item][@"OptionB"]];
-//    NSString *labelC = [NSString stringWithFormat:@"%@", self.transDataArray[indexPath.item][@"OptionC"]];
-//    NSString *labelD = [NSString stringWithFormat:@"%@", self.transDataArray[indexPath.item][@"OptionD"]];
-//
-//    card.backgroundColor = [UIColor blueColor];
-//
-//    card.testImageView.image = [UIImage imageNamed:imageName];
-//    card.testLabel1.text = labelA;
-//    card.testLabel2.text = labelB;
-//    card.testLabel3.text = labelC;
-//    card.testLabel4.text = labelD;
-//
-////    NSLog(@"%@",card.testLabel1.text);
     
     return card;
 }
@@ -451,14 +297,9 @@ NSMutableArray * _Nullable optionArray;
 - (void)configImageViewOfIndex:(NSInteger)index {
     //更新背景图
     XLCardModel *model = self.models[index];
-//    NSLog(@"model.imageName = %@",model.imageName);
-//    ColorTestModel *model = self.models[index];
-//    self.imageView.image = [UIImage imageNamed:@"色盲.jpeg"];
-    NSURL *url = [NSURL URLWithString:model.imageName];
-//    NSURL *url = [NSURL URLWithString:@"http://zy520.online:8081/Asset/Upload/Color/Red/171161834259627142.jpeg"];
-//    NSLog(@"url = %@",url);
 
-//    self.imageView = [[UIImageView alloc] init];
+    NSURL *url = [NSURL URLWithString:model.imageName];
+
     [self.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"1.png"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error) {
             NSLog(@"背景图片加载失败");
@@ -486,34 +327,12 @@ NSMutableArray * _Nullable optionArray;
     [super didReceiveMemoryWarning];
 }
 
-//- (void)xlCardCell:(XLCardCell *)cell didSelectOption:(NSString *)option {
-//    // 此处应该替换为有效的 token 字符串
-//    NSString *token = @"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTE1Njg0MTAsImlhdCI6MTcxMTUyNTIxMCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.scmm26xA1azxzdX8EAaTOJ4rNl_qCQALzTTy0ABbZUE";
-//
-//    [[Manager sharedManager] postColorBlindOptionArray:token success:^(OptionModel * _Nonnull optionModel) {
-//        NSLog(@"post success");
-//    } failure:^(NSError * _Nonnull error) {
-//        NSLog(@"post fail");
-//    } didSelectOption:optionArray];
-//}
-
-//- (void)cardCell:(XLCardCell *)cell didSelectOption:(NSString *)option atIndex:(NSInteger)index {
-//    // 用户点击选项按钮后的处理
-//
-//    // 更新对应 cell 的选项按钮状态
-//    [cell updateButtonSelectionAtIndex:index withOption:option];
-//}
-
-
 - (void)cardCellDidSelectAllOptions:(XLCardCell *)cell isAll:(BOOL)allQuestionAnswered {
     // 当所有题目都有选择时，显示提交按钮
     NSLog(@"allQuestionAnswered = %d", allQuestionAnswered);
     if (allQuestionAnswered) {
-//        self.showSubmitButton = YES;
-//        [self.cardSwitch.collectionView addSubview:self.submitButton];
         self.cardSwitch.submitButton.hidden = NO; //显示提交按钮
     } else {
-//        self.showSubmitButton = NO;
         self.cardSwitch.submitButton.hidden = YES;
     }
 }
