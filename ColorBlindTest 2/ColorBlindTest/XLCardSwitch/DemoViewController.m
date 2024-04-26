@@ -76,7 +76,7 @@ NSMutableArray * _Nullable optionArray;
 
 - (void)getColorTestModel {
     
-    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMxMDcyMDAsImlhdCI6MTcxMzA2NDAwMCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.0Kb5ac6io-HN5lLXTVhOoflcM4lDx3uYVM94fOQwm0g" success:^(ColorTestModel * _Nonnull colorTestModel) {
+    [[Manager sharedManager] requestColorBlindTest:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjozLCJleHAiOjE3MTM0ODMxNDUsImlhdCI6MTcxMzQzOTk0NSwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.7Qii_dzy8jEzNXl5MMJxhHvW2Ch_ixrv-RlUdhN3p60" success:^(ColorTestModel * _Nonnull colorTestModel) {
         
         //这里有个理解，Model本身，一定是一个字典，只是，你拿到什么数据，取决于你Model中定义了哪些属性，所以先转为字典
         self.dictionaryModel = [colorTestModel toDictionary];
@@ -207,7 +207,7 @@ NSMutableArray * _Nullable optionArray;
 
 //提交按钮的点击方法
 - (void)submitButtonTapped {
-    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjoyLCJleHAiOjE3MTMxMDcyMDAsImlhdCI6MTcxMzA2NDAwMCwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.0Kb5ac6io-HN5lLXTVhOoflcM4lDx3uYVM94fOQwm0g" success:^(OptionModel * _Nonnull optionModel) {
+    [[Manager sharedManager] postColorBlindOptionArray:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb0lkIjozLCJleHAiOjE3MTM0ODMxNDUsImlhdCI6MTcxMzQzOTk0NSwiaXNzIjoi5bCP6LW1Iiwic3ViIjoiY29sb3IifQ.7Qii_dzy8jEzNXl5MMJxhHvW2Ch_ixrv-RlUdhN3p60" success:^(OptionModel * _Nonnull optionModel) {
         
         self.optionDictionaryModel = [optionModel toDictionary];
         //        NSLog(@"网络请求成功");

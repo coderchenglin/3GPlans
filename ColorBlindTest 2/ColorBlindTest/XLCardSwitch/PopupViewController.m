@@ -45,14 +45,15 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     // 使用本身有的数据源数组来确定collectionView中的item个数
     // 这里假设数据源数组是一个数组，数组中的每个元素也是一个数组，包含图片名称、标签1、标签2、标签3
-    return self.dataSourceArray.count;
+    //return self.dataSourceArray.count;
+    return 8;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     // 根据indexPath获取对应的数据
-    NSDictionary *data = self.dataSourceArray[indexPath.row];
+//    NSDictionary *data = self.dataSourceArray[indexPath.row];
     
 //    NSString *Flag = data[@"Flag"];
     
