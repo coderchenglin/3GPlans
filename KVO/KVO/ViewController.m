@@ -343,53 +343,75 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    //instacne-isKindOfClass
+    BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];
+    BOOL res3 = [[Person class] isKindOfClass:[Person class]];
+    BOOL res10 = [[NSString class] isKindOfClass:[NSObject class]];
+    
+    NSLog(@"%d %d %d",res1, res3, res10);
+           
+           
+    Person *person = [[Person alloc] init];
+   //        BOOL res5 = [[Person class] isKindOfClass:[NSObject class]];
+   //        BOOL res6 = [person isKindOfClass:[NSObject class]];
+   //        NSLog(@"%d %d", res5, res6);
+   //
+           //instance-isMemberOfClass
+//           BOOL res2 = [[NSObject class] isMemberOfClass:[NSObject class]];
+//           BOOL res7 = [person isMemberOfClass:[NSObject class]];
+//           BOOL res8 = [[Person class] isMemberOfClass:[NSObject class]];
+//           BOOL res9 = [person isMemberOfClass:[Person class]];
+//           NSLog(@"%d %d %d %d" ,res2, res7, res8, res9);
+    
+    
+    
 //    [self printIvarList];
 //    [self printPropertyList];
 //    [self printMethodList];
-    [self printUITextFieldList];
+//    [self printUITextFieldList];
     
 //    [self createLoginTextField];
     
 }
 
 // 打印 UITextfield 的所有属性和成员变量
-- (void)printUITextFieldList {
-    unsigned int count;
-    
-    Ivar *ivarList = class_copyIvarList([UITextField class], &count);
-    for (unsigned int i = 0; i < count; i++) {
-        Ivar myIvar = ivarList[i];
-        const char *ivarName = ivar_getName(myIvar);
-        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
-    }
-    
-    free(ivarList);
-    
-    objc_property_t *propertyList = class_copyPropertyList([UITextField class], &count);
-    for (unsigned int i = 0; i < count; i++) {
-        const char *propertyName = property_getName(propertyList[i]);
-        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
-    }
-    
-    free(propertyList);
-}
+//- (void)printUITextFieldList {
+//    unsigned int count;
+//
+//    Ivar *ivarList = class_copyIvarList([UITextField class], &count);
+//    for (unsigned int i = 0; i < count; i++) {
+//        Ivar myIvar = ivarList[i];
+//        const char *ivarName = ivar_getName(myIvar);
+//        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
+//    }
+//
+//    free(ivarList);
+//
+//    objc_property_t *propertyList = class_copyPropertyList([UITextField class], &count);
+//    for (unsigned int i = 0; i < count; i++) {
+//        const char *propertyName = property_getName(propertyList[i]);
+//        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
+//    }
+//
+//    free(propertyList);
+//}
 
 // 通过修改 UITextfield 的私有属性更改占位颜色和字体
-- (void)createLoginTextField {
-    UITextField *loginTextField = [[UITextField alloc] init];
-    loginTextField.frame = CGRectMake(15,(self.view.bounds.size.height-52-50)/2, self.view.bounds.size.width-60-18,52);
-    loginTextField.delegate = self;
-    loginTextField.font = [UIFont systemFontOfSize:14];
-    loginTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    loginTextField.textColor = [UIColor blackColor];
-    
-    loginTextField.placeholder = @"用户名/邮箱";
-    [loginTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-    [loginTextField setValue:[UIColor lightGrayColor]forKeyPath:@"_placeholderLabel.textColor"];
-    
-    [self.view addSubview:loginTextField];
-}
+//- (void)createLoginTextField {
+//    UITextField *loginTextField = [[UITextField alloc] init];
+//    loginTextField.frame = CGRectMake(15,(self.view.bounds.size.height-52-50)/2, self.view.bounds.size.width-60-18,52);
+//    loginTextField.delegate = self;
+//    loginTextField.font = [UIFont systemFontOfSize:14];
+//    loginTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//    loginTextField.textColor = [UIColor blackColor];
+//
+//    loginTextField.placeholder = @"用户名/邮箱";
+//    [loginTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
+//    [loginTextField setValue:[UIColor lightGrayColor]forKeyPath:@"_placeholderLabel.textColor"];
+//
+//    [self.view addSubview:loginTextField];
+//}
 
 
 
