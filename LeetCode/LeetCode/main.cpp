@@ -765,47 +765,402 @@ using namespace std;
 //}
 
 
-#include <iostream>
-#include <string>
+//#include <iostream>
+//#include <string>
+//
+//void trimAndCondense(std::string& s) {
+//    int n = s.length();
+//
+//    // 去除首部空格
+//    int left = 0;
+//    while (left < n && s[left] == ' ') {
+//        left++;
+//    }
+//
+//    // 去除尾部空格
+//    int right = n - 1;
+//    while (right >= 0 && s[right] == ' ') {
+//        right--;
+//    }
+//
+//    // 合并单词间空格
+//    int idx = 0;
+//    bool space = false;
+//    while (left <= right) {
+//        if (s[left] != ' ') {
+//            s[idx++] = s[left++];
+//            space = false;
+//        } else if (s[left] == ' ' && !space) {
+//            s[idx++] = s[left++];
+//            space = true;
+//        } else {
+//            left++;
+//        }
+//    }
+//
+//    // 截断多余字符
+//    s = s.substr(0, idx);
+//}
+//
+//int main() {
+//    std::string s = "  hello  world  ";
+//    trimAndCondense(s);
+//    std::cout << s << std::endl;
+//
+//    return 0;
+//}
 
-void trimAndCondense(std::string& s) {
-    int n = s.length();
-    
-    // 去除首部空格
-    int left = 0;
-    while (left < n && s[left] == ' ') {
-        left++;
-    }
-    
-    // 去除尾部空格
-    int right = n - 1;
-    while (right >= 0 && s[right] == ' ') {
-        right--;
-    }
-    
-    // 合并单词间空格
-    int idx = 0;
-    bool space = false;
-    while (left <= right) {
-        if (s[left] != ' ') {
-            s[idx++] = s[left++];
-            space = false;
-        } else if (s[left] == ' ' && !space) {
-            s[idx++] = s[left++];
-            space = true;
-        } else {
-            left++;
-        }
-    }
-    
-    // 截断多余字符
-    s = s.substr(0, idx);
-}
+//
+////63.不同路径（二）
+//#include <iostream>
+//#include <vector>
+//
+//using namespace std;
+//
+//class Solution {
+//public:
+//    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+//        int m = obstacleGrid.size();
+//        int n = obstacleGrid[0].size();
+//
+//        if (obstacleGrid[m - 1][n - 1] == 1 || obstacleGrid[0][0] == 1)
+//            return 0;
+//
+//        vector<vector<int>> dp(m, vector<int>(n, 0));
+//
+//        for (int i = 0; i < m && obstacleGrid[i][0] == 0; i++)
+//            dp[i][0] = 1;
+//
+//        for (int j = 0; j < n && obstacleGrid[0][j] == 0; j++)
+//            dp[0][j] = 1;
+//
+//        for (int i = 1; i < m; i++) {
+//            for (int j = 1; j < n; j++) {
+//                //数组obstacleGrid[i][j]中是1的地方，保持dp[i][j]为0
+//                if (obstacleGrid[i][j] == 1)
+//                    continue; //保持的[i][j]为0
+//
+//                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+//            }
+//        }
+//
+//        printDP(dp); // 打印 dp 数组
+//
+//        return dp[m - 1][n - 1];
+//    }
+//
+//private:
+//    void printDP(vector<vector<int>>& dp) {
+//        int m = dp.size();
+//        int n = dp[0].size();
+//
+//        cout << "DP Array:" << endl;
+//        for (int i = 0; i < m; i++) {
+//            for (int j = 0; j < n; j++) {
+//                cout << dp[i][j] << " ";
+//            }
+//            cout << endl;
+//        }
+//    }
+//};
+//
+//int main() {
+//    // Test Case
+//    vector<vector<int>> obstacleGrid = {
+//        {0, 0, 0},
+//        {0, 1, 0},
+//        {0, 0, 0}
+//    };
+//
+//    Solution sol;
+//    int uniquePaths = sol.uniquePathsWithObstacles(obstacleGrid);
+//    cout << "Number of Unique Paths: " << uniquePaths << endl;
+//
+//    return 0;
+//}
 
-int main() {
-    std::string s = "  hello  world  ";
-    trimAndCondense(s);
-    std::cout << s << std::endl;
 
-    return 0;
-}
+////416 分割等和子集
+//#include <iostream>
+//#include <vector>
+//#include <numeric> // for std::accumulate
+//
+//using namespace std;
+//
+//class Solution {
+//public:
+//    bool canPartition(vector<int>& nums) {
+//        int sum = accumulate(nums.begin(), nums.end(), 0);
+//
+//        if (sum % 2 == 1)
+//            return false;
+//
+//        int target = sum / 2;
+//        vector<int> dp(target + 1, 0);
+//
+//        // 打印初始状态的 dp 数组
+//        printDP(dp);
+//
+//        for (int i = 0; i < nums.size(); i++) {
+//            for (int j = target; j >= nums[i]; j--) {
+//                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);
+//
+//                // 打印当前步骤的 dp 数组
+//                printDP(dp);
+//            }
+//        }
+//
+//        return dp[target] == target;
+//    }
+//
+//private:
+//    void printDP(vector<int>& dp) {
+//        cout << "DP Array: ";
+//        for (int num : dp) {
+//            cout << num << " ";
+//        }
+//        cout << endl;
+//    }
+//};
+//
+//int main() {
+//    // Test Case
+//    vector<int> nums = {7, 8, 5, 3, 13, 9, 5};
+//
+//    Solution sol;
+//    bool canPartitioned = sol.canPartition(nums);
+//    if (canPartitioned) {
+//        cout << "The array can be partitioned into two subsets with equal sum." << endl;
+//    } else {
+//        cout << "The array cannot be partitioned into two subsets with equal sum." << endl;
+//    }
+//
+//    return 0;
+//}
+
+
+#pragma mark 01背包问题
+
+//二维dp数组
+
+//i:物品下标
+//j:背包容量
+//weight[i]:下标为i的物品的重量
+//value[i]:下标为i的物品的价值
+//dp[i][j]:容量为j的背包，在下标为0-i的物品中任选，可以装的最大价值
+
+//for (int i = 1; i < weight.size(); i++) {
+//    for (int j = 0; j <= bagweight; j++) {
+//        if (j < weight[i])
+//            dp[i][j] = dp[i - 1][j];
+//        else
+//            dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
+//    }
+//}
+
+
+
+//一维dp数组
+
+//i:物品下标
+//j:背包容量
+//weight[i]:下标为i的物品的重量
+//value[i]:下标为i的物品的价值
+//dp[j]:容量为j的背包，在下标为0-i的物品中任选，可以装的最大价值
+
+//for (int i = 0; i < weight.size(); i++) {
+//    for (int j = bagweight; j >= weight[i]; j--) {
+//        dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+//    }
+//}
+
+#pragma mark 完全背包
+
+//和01背包的区别：
+//对于一维数组，01背包需要先遍历物品，里面嵌套重量，并且重量需要反向遍历，保证每个物品只装入一次
+//而完全背包两种嵌套方式都可以（一般先遍历物品），重量需要正向遍历，因为每个物品可以装入多次
+
+//for (int i = 0; i < weight.size(); i++) {
+//    for (int j = weight[i]; j <= bagWeight; j++) {
+//        dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+//    }
+//}
+//
+//for (int j = 0; j <= bagWeight; j++) {
+//    for (int i = 0; i < weight.size(); i++) {
+//        if (j - weight[i] >= 0)
+//            dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+//    }
+//    cout << endl;
+//}
+
+
+
+//#include <iostream>
+//#include <vector>
+//
+//using namespace std;
+//
+//void printDP(vector<int>& dp) {
+//    cout << "DP Array: ";
+//    for (int num : dp) {
+//        cout << num << " ";
+//    }
+//    cout << endl;
+//}
+//
+//// 先遍历物品，在遍历背包
+//void test_CompletePack() {
+//    vector<int> weight = {1, 3, 4};
+//    vector<int> value = {15, 20, 30};
+//    int bagWeight = 4;
+//    vector<int> dp(bagWeight + 1, 0);
+//    for(int i = 0; i < weight.size(); i++) { // 遍历物品
+//        for(int j = weight[i]; j <= bagWeight; j++) { // 遍历背包容量
+//            dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+//            printDP(dp);
+//        }
+////        printDP(dp);
+//    }
+//    cout << dp[bagWeight] << endl;
+//}
+//
+//int main() {
+//    test_CompletePack();
+//}
+
+
+//
+//#include <iostream>
+//#include <vector>
+//#include <cmath>
+//
+//using namespace std;
+//
+//class Solution {
+//public:
+//    int findTargetSumWays(vector<int>& nums, int S) {
+//        int sum = 0;
+//        for (int i = 0; i < nums.size(); i++) {
+//            sum += nums[i];
+//        }
+//
+//        if (abs(S) > sum) {
+//            return 0; // 此时没有方案
+//        }
+//
+//        if ((S + sum) % 2 == 1) {
+//            return 0; // 此时没有方案
+//        }
+//
+//        int bagSize = (S + sum) / 2;
+//        vector<int> dp(bagSize + 1, 0);
+//        dp[0] = 1;
+//
+//        // 打印初始状态的 dp 数组
+//        printDP(dp);
+//
+//        for (int i = 0; i < nums.size(); i++) {
+//            for (int j = bagSize; j >= nums[i]; j--) {
+//                dp[j] += dp[j - nums[i]];
+//
+//                printf("dp[%d] = %d\n", j, dp[j]);
+//                // 打印当前步骤的 dp 数组
+//                printDP(dp);
+//            }
+//        }
+//
+//        return dp[bagSize];
+//    }
+//
+//private:
+//    void printDP(vector<int>& dp) {
+//        cout << "DP Array: ";
+//        for (int num : dp) {
+//            cout << num << " ";
+//        }
+//        cout << endl;
+//    }
+//};
+//
+//int main() {
+//    // Test Case
+//    vector<int> nums = {1, 1, 1, 1, 1};
+//    int targetSum = 3;
+//
+//    Solution sol;
+//    int ways = sol.findTargetSumWays(nums, targetSum);
+//    cout << "Number of ways to achieve target sum: " << ways << endl;
+//
+//    return 0;
+//}
+
+//
+//#include <iostream>
+//#include <vector>
+//
+//using namespace std;
+//
+//class Solution {
+//public:
+//    int change(int amount, vector<int>& coins) {
+//        vector<int> dp(amount + 1, 0);
+//        dp[0] = 1;
+//
+//        // 打印初始状态的 dp 数组
+//        printDP(dp);
+//
+////        for (int j = 0; j <= amount; j++) { // 遍历背包容量
+////            for (int i = 0; i < coins.size(); i++) { // 遍历物品
+////                if (j - coins[i] >= 0) dp[j] += dp[j - coins[i]];
+////
+////                printf("j = %d, dp[j - coin[i]] = %d\n", j, dp[j - coins[i]]);
+////
+////                // 打印当前步骤的 dp 数组
+////                printDP(dp);
+////            }
+////        }
+//
+//
+//        for (int i = 0; i < coins.size(); i++) { // 遍历物品
+//            for (int j = coins[i]; j <= amount; j++) { // 遍历背包
+//                dp[j] += dp[j - coins[i]];
+//                printf("j = %d, dp[j - coin[i]] = %d\n", j, dp[j - coins[i]]);
+//
+//                // 打印当前步骤的 dp 数组
+//                printDP(dp);
+//            }
+//        }
+//
+//        return dp[amount];
+//    }
+//
+//private:
+//    void printDP(vector<int>& dp) {
+//        cout << "DP Array: ";
+//        for (int num : dp) {
+//            cout << num << " ";
+//        }
+//        cout << endl;
+//    }
+//};
+//
+//int main() {
+//    // Test Case
+//    int amount = 5;
+//    vector<int> coins = {1, 2, 5};
+//
+//    Solution sol;
+//    int ways = sol.change(amount, coins);
+//    cout << "Number of ways to make up amount: " << ways << endl;
+//
+//    return 0;
+//}
+
+
+
+
+
+
+
+
