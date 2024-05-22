@@ -1157,10 +1157,135 @@ using namespace std;
 //    return 0;
 //}
 
+//#include <istream>
+//#include "stack"
+//
+//using namespace std;
+//
+//int main() {
+//    stack<int> myStack;
+//
+//    myStack.push(10);
+//    myStack.push(20);
+//    myStack.push(30);
+//
+//    cout << "Top element: " << myStack.top() << endl;
+//
+//    myStack.pop();
+//
+//    if (myStack.empty()) {
+//        //
+//    } else {
+//        //
+//    }
+//
+//    return 0;
+//}
 
 
 
+//#pragma mark 堆
+//
+//#include <iostream>
+//#include <vector>
+//#include <algorithm>
+//
+//using namespace std;
+//
+//int main() {
+//
+//    vector<int> maxHeap = {4, 10, 3, 5, 1};
+//
+//    make_heap(maxHeap.begin(), maxHeap.end());
+//    cout << "Max heap: ";
+//    for (const auto& num : maxHeap) {
+//        cout << num << " ";
+//    }
+//
+//    maxHeap.push_back(15);
+//    push_heap(maxHeap.begin(), maxHeap.end());
+//
+//    cout << "After insertion, max heap: ";
+//    for (const auto& num : maxHeap) {
+//        cout << num << " ";
+//    }
+//    cout << endl;
+//
+//    //这是删除堆顶元素的一套组合拳
+//    pop_heap(maxHeap.begin(), maxHeap.end());//这个方法将堆顶元素与最后一个元素交换，并通过下滤操作，重新成堆，然后堆顶元素就到了容器的末尾，但是容器本身的大小并没有改变
+//    maxHeap.pop_back(); //用于移除容器中最后一个元素
+//
+//    cout << "After deletion of root, max heap: ";
+//    for (const auto& num : maxHeap) {
+//        cout << num << " ";
+//    }
+//    cout << endl;
+//
+//
+//    return 0;
+//}
 
+#include <iostream>
+#include <vector>
 
+void maxHeapifyBottomUp(std::vector<int>& arr, int n, int i) {
+    int largest = i; // 当前节点的索引
+    int left = 2 * i + 1; // 左子节点的索引
+    int right = 2 * i + 2; // 右子节点的索引
 
+    // 找到当前节点、左子节点和右子节点中的最大值
+    if (left < n && arr[left] > arr[largest]) {
+        largest = left;
+    }
+    if (right < n && arr[right] > arr[largest]) {
+        largest = right;
+    }
 
+    // 如果最大值不是当前节点，交换并递归调整
+    if (largest != i) {
+        std::swap(arr[i], arr[largest]);
+        // 递归调整交换后的子树
+        maxHeapifyBottomUp(arr, n, largest);
+    }
+}
+
+void buildMaxHeapBottomUp(std::vector<int>& arr) {
+    int n = arr.size();
+
+    // 从最后一个非叶子节点开始，依次向上堆化
+    for (int i = n / 2 - 1; i >= 0; --i) {
+        maxHeapifyBottomUp(arr, n, i);
+        for (int num : arr) {
+            std::cout << num << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+//    std::vector<int> arr = {4, 10, 3, 5, 1};
+    std::vector<int> arr = {8, 17, 4, 10, 15, 9, 3, 1, 7, 12, 6, 19, 14, 5, 11};
+
+    
+    std::cout << "Original array: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    buildMaxHeapBottomUp(arr);
+
+//    std::cout << "Max heap after bottom-up heapify: ";
+//    for (int num : arr) {
+//        std::cout << num << " ";
+//    }
+//    std::cout << std::endl;
+
+    return 0;
+}
+//堆排序
+//1.向下建堆
+//2.从最后一个非叶子节点（i = n / 2 - 1），从后往前，下滤    O（n/2）
+//3.每一次下滤都会保证，以i为头结点的树，是一个大堆。（最大时间复杂度是头节点向下过滤，时间复杂度为O（logN）
+//4.一直遍历到整个树的头节点，这样就保证了整棵树都是大堆
+//5.所以整体的时间复杂度为： （N * logN）

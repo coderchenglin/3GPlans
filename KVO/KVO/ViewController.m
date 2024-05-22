@@ -327,139 +327,145 @@
 
 
 
-
-#import "ViewController.h"
-#import "Person.h"
-#import <objc/runtime.h>
-
-@interface ViewController ()
-
-
-
-@end
-
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //instacne-isKindOfClass
-    BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];
-    BOOL res3 = [[Person class] isKindOfClass:[Person class]];
-    BOOL res10 = [[NSString class] isKindOfClass:[NSObject class]];
-    
-    NSLog(@"%d %d %d",res1, res3, res10);
-           
-           
-    Person *person = [[Person alloc] init];
-   //        BOOL res5 = [[Person class] isKindOfClass:[NSObject class]];
-   //        BOOL res6 = [person isKindOfClass:[NSObject class]];
-   //        NSLog(@"%d %d", res5, res6);
-   //
-           //instance-isMemberOfClass
-//           BOOL res2 = [[NSObject class] isMemberOfClass:[NSObject class]];
-//           BOOL res7 = [person isMemberOfClass:[NSObject class]];
-//           BOOL res8 = [[Person class] isMemberOfClass:[NSObject class]];
-//           BOOL res9 = [person isMemberOfClass:[Person class]];
-//           NSLog(@"%d %d %d %d" ,res2, res7, res8, res9);
-    
-    
-    
-//    [self printIvarList];
-//    [self printPropertyList];
-//    [self printMethodList];
-//    [self printUITextFieldList];
-    
-//    [self createLoginTextField];
-    
-}
-
-// 打印 UITextfield 的所有属性和成员变量
-//- (void)printUITextFieldList {
-//    unsigned int count;
 //
-//    Ivar *ivarList = class_copyIvarList([UITextField class], &count);
-//    for (unsigned int i = 0; i < count; i++) {
-//        Ivar myIvar = ivarList[i];
-//        const char *ivarName = ivar_getName(myIvar);
-//        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
-//    }
+//#import "ViewController.h"
+//#import "Person.h"
+//#import <objc/runtime.h>
 //
-//    free(ivarList);
+//@interface ViewController ()
 //
-//    objc_property_t *propertyList = class_copyPropertyList([UITextField class], &count);
-//    for (unsigned int i = 0; i < count; i++) {
-//        const char *propertyName = property_getName(propertyList[i]);
-//        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
-//    }
 //
-//    free(propertyList);
-//}
-
-// 通过修改 UITextfield 的私有属性更改占位颜色和字体
-//- (void)createLoginTextField {
-//    UITextField *loginTextField = [[UITextField alloc] init];
-//    loginTextField.frame = CGRectMake(15,(self.view.bounds.size.height-52-50)/2, self.view.bounds.size.width-60-18,52);
-//    loginTextField.delegate = self;
-//    loginTextField.font = [UIFont systemFontOfSize:14];
-//    loginTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    loginTextField.textColor = [UIColor blackColor];
 //
-//    loginTextField.placeholder = @"用户名/邮箱";
-//    [loginTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-//    [loginTextField setValue:[UIColor lightGrayColor]forKeyPath:@"_placeholderLabel.textColor"];
+//@end
 //
-//    [self.view addSubview:loginTextField];
-//}
-
-
-
-//- (void)printIvarList {
 //
-//    unsigned int count;
+//@implementation ViewController
 //
-//    //打印成员变量列表
-//    //Ivar是一个结构体类型，里面存放了：
-////    const char *ivar_name：实例变量的名称。
-////    const char *ivar_type：实例变量的类型编码字符串。
-////    int ivar_offset：实例变量在对象内存布局中的偏移量。
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
 //
-//    Ivar *ivarList = class_copyIvarList([self class], &count);
-//    for (unsigned int i = 0; i < count; i++) {
-//        Ivar myIvar = ivarList[i];
-//        const char *ivarName = ivar_getName(myIvar);
-//        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
-//    }
+//    //instacne-isKindOfClass
+//    BOOL res1 = [[NSObject class] isKindOfClass:[NSObject class]];
+//    BOOL res3 = [[Person class] isKindOfClass:[Person class]];
+//    BOOL res10 = [[NSString class] isKindOfClass:[NSObject class]];
 //
-//    free(ivarList);
+//    NSLog(@"%d %d %d",res1, res3, res10);
+//
+//
+//    Person *person = [[Person alloc] init];
+//   //        BOOL res5 = [[Person class] isKindOfClass:[NSObject class]];
+//   //        BOOL res6 = [person isKindOfClass:[NSObject class]];
+//   //        NSLog(@"%d %d", res5, res6);
+//   //
+//           //instance-isMemberOfClass
+////           BOOL res2 = [[NSObject class] isMemberOfClass:[NSObject class]];
+////           BOOL res7 = [person isMemberOfClass:[NSObject class]];
+////           BOOL res8 = [[Person class] isMemberOfClass:[NSObject class]];
+////           BOOL res9 = [person isMemberOfClass:[Person class]];
+////           NSLog(@"%d %d %d %d" ,res2, res7, res8, res9);
+//
+//
+//
+////    [self printIvarList];
+////    [self printPropertyList];
+////    [self printMethodList];
+////    [self printUITextFieldList];
+//
+////    [self createLoginTextField];
+//
 //}
 //
-//// 打印属性列表
-//- (void)printPropertyList {
-//    unsigned int count;
+//// 打印 UITextfield 的所有属性和成员变量
+////- (void)printUITextFieldList {
+////    unsigned int count;
+////
+////    Ivar *ivarList = class_copyIvarList([UITextField class], &count);
+////    for (unsigned int i = 0; i < count; i++) {
+////        Ivar myIvar = ivarList[i];
+////        const char *ivarName = ivar_getName(myIvar);
+////        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
+////    }
+////
+////    free(ivarList);
+////
+////    objc_property_t *propertyList = class_copyPropertyList([UITextField class], &count);
+////    for (unsigned int i = 0; i < count; i++) {
+////        const char *propertyName = property_getName(propertyList[i]);
+////        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
+////    }
+////
+////    free(propertyList);
+////}
 //
-//    objc_property_t *propertyList = class_copyPropertyList([self class], &count);
-//    for (unsigned int i = 0; i < count; i++) {
-//        const char *propertyName = property_getName(propertyList[i]);
-//        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
-//    }
+//// 通过修改 UITextfield 的私有属性更改占位颜色和字体
+////- (void)createLoginTextField {
+////    UITextField *loginTextField = [[UITextField alloc] init];
+////    loginTextField.frame = CGRectMake(15,(self.view.bounds.size.height-52-50)/2, self.view.bounds.size.width-60-18,52);
+////    loginTextField.delegate = self;
+////    loginTextField.font = [UIFont systemFontOfSize:14];
+////    loginTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+////    loginTextField.textColor = [UIColor blackColor];
+////
+////    loginTextField.placeholder = @"用户名/邮箱";
+////    [loginTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
+////    [loginTextField setValue:[UIColor lightGrayColor]forKeyPath:@"_placeholderLabel.textColor"];
+////
+////    [self.view addSubview:loginTextField];
+////}
 //
-//    free(propertyList);
-//}
 //
-//// 打印方法列表
-//- (void)printMethodList {
-//    unsigned int count;
 //
-//    Method *methodList = class_copyMethodList([self class], &count);
-//    for (unsigned int i = 0; i < count; i++) {
-//        Method method = methodList[i];
-//        NSLog(@"method(%d) : %@", i, NSStringFromSelector(method_getName(method)));
-//    }
+////- (void)printIvarList {
+////
+////    unsigned int count;
+////
+////    //打印成员变量列表
+////    //Ivar是一个结构体类型，里面存放了：
+//////    const char *ivar_name：实例变量的名称。
+//////    const char *ivar_type：实例变量的类型编码字符串。
+//////    int ivar_offset：实例变量在对象内存布局中的偏移量。
+////
+////    Ivar *ivarList = class_copyIvarList([self class], &count);
+////    for (unsigned int i = 0; i < count; i++) {
+////        Ivar myIvar = ivarList[i];
+////        const char *ivarName = ivar_getName(myIvar);
+////        NSLog(@"ivar(%d) : %@", i, [NSString stringWithUTF8String:ivarName]);
+////    }
+////
+////    free(ivarList);
+////}
+////
+////// 打印属性列表
+////- (void)printPropertyList {
+////    unsigned int count;
+////
+////    objc_property_t *propertyList = class_copyPropertyList([self class], &count);
+////    for (unsigned int i = 0; i < count; i++) {
+////        const char *propertyName = property_getName(propertyList[i]);
+////        NSLog(@"propertyName(%d) : %@", i, [NSString stringWithUTF8String:propertyName]);
+////    }
+////
+////    free(propertyList);
+////}
+////
+////// 打印方法列表
+////- (void)printMethodList {
+////    unsigned int count;
+////
+////    Method *methodList = class_copyMethodList([self class], &count);
+////    for (unsigned int i = 0; i < count; i++) {
+////        Method method = methodList[i];
+////        NSLog(@"method(%d) : %@", i, NSStringFromSelector(method_getName(method)));
+////    }
+////
+////    free(methodList);
+////}
 //
-//    free(methodList);
-//}
+//
+//@end
 
 
-@end
+
+
+
+
