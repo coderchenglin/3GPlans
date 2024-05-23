@@ -156,3 +156,40 @@
 //返回的分别是类对象，元类对象，基类（NSObject）的元类对象那个
 //
 //class方法返回的就是类对象
+
+
+
+
+
+#import "Foundation/foundation.h"
+#import "NSObject+Test.h"
+
+@interface MJPerson : NSObject
+
++ (void)test;
+
+@end
+
+@implementation MJPerson
+
++ (void)test {
+    NSLog(@"+[MJPerson class] - %p", self);
+}
+
+@end
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        [MJPerson test];
+        
+        [NSObject test]; //类对象调用NSObject的对象方法
+    }
+    return 0;
+}
+
+
+
+
+//32位时，isa的地址就是类对象的地址
+//从64bit开始，isa需要进行一次位运算（ISA_MASK），才能计算出类对象的真实地址
+

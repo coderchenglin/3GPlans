@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		686B57B92BFC409B00663743 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B57B82BFC409B00663743 /* main.m */; };
+		68A614442BFE19E900DBCA1F /* NSObject+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A614432BFE19E900DBCA1F /* NSObject+Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		686B57B52BFC409B00663743 /* OC对象的本质 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OC对象的本质"; sourceTree = BUILT_PRODUCTS_DIR; };
 		686B57B82BFC409B00663743 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		68A614422BFE19E900DBCA1F /* NSObject+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Test.h"; sourceTree = "<group>"; };
+		68A614432BFE19E900DBCA1F /* NSObject+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Test.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				686B57B82BFC409B00663743 /* main.m */,
+				68A614422BFE19E900DBCA1F /* NSObject+Test.h */,
+				68A614432BFE19E900DBCA1F /* NSObject+Test.m */,
 			);
 			path = "OC对象的本质";
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				686B57B92BFC409B00663743 /* main.m in Sources */,
+				68A614442BFE19E900DBCA1F /* NSObject+Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
