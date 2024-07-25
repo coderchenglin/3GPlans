@@ -1,7 +1,7 @@
-platform:ios, '11.0'
-target 'zhihuribao' do
-  pod 'Masonry'
-  pod 'FMDB'
-  pod 'JSONModel'
-  pod 'SDWebImage'
+platform :ios, '8.0'
+target '知乎日报' do
+pod 'Masonry'
+pod 'JSONModel'
+pod 'SDWebImage'
+pod 'FMDB'
 end
