@@ -21,5 +21,8 @@ static const void* myPropertyKey = &myPropertyKey; //这是代码规范，用于
     
 }
 
+- (void)test {
+    
+}
 
 @end

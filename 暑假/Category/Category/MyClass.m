@@ -10,8 +10,8 @@
 #import "MyClass+Extension.h"
 
 
-@implementation MyClass
 
+@implementation MyClass
 - (void)extensionMethod {
     NSLog(@"%s", __func__);
 }

@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyClass (MyProperty)
 @property (nonatomic, copy) NSString *myProperty;
+- (void)test;
 @end
 
 NS_ASSUME_NONNULL_END

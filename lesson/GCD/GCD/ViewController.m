@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "ZYPerson.h"
+#import "MyOperation.h"
 
 @interface ViewController ()
 
@@ -561,7 +562,32 @@
 //            dispatch_semaphore_signal(semaphore);
 //        });
 //    }
+//}
+
+//这里出现了“优先级反转问题“
+
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
 //
+//    // 设置最大开辟的线程数为3
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(3);
+//
+//    // 创建高优先级和低优先级队列
+//    dispatch_queue_t highPriorityQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    dispatch_queue_t lowPriorityQueue = dispatch_get_global_queue(QOS_CLASS_UTILITY, 0);
+//
+//    for (NSInteger i = 0; i < 10; i++) {
+//        dispatch_queue_t targetQueue = (i < 5) ? highPriorityQueue : lowPriorityQueue;
+//        dispatch_async(targetQueue, ^{
+//            // 当信号量为0时候，阻塞当前线程
+//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//            NSLog(@"执行任务 %ld", i);
+////            sleep(1);
+//            NSLog(@"完成当前任务 %ld", i);
+//            // 释放信号
+//            dispatch_semaphore_signal(semaphore);
+//        });
+//    }
 //}
 
 
@@ -683,35 +709,226 @@
  
 //#import "ZYPerson.h"
 
-- (void)stressTestReadWriteOperations {
-    ZYPerson *person = [[ZYPerson alloc] init];
-    
-    // 定义读写操作次数
-    const int kOperationCount = 10;
-    
-    // 创建一个 dispatch_group 来并发执行操作
-    dispatch_group_t group = dispatch_group_create();
-    
-    // 执行读写操作
-    for (int i = 0; i < kOperationCount; i++) {
-        dispatch_group_async(group, dispatch_get_main_queue(), ^{
-            [person setName:[NSString stringWithFormat:@"Name %d", i]];
-            NSString *name = [person name];
-            NSLog(@"Read name: %@", name);
-        });
-    }
-    
-    // 等待所有操作完成
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    
-    NSLog(@"All %d read/write operations completed.", kOperationCount);
-}
+//- (void)stressTestReadWriteOperations {
+//    ZYPerson *person = [[ZYPerson alloc] init];
+//
+//    // 定义读写操作次数
+//    const int kOperationCount = 10;
+//
+//    // 创建一个 dispatch_group 来并发执行操作
+//    dispatch_group_t group = dispatch_group_create();
+//
+//    // 执行读写操作
+//    for (int i = 0; i < kOperationCount; i++) {
+//        dispatch_group_async(group, dispatch_get_main_queue(), ^{
+//            [person setName:[NSString stringWithFormat:@"Name %d", i]];
+//            NSString *name = [person name];
+//            NSLog(@"Read name: %@", name);
+//        });
+//    }
+//
+//    // 等待所有操作完成
+//    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+//
+//    NSLog(@"All %d read/write operations completed.", kOperationCount);
+//}
+//
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    //[self stressTestReadWriteOperations];
+//}
+
+//- (void)viewDidLoad {
+//    MyOperation *operation = [[MyOperation alloc] init];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperation:operation];
+//
+//    //sleep(3);
+//    [operation cancel];
+//
+//}
+
+
+//void downloadFragment(NSInteger fragmentIndex) {
+//    // 模拟下载任务
+//    NSLog(@"Downloading fragment %ld", (long)fragmentIndex);
+//    [NSThread sleepForTimeInterval:1]; // 模拟网络延迟
+//    NSLog(@"Downloaded fragment %ld", (long)fragmentIndex);
+//}
+//
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    dispatch_queue_t concurrentQueue = dispatch_queue_create("com.example.concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+//
+//    for (NSInteger i = 0; i < 5; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            downloadFragment(i);
+//        });
+//    }
+//
+//    dispatch_barrier_sync(concurrentQueue, ^{
+//        NSLog(@"All fragments downloaded.");
+//    });
+//}
+
+
+
+//并发下载碎片文件内容，用GCD和NSOperation怎么实现？
+
+//定义一个函数，用于下载文件的一个碎片
+//void downloadFragment(NSURL *url, NSInteger start, NSInteger length, NSInteger fragmentIndex, NSString *destinationPath, void (^completionHandler)(BOOL)) {
+//    //创建一个可变的URL请求，设置范围头以请求文件的一部分
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    NSString *range = [NSString stringWithFormat:@"bytes=%ld-%ld", start, start + length - 1];
+//    [request setValue:range forHTTPHeaderField:@"Range"];
+//
+//    // 使用共享会话创建一个NSURLSession
+//    NSURLSession *session = [NSURLSession sharedSession];
+//
+//    //创建一个数据任务来下载文件的碎片
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        if (error) {
+//            // 如果有错误，调用完成处理程序并传递NO
+//            completionHandler(NO);
+//        } else {
+//            // 如果没有错误，将数据写入文件
+//            NSString *fragmentPath = [destinationPath stringByAppendingPathComponent:[NSString stringWithFormat:@"fragment_%ld", fragmentIndex]];
+//            [data writeToFile:fragmentPath atomically:YES];
+//            // 调用完成处理程序并传递YES
+//            completionHandler(YES);
+//        }
+//    }];
+//    [dataTask resume];
+//}
+//
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    // 定义要下载的文件URL
+//    NSURL *url = [NSURL URLWithString:@"https://example.com/largefile"];
+//    // 假设文件大小为1000000字节
+//    NSInteger fileSize = 1000000; // 例子中的文件大小
+//    // 定义每个碎片的大小为200000字节
+//    NSInteger fragmentSize = 200000; // 每个小块的大小
+//    // 计算需要下载的碎片数量
+//    NSInteger numberOfFragments = (fileSize + fragmentSize - 1) / fragmentSize;
+//    // 定义存储碎片文件的目录路径
+//    NSString *destinationPath = @"/path/to/destination"; // 存放下载碎片的目录
+//    // 创建一个GCD组，用于同步多个并发下载任务
+//    dispatch_group_t downloadGroup = dispatch_group_create();
+//    // 创建一个并发队列
+//    dispatch_queue_t concurrentQueue = dispatch_queue_create("com.example.concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+//    // 启动并发下载任务
+//    for (NSInteger i = 0; i < numberOfFragments; i++) {
+//        // 每个任务进入GCD组
+//        dispatch_group_enter(downloadGroup);
+//        // 计算每个碎片的起始位置和长度
+//        NSInteger start = i * fragmentSize;
+//        NSInteger length = MIN(fragmentSize, fileSize - start);
+//
+//        // 将下载任务提交到并发队列
+//        dispatch_async(concurrentQueue, ^{
+//            downloadFragment(url, start, length, i, destinationPath, ^(BOOL success) {
+//                if (!success) {
+//                    NSLog(@"Failed to download fragment %ld", (long)i);
+//                } else {
+//                    NSLog(@"Downloaded fragment %ld", (long)i);
+//                }
+//                // 每个任务完成后离开GCD组
+//                dispatch_group_leave(downloadGroup);
+//            });
+//        });
+//    }
+//
+//    dispatch_group_notify(downloadGroup, dispatch_get_main_queue(), ^{
+//        NSLog(@"All fragments downloaded.");
+//        // 这里可以添加代码来将碎片合并成一个完整的文件
+//    });
+//
+//    [[NSRunLoop currentRunLoop] run]; // 保持程序运行直到所有下载完成
+//}
+
+
+
+//- (void)viewDidLoad {
+//
+//    NSLog(@"start");
+//    dispatch_queue_t concurrentQueue = dispatch_queue_create("com.example.concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+//
+//    // 模拟读操作
+//    void (^readBlock)(void) = ^{
+//        // 读取共享资源
+//        NSLog(@"Read operation - %@", [NSThread currentThread]);
+//    };
+//
+//    // 模拟写操作
+//    void (^writeBlock)(void) = ^{
+//        // 写入共享资源
+//        NSLog(@"Write operation - %@", [NSThread currentThread]);
+//    };
+//
+//    // 执行读操作
+//    dispatch_async(concurrentQueue, readBlock);
+//    dispatch_async(concurrentQueue, readBlock);
+//    dispatch_async(concurrentQueue, readBlock);
+//
+//    // 执行写操作
+//    dispatch_barrier_sync(concurrentQueue, writeBlock);
+//
+//    // 再执行读操作
+//    dispatch_async(concurrentQueue, readBlock);
+//    dispatch_async(concurrentQueue, readBlock);
+//    dispatch_async(concurrentQueue, readBlock);
+//
+//    NSLog(@"end");
+//}
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    //[self stressTestReadWriteOperations];
+    ZYPerson *obj = [[ZYPerson alloc] init];
+    obj.name = @"aaa";
+    
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("com.example.concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"1 - %@", tmp);
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"2 - %@", tmp);
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"3 - %@", tmp);
+    });
+    
+    dispatch_barrier_async(concurrentQueue, ^{
+        [obj setName:@"bbb"];
+        NSLog(@"%@", obj.name);
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"4 - %@", tmp);
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"5 - %@", tmp);
+    });
+    
+    dispatch_async(concurrentQueue, ^{
+        NSString *tmp = [obj name];
+        NSLog(@"6 - %@", tmp);
+    });
+    
 }
+
 
 
 @end

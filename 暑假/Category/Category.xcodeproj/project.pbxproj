@@ -11,6 +11,7 @@
 		68BF09132C4F9984007EFC36 /* MyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF09122C4F9984007EFC36 /* MyClass.m */; };
 		68BF09162C4F99A4007EFC36 /* MyClass+MyProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF09152C4F99A4007EFC36 /* MyClass+MyProperty.m */; };
 		68BF091C2C4FA9F2007EFC36 /* MyClass+MyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF091B2C4FA9F2007EFC36 /* MyClass+MyAdditions.m */; };
+		68BF0A162C53E876007EFC36 /* MyClass+privaty.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF0A152C53E876007EFC36 /* MyClass+privaty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		68BF09192C4FA9C1007EFC36 /* MyClass+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyClass+Extension.h"; sourceTree = "<group>"; };
 		68BF091A2C4FA9F2007EFC36 /* MyClass+MyAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyClass+MyAdditions.h"; sourceTree = "<group>"; };
 		68BF091B2C4FA9F2007EFC36 /* MyClass+MyAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MyClass+MyAdditions.m"; sourceTree = "<group>"; };
+		68BF0A142C53E876007EFC36 /* MyClass+privaty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyClass+privaty.h"; sourceTree = "<group>"; };
+		68BF0A152C53E876007EFC36 /* MyClass+privaty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MyClass+privaty.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				68BF09042C4F9789007EFC36 /* main.m */,
 				68BF09112C4F9984007EFC36 /* MyClass.h */,
 				68BF09122C4F9984007EFC36 /* MyClass.m */,
+				68BF0A142C53E876007EFC36 /* MyClass+privaty.h */,
+				68BF0A152C53E876007EFC36 /* MyClass+privaty.m */,
 				68BF09142C4F99A4007EFC36 /* MyClass+MyProperty.h */,
 				68BF09152C4F99A4007EFC36 /* MyClass+MyProperty.m */,
 				68BF091A2C4FA9F2007EFC36 /* MyClass+MyAdditions.h */,
@@ -139,6 +144,7 @@
 				68BF091C2C4FA9F2007EFC36 /* MyClass+MyAdditions.m in Sources */,
 				68BF09162C4F99A4007EFC36 /* MyClass+MyProperty.m in Sources */,
 				68BF09132C4F9984007EFC36 /* MyClass.m in Sources */,
+				68BF0A162C53E876007EFC36 /* MyClass+privaty.m in Sources */,
 				68BF09052C4F9789007EFC36 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

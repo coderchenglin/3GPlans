@@ -6,6 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MyClass+privaty.h"
+#import "MyClass+MyProperty.h"
+#import "MyClass+Extension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "MyClass+MyProperty.h"
+#import "MyClass+privaty.h"
 //#import "MyClass+MyAdditions.h"
+#import "MyClass.h"
 
-#import "MyClass+Extension.h"
+//#import "MyClass+Extension.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -21,8 +22,10 @@ int main(int argc, const char * argv[]) {
 //        [myClass addMethod];
         
         MyClass *obj = [[MyClass alloc] init];
-        [obj extensionMethod];
-        
+        [obj test];
+        [obj outkj];
+
+//        [obj test];
         
     }
     return 0;

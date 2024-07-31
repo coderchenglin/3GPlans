@@ -18,6 +18,8 @@
 		6824DA5F2C0DE1C100C0B614 /* GCDUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6824DA5E2C0DE1C100C0B614 /* GCDUITests.m */; };
 		6824DA612C0DE1C100C0B614 /* GCDUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6824DA602C0DE1C100C0B614 /* GCDUITestsLaunchTests.m */; };
 		68BF09692C51F5CD007EFC36 /* ZYPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF09682C51F5CD007EFC36 /* ZYPerson.m */; };
+		68BF09B02C527FDC007EFC36 /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF09AF2C527FDC007EFC36 /* MyOperation.m */; };
+		68BF0A102C53B39D007EFC36 /* ZYPersonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BF0A0F2C53B39D007EFC36 /* ZYPersonTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		6824DA602C0DE1C100C0B614 /* GCDUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDUITestsLaunchTests.m; sourceTree = "<group>"; };
 		68BF09672C51F5CD007EFC36 /* ZYPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYPerson.h; sourceTree = "<group>"; };
 		68BF09682C51F5CD007EFC36 /* ZYPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYPerson.m; sourceTree = "<group>"; };
+		68BF09AE2C527FDC007EFC36 /* MyOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOperation.h; sourceTree = "<group>"; };
+		68BF09AF2C527FDC007EFC36 /* MyOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOperation.m; sourceTree = "<group>"; };
+		68BF0A0E2C53B39D007EFC36 /* ZYPersonTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYPersonTests.h; sourceTree = "<group>"; };
+		68BF0A0F2C53B39D007EFC36 /* ZYPersonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYPersonTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 				6824DA3C2C0DE1BE00C0B614 /* SceneDelegate.m */,
 				6824DA3E2C0DE1BE00C0B614 /* ViewController.h */,
 				6824DA3F2C0DE1BE00C0B614 /* ViewController.m */,
+				68BF09AE2C527FDC007EFC36 /* MyOperation.h */,
+				68BF09AF2C527FDC007EFC36 /* MyOperation.m */,
 				6824DA412C0DE1BE00C0B614 /* Main.storyboard */,
 				6824DA442C0DE1C000C0B614 /* Assets.xcassets */,
 				6824DA462C0DE1C000C0B614 /* LaunchScreen.storyboard */,
@@ -120,6 +128,8 @@
 				6824DA4A2C0DE1C000C0B614 /* main.m */,
 				68BF09672C51F5CD007EFC36 /* ZYPerson.h */,
 				68BF09682C51F5CD007EFC36 /* ZYPerson.m */,
+				68BF0A0E2C53B39D007EFC36 /* ZYPersonTests.h */,
+				68BF0A0F2C53B39D007EFC36 /* ZYPersonTests.m */,
 			);
 			path = GCD;
 			sourceTree = "<group>";
@@ -274,8 +284,10 @@
 				6824DA402C0DE1BE00C0B614 /* ViewController.m in Sources */,
 				6824DA3A2C0DE1BE00C0B614 /* AppDelegate.m in Sources */,
 				6824DA4B2C0DE1C000C0B614 /* main.m in Sources */,
+				68BF09B02C527FDC007EFC36 /* MyOperation.m in Sources */,
 				6824DA3D2C0DE1BE00C0B614 /* SceneDelegate.m in Sources */,
 				68BF09692C51F5CD007EFC36 /* ZYPerson.m in Sources */,
+				68BF0A102C53B39D007EFC36 /* ZYPersonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
