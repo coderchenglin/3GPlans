@@ -9,4 +9,22 @@
 
 @implementation Dog
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.name forKey:@"dogName"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.name = [coder decodeObjectForKey:@"dogName"];
+    }
+    
+    return self;
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+
 @end

@@ -17,14 +17,14 @@
     
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
     
     self = [super init];
     if (self) {
         self.name = [coder decodeObjectForKey:@"name"];
         self.age = [coder decodeIntForKey:@"age"];
         self.weight = [coder decodeDoubleForKey:@"weight"];
-        self.dog = [coder decodeObjectForKey:@"dod"];
+        self.dog = [coder decodeObjectForKey:@"dog"];
     }
     return self;
 }
