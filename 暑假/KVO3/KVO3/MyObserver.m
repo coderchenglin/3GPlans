@@ -33,7 +33,22 @@
         NSString *newName = change[NSKeyValueChangeNewKey];
         NSLog(@"Name changed from %@ to %@", oldName, newName);
     } else if([keyPath isEqualToString:@"items"]) {
-        NSKeyValueChangeKey changeType = [change[NSKeyValueChangeKindKey] intValue];
+        int kind = [change[NSKeyValueChangeKindKey] intValue];
+        switch (kind) {
+            case NSKeyValueChangeSetting:
+                NSLog(@"Setting new value");
+                break;
+            case NSKeyValueChangeInsertion:
+                NSLog(@"Inserting new element");
+                break;
+            case NSKeyValueChangeRemoval:
+                NSLog(@"Removing element");
+                break;
+            case NSKeyValueChangeReplacement:
+                NSLog(@"items were replaced at indexes %@", change[NSKeyValueChangeIndexesKey]);
+                break;
+        }
+
         
     }
     

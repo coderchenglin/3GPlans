@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyObservableObject : NSObject
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, strong) NSMutableArray *items;
 @end
 
 NS_ASSUME_NONNULL_END
