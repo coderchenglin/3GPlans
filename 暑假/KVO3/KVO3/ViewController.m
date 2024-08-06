@@ -44,7 +44,12 @@
 //    mutableItems[0] = @"new item1";
 //    observer.observableObject.items = mutableItems;
     observer.observableObject.items[0] = @"new item1";
+    
+    
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    
+}
 
 @end

@@ -23,6 +23,7 @@
 		6852E1AA2C5CD7C800CECCD0 /* Person3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1A92C5CD7C800CECCD0 /* Person3.m */; };
 		6852E1AD2C5CD86300CECCD0 /* Person4.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1AC2C5CD86300CECCD0 /* Person4.m */; };
 		6852E1B02C5CD92800CECCD0 /* Person5.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1AF2C5CD92800CECCD0 /* Person5.m */; };
+		6852E1F42C5DC88E00CECCD0 /* Person6.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1F32C5DC88E00CECCD0 /* Person6.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		6852E1AC2C5CD86300CECCD0 /* Person4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person4.m; sourceTree = "<group>"; };
 		6852E1AE2C5CD92800CECCD0 /* Person5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person5.h; sourceTree = "<group>"; };
 		6852E1AF2C5CD92800CECCD0 /* Person5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person5.m; sourceTree = "<group>"; };
+		6852E1F22C5DC88E00CECCD0 /* Person6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person6.h; sourceTree = "<group>"; };
+		6852E1F32C5DC88E00CECCD0 /* Person6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person6.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 				6852E1AC2C5CD86300CECCD0 /* Person4.m */,
 				6852E1AE2C5CD92800CECCD0 /* Person5.h */,
 				6852E1AF2C5CD92800CECCD0 /* Person5.m */,
+				6852E1F22C5DC88E00CECCD0 /* Person6.h */,
+				6852E1F32C5DC88E00CECCD0 /* Person6.m */,
 			);
 			path = "手撕单例";
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			files = (
 				6852E1A42C5CD4D100CECCD0 /* Person1.m in Sources */,
 				6852E1722C5CD06800CECCD0 /* ViewController.m in Sources */,
+				6852E1F42C5DC88E00CECCD0 /* Person6.m in Sources */,
 				6852E16C2C5CD06800CECCD0 /* AppDelegate.m in Sources */,
 				6852E1AD2C5CD86300CECCD0 /* Person4.m in Sources */,
 				6852E17D2C5CD06C00CECCD0 /* main.m in Sources */,
