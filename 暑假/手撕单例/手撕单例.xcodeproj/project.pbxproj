@@ -24,6 +24,7 @@
 		6852E1AD2C5CD86300CECCD0 /* Person4.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1AC2C5CD86300CECCD0 /* Person4.m */; };
 		6852E1B02C5CD92800CECCD0 /* Person5.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1AF2C5CD92800CECCD0 /* Person5.m */; };
 		6852E1F42C5DC88E00CECCD0 /* Person6.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E1F32C5DC88E00CECCD0 /* Person6.m */; };
+		6852E32B2C62485200CECCD0 /* Person7.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852E32A2C62485200CECCD0 /* Person7.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		6852E1AF2C5CD92800CECCD0 /* Person5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person5.m; sourceTree = "<group>"; };
 		6852E1F22C5DC88E00CECCD0 /* Person6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person6.h; sourceTree = "<group>"; };
 		6852E1F32C5DC88E00CECCD0 /* Person6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person6.m; sourceTree = "<group>"; };
+		6852E3292C62485200CECCD0 /* Person7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person7.h; sourceTree = "<group>"; };
+		6852E32A2C62485200CECCD0 /* Person7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person7.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				6852E1AF2C5CD92800CECCD0 /* Person5.m */,
 				6852E1F22C5DC88E00CECCD0 /* Person6.h */,
 				6852E1F32C5DC88E00CECCD0 /* Person6.m */,
+				6852E3292C62485200CECCD0 /* Person7.h */,
+				6852E32A2C62485200CECCD0 /* Person7.m */,
 			);
 			path = "手撕单例";
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				6852E16C2C5CD06800CECCD0 /* AppDelegate.m in Sources */,
 				6852E1AD2C5CD86300CECCD0 /* Person4.m in Sources */,
 				6852E17D2C5CD06C00CECCD0 /* main.m in Sources */,
+				6852E32B2C62485200CECCD0 /* Person7.m in Sources */,
 				6852E1A12C5CD0C000CECCD0 /* PersonTool.m in Sources */,
 				6852E1B02C5CD92800CECCD0 /* Person5.m in Sources */,
 				6852E16F2C5CD06800CECCD0 /* SceneDelegate.m in Sources */,

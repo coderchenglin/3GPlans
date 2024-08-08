@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 @interface ViewController : UIViewController
-
+@property (nonatomic, weak) Person *person;
 
 @end
 
