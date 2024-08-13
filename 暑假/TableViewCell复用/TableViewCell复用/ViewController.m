@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     //初始化UITableView
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -26,25 +26,30 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"test"];
     //将UITableView添加到视图中
     [self.view addSubview:self.tableView];
-    
+
 }
 
 //行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return 10000;
 }
 //画cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"test";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell= [tableView cellForRowAtIndexPath:indexPath];
     
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    }
+
 //    //1.清除之前可能存在的旧数据或子视图
 //    cell.textLabel.text = nil;
 //    UIView *oldButton = [cell.contentView viewWithTag:1001];
 //    if (oldButton) {
 //        [oldButton removeFromSuperview];
 //    }
-    
+
     if (indexPath.row % 2 == 0) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.frame = CGRectMake(200, 10, 100, 30);
@@ -52,12 +57,21 @@
         button.tag = 1001;
         [cell.contentView addSubview:button];
     }
-    
+
     //3. 设置其他cell数据
     cell.textLabel.text = [NSString stringWithFormat:@"Cell %ld", (long)indexPath.row];
-    
+
     return cell;
 }
+
+
+
+
+
+
+
+
+
 
 
 @end
